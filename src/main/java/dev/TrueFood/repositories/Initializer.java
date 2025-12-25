@@ -1,16 +1,109 @@
 package dev.TrueFood.repositories;
 
 import dev.TrueFood.entity.Adverticement;
+import dev.TrueFood.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Initializer {
-
     @Autowired
     private AdverticementRepository adverticementRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public void initial() {
+
+        Category readyFood = new Category(
+                null,
+                null,
+                "Готовые блюда"
+        );
+        categoryRepository.save(readyFood);
+
+        Category pelmeni = new Category(
+                null,
+                readyFood,
+                "Пельмени"
+        );
+        categoryRepository.save(pelmeni);
+
+        Category vareniki = new Category(
+                null,
+                readyFood,
+                "Вареники"
+        );
+        categoryRepository.save(vareniki);
+
+        Category golubci = new Category(
+                null,
+                readyFood,
+                "Голубцы"
+        );
+        categoryRepository.save(golubci);
+
+        Category drinks = new Category(
+                null,
+                null,
+                "Напитки"
+        );
+        categoryRepository.save(drinks);
+
+        Category voda = new Category(
+                null,
+                drinks,
+                "Вода"
+        );
+        categoryRepository.save(voda);
+
+        Category pivo = new Category(
+                null,
+                drinks,
+                "Пиво"
+        );
+        categoryRepository.save(pivo);
+
+        Category juices = new Category(
+                null,
+                drinks,
+                "Соки"
+        );
+        categoryRepository.save(juices);
+
+        Category meat = new Category(
+                null,
+                null,
+                "Мясные блюда"
+        );
+        categoryRepository.save(meat);
+
+        Category beef = new Category(
+                null,
+                meat,
+                "Говядина"
+        );
+        categoryRepository.save(beef);
+
+        Category pig = new Category(
+                null,
+                meat,
+                "Свинина"
+        );
+        categoryRepository.save(pig);
+
+        Category sheep = new Category(
+                null,
+                meat,
+                "Баранина"
+        );
+        categoryRepository.save(sheep);
+
+
+
+
+
+
         Adverticement adverticement1 = new Adverticement(
                 null,
                 "Жареный суп со свиными кишками",

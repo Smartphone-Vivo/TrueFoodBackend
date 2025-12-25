@@ -23,6 +23,10 @@ public class Order {
 
     private String description;
 
+//    @ManyToOne
+//    @JoinColumn(name = "category_id")
+//    private Category category;
+
     private Long categoryId;
 
     private int price;

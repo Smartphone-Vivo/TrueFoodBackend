@@ -1,8 +1,10 @@
 package dev.TrueFood.controllers;
 
 import dev.TrueFood.entity.Adverticement;
+import dev.TrueFood.entity.Category;
 import dev.TrueFood.repositories.AdverticementRepository;
 import dev.TrueFood.services.AdverticementService;
+import dev.TrueFood.services.CategoryService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import java.util.List;
 public class GeneralController {
 
     private final AdverticementService adverticementService;
+    private final CategoryService categoryService;
 
 
     @GetMapping("adverticement/{page}/{size}")
@@ -36,6 +39,11 @@ public class GeneralController {
     @PostMapping("adverticement")
     public void addAdverticement(@RequestBody Adverticement adverticement) {
         adverticementService.addAdverticement(adverticement);
+    }
+
+    @GetMapping("categories")
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
 
