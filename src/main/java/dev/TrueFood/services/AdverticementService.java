@@ -25,8 +25,20 @@ public class AdverticementService {
         adverticementRepository.save(adverticement);
     }
 
-    public Page<Adverticement> getAdverticementsWithPagination(String name, PageRequest pageRequest) {
-        return adverticementRepository.getAdverticementsWithPagination(name, pageRequest);
+//    public Page<Adverticement> getAdverticementsWithPagination(String name, PageRequest pageRequest) {
+//
+//
+//        return adverticementRepository.getAdverticementsWithPagination(name,  pageRequest);
+//    }
+
+    public Page<Adverticement> getAdverticements(String name, Long categoryId, PageRequest pageRequest) {
+
+        if(categoryId == null) {
+            return adverticementRepository.getAdverticementsWithPagination(name,  pageRequest);
+        }
+        else{
+            return adverticementRepository.getAdverticementsByCategory(name, categoryId,  pageRequest);
+        }
     }
 
 

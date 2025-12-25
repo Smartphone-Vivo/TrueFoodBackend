@@ -23,17 +23,31 @@ public class GeneralController {
     private final CategoryService categoryService;
 
 
+//    @GetMapping("adverticement/{page}/{size}")
+//    public Page<Adverticement> getAllAdverticements(
+//            @PathVariable(name = "page") int page,
+//            @PathVariable(name = "size")int size,
+//
+//            @RequestParam(required = false, defaultValue = "") String name,
+//            @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
+//
+//        PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
+//
+//        return adverticementService.getAdverticementsWithPagination(name, pageRequest);
+//    }
+
     @GetMapping("adverticement/{page}/{size}")
-    public Page<Adverticement> getAllAdverticements(
+    public Page<Adverticement> getAdverticements(
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size,
 
+            @RequestParam(required = false, defaultValue = "") Long categoryId,
             @RequestParam(required = false, defaultValue = "") String name,
             @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
 
-        return adverticementService.getAdverticementsWithPagination(name, pageRequest);
+        return adverticementService.getAdverticements(name, categoryId, pageRequest);
     }
 
     @PostMapping("adverticement")

@@ -23,10 +23,11 @@ public class Order {
 
     private String description;
 
-//    @ManyToOne
-//    @JoinColumn(name = "category_id")
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false, updatable = false, insertable = false)
+    private Category category;
 
+    @Column(name = "category_id", nullable = false)
     private Long categoryId;
 
     private int price;
@@ -46,4 +47,16 @@ public class Order {
     private boolean enable;
 
 
+    public Order(Long id, String title, String description, Long categoryId, int price, String location, Long imagesId, String itemType, String createdAt, boolean enable) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.categoryId = categoryId;
+        this.price = price;
+        this.location = location;
+        this.imagesId = imagesId;
+        this.itemType = itemType;
+        this.createdAt = createdAt;
+        this.enable = enable;
+    }
 }

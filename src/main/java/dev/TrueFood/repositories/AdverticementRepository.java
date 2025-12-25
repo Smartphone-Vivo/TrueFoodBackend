@@ -15,4 +15,12 @@ public interface AdverticementRepository extends JpaRepository<Adverticement, Lo
     """)
     Page<Adverticement> getAdverticementsWithPagination(@Param("name") String name, PageRequest pageRequest);
 
+
+    @Query("""
+    SELECT a FROM Adverticement a
+    WHERE (a.title LIKE CONCAT('%', :name,'%'))
+    AND a.categoryId = :categoryId
+    """)
+    Page<Adverticement> getAdverticementsByCategory(@Param("name") String name, @Param("categoryId") Long categoryId, PageRequest pageRequest);
+
 }
