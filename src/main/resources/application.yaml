@@ -12,8 +12,8 @@ spring:
     hibernate:
       ddl-auto: create-drop
     #    show-sql: true
-    data:
-      mongoDb:
-        uri:mongodb://localhost:27017/image
-      rest:
-        detection-strategy: annotated
+#minio:
+#  endpoint: http://localhost:9000
+#  accessKey: minioadmin
+#  secretKey: minioadmin
+#  bucket: images
