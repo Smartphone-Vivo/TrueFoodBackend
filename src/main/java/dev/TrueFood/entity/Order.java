@@ -32,11 +32,15 @@ public class Order {
 
     private int price;
 
+
+    @ManyToOne
+    @JoinColumn(name = "images_id")
+    private Image imagesId;
+
     //todo
     private String location;
 
     //todo List
-    private Long imagesId;
 
     //todo enum
     private String itemType;
@@ -47,7 +51,7 @@ public class Order {
     private boolean enable;
 
 
-    public Order(Long id, String title, String description, Long categoryId, int price, String location, Long imagesId, String itemType, String createdAt, boolean enable) {
+    public Order(Long id, String title, String description, Long categoryId, int price, String location, Image imagesId, String itemType, String createdAt, boolean enable) {
         this.id = id;
         this.title = title;
         this.description = description;

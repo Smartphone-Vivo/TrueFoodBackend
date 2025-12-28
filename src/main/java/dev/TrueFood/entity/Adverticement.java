@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 public class Adverticement extends Order {
 
-    public Adverticement(Long id, String title, String description, Long categoryId, int price, String location, Long imagesId, String itemType, String createdAt, boolean enable) {
+    public Adverticement(Long id, String title, String description, Long categoryId, int price, String location, Image imagesId, String itemType, String createdAt, boolean enable) {
         super(id, title, description, categoryId, price, location, imagesId, itemType, createdAt, enable);
     }
 

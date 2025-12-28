@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   minio:
-    image: minio/minio
+    image: quay.io/minio/aistor/minio:RELEASE.2025-12-20T04-58-37Z
     container_name: minio
     ports:
       - "9000:9000"
@@ -9,6 +9,13 @@ services:
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_LICENSE: |
+        eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCJ9.eyJhaWQiOjAsImNhcCI6MCwiaWF0IjoxLjc2NjkzOTU2OTgzODE3MTk1MmU5LCJpc3MiOiJzdWJuZXRAbWluLmlvIiwibGlkIjoiZDE4YjE2MmUtMGRlZC00Y2Y0LWEzZWQtZTBjNTQzOGE4NGVlIiwib3JnIjoiIiwicGxhbiI6IkZSRUUiLCJzdWIiOiJhbGVrc2VqcG9wb3YyNjhAZ21haWwuY29tIiwidHJpYWwiOmZhbHNlfQ.crPZIRBsmI-pdSP4LZRIw3jvVqxm4ln-bkreffbkGM4lTDDPo8eOJJHngRPD3SzIEiIcw-aZSwaXxWQ8RQv6e6MNGFs3yhBaNHU3sh-l-yQyw4XXz1m6ynwItxoy-hJv
+      MINIO_CORS_ALLOWED_ORIGINS: "http://localhost:4200,https://example.com"
+      MINIO_CORS_ALLOWED_METHODS: "GET,POST,PUT,DELETE"
+      MINIO_CORS_ALLOWED_HEADERS: "*"
+      MINIO_CORS_EXPOSE_HEADERS: "ETag"
+      MINIO_CORS_MAX_AGE: "3000"
     volumes:
       - ./minio-data:/data
     command: server /data --console-address ":9001"

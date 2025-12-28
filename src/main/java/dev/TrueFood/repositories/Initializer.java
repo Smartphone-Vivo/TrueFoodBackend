@@ -2,6 +2,7 @@ package dev.TrueFood.repositories;
 
 import dev.TrueFood.entity.Adverticement;
 import dev.TrueFood.entity.Category;
+import dev.TrueFood.entity.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +13,17 @@ public class Initializer {
 
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private ImageRepository imageRepository;
+
 
     public void initial() {
+
+        Image image1 = new Image(
+                null,
+                "http://127.0.0.1:9000/images/item_123/88c7071e-0c18-432d-bf26-06b79cb19b72.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251228T221931Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=facb94c7140578288d232df8ab8a93d57237e05921d9d62c3f86f7a35b253436"
+        );
+        imageRepository.save(image1);
 
         Category readyFood = new Category(
                 null,
@@ -111,7 +121,7 @@ public class Initializer {
                 3L,
                 123,
                 "location1",
-                123L,
+                image1,
                 "itemType1",
                 "createdAt1",
                 true
@@ -125,7 +135,7 @@ public class Initializer {
                 3L,
                 123,
                 "location1",
-                123L,
+                image1,
                 "itemType1",
                 "createdAt1",
                 true
@@ -139,7 +149,7 @@ public class Initializer {
                 3L,
                 123,
                 "location1",
-                123L,
+                image1,
                 "itemType1",
                 "createdAt1",
                 true
@@ -155,7 +165,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Пушкина, 10",
-                    123L,
+                    image1,
                     "Итальянская кухня",
                     "2024-01-15",
                     true
@@ -170,7 +180,7 @@ public class Initializer {
                     3L,
                     1,
                     "пр. Ленина, 25",
-                    456L,
+                    image1,
                     "Японская кухня",
                     "2024-01-15",
                     true
@@ -185,7 +195,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Гагарина, 15",
-                    789L,
+                    image1,
                     "Фастфуд",
                     "2024-01-15",
                     true
@@ -200,7 +210,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Садовая, 8",
-                    321L,
+                    image1,
                     "Салаты",
                     "2024-01-15",
                     true
@@ -215,7 +225,7 @@ public class Initializer {
                     3L,
                     1,
                     "пр. Мира, 33",
-                    654L,
+                    image1,
                     "Итальянская кухня",
                     "2024-01-15",
                     true
@@ -230,7 +240,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Грильмастеров, 5",
-                    987L,
+                    image1,
                     "Барбекю",
                     "2024-01-15",
                     true
@@ -245,7 +255,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Украинская, 12",
-                    147L,
+                    image1,
                     "Первые блюда",
                     "2024-01-15",
                     true
@@ -260,7 +270,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Рыбацкая, 18",
-                    258L,
+                    image1,
                     "Японская кухня",
                     "2024-01-15",
                     true
@@ -275,7 +285,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Мясная, 22",
-                    369L,
+                    image1,
                     "Мясные блюда",
                     "2024-01-15",
                     true
@@ -290,7 +300,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Сладкая, 7",
-                    741L,
+                    image1,
                     "Десерты",
                     "2024-01-15",
                     true
@@ -305,7 +315,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Азиатская, 14",
-                    852L,
+                    image1,
                     "Азиатская кухня",
                     "2024-01-15",
                     true
@@ -320,7 +330,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Домашняя, 9",
-                    963L,
+                    image1,
                     "Русская кухня",
                     "2024-01-15",
                     true
@@ -335,7 +345,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Бутербродная, 3",
-                    159L,
+                    image1,
                     "Фастфуд",
                     "2024-01-15",
                     true
@@ -350,7 +360,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Морская, 11",
-                    753L,
+                    image1,
                     "Рыбные блюда",
                     "2024-01-15",
                     true
@@ -365,7 +375,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Утренняя, 6",
-                    357L,
+                    image1,
                     "Завтраки",
                     "2024-01-15",
                     true
@@ -380,7 +390,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Креветочная, 4",
-                    486L,
+                    image1,
                     "Морепродукты",
                     "2024-01-15",
                     true
@@ -395,7 +405,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Яичная, 2",
-                    624L,
+                    image1,
                     "Завтраки",
                     "2024-01-15",
                     true
@@ -410,7 +420,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Восточная, 17",
-                    792L,
+                    image1,
                     "Азиатская кухня",
                     "2024-01-15",
                     true
@@ -425,7 +435,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Мексиканская, 13",
-                    531L,
+                    image1,
                     "Мексиканская кухня",
                     "2024-01-15",
                     true
@@ -440,7 +450,7 @@ public class Initializer {
                     3L,
                     1,
                     "ул. Десертная, 8",
-                    468L,
+                    image1,
                     "Десерты",
                     "2024-01-15",
                     true

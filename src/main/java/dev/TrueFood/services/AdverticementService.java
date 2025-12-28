@@ -2,6 +2,7 @@ package dev.TrueFood.services;
 
 import dev.TrueFood.entity.Adverticement;
 import dev.TrueFood.repositories.AdverticementRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional //todo вот эту ебатню разгрести
 public class AdverticementService {
 
     private final AdverticementRepository adverticementRepository;
