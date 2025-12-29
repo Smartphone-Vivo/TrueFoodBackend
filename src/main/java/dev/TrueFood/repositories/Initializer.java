@@ -23,7 +23,9 @@ public class Initializer {
 
     public void initial() {
 
-        imageUrls.add("http://127.0.0.1:9000/images/item_123/88c7071e-0c18-432d-bf26-06b79cb19b72.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251228T221931Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=facb94c7140578288d232df8ab8a93d57237e05921d9d62c3f86f7a35b253436");
+        imageUrls.add("http://127.0.0.1:9000/images/5b909523-b4ab-4930-83fa-90c2adf5.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9377cc55da28d60d472a3f033911bf37cf8f949b107930c08124cef343d4ade6");
+        imageUrls.add("http://127.0.0.1:9000/images/02cc6c40-1081-4444-99ae-dcbb2e6d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=903a54d54be28b0aea666545a7b84b52f6eb79408b8839bd263d9a66157d9b43");
+        imageUrls.add("http://127.0.0.1:9000/images/33867e5e-e0e9-4075-85ea-71a4853c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2816e7a3b1c1d77935cdcc52c4a6c7d29e13c0049df03560a648fb260b805b70");
 
         Image image1 = new Image(
                 null,
@@ -116,13 +118,9 @@ public class Initializer {
         categoryRepository.save(sheep);
 
 
-
-
-
-
         Adverticement adverticement1 = new Adverticement(
                 null,
-                "Жареный суп со свиными кишками",
+                "Жареный суп",
                 "опасно",
                 3L,
                 123,
@@ -133,35 +131,6 @@ public class Initializer {
                 true
         );
         adverticementRepository.save(adverticement1);
-
-        Adverticement adverticement2 = new Adverticement(
-                null,
-                "Жареный суп со свиными кишками2",
-                "опасно",
-                3L,
-                123,
-                "location1",
-                image1,
-                "itemType1",
-                "createdAt1",
-                true
-        );
-        adverticementRepository.save(adverticement2);
-
-        Adverticement adverticement3 = new Adverticement(
-                null,
-                "Жареный суп со свиными кишками3",
-                "опасно",
-                3L,
-                123,
-                "location1",
-                image1,
-                "itemType1",
-                "createdAt1",
-                true
-        );
-        adverticementRepository.save(adverticement3);
-
 
             // 1. Пицца
             Adverticement adverticement1123 = new Adverticement(

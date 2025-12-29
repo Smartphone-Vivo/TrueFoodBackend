@@ -73,35 +73,4 @@ public class MinioController {
 
     }
 
-//    @PostMapping("/upload")
-//    public ResponseEntity<UploadResponse> uploadFile(
-//            @RequestParam("file") MultipartFile file){
-//        if(file.isEmpty()){
-//            return ResponseEntity.badRequest().build();
-//        }
-//
-//        try{
-//
-//            String fileUrl = minioService.uploadFile(file);
-//
-//            UploadResponse response = new UploadResponse(
-//                    file.getOriginalFilename(),
-//                    fileUrl,
-//                    file.getSize(),
-//                    file.getContentType()
-//            );
-//
-//            Image image = new Image(null, fileUrl);
-//
-//            imageRepository.save(image); //todo
-//
-//            return ResponseEntity.ok(response);
-//
-//        }catch (Exception e){
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//
-//    }
-
-
 }
