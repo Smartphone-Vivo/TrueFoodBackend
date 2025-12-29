@@ -6,6 +6,9 @@ import dev.TrueFood.entity.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class Initializer {
     @Autowired
@@ -16,12 +19,15 @@ public class Initializer {
     @Autowired
     private ImageRepository imageRepository;
 
+    List<String> imageUrls = new ArrayList<>();
 
     public void initial() {
 
+        imageUrls.add("http://127.0.0.1:9000/images/item_123/88c7071e-0c18-432d-bf26-06b79cb19b72.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251228T221931Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=facb94c7140578288d232df8ab8a93d57237e05921d9d62c3f86f7a35b253436");
+
         Image image1 = new Image(
                 null,
-                "http://127.0.0.1:9000/images/item_123/88c7071e-0c18-432d-bf26-06b79cb19b72.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251228T221931Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=facb94c7140578288d232df8ab8a93d57237e05921d9d62c3f86f7a35b253436"
+                imageUrls
         );
         imageRepository.save(image1);
 

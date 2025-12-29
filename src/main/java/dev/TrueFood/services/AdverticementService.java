@@ -28,9 +28,9 @@ public class AdverticementService {
 
     public void addAdverticement(Adverticement adverticement) {
 
-        String imageUrl = adverticement.getImagesId().getImageUrl();
+        List<String> imageUrls = adverticement.getImagesId().getImageUrls();
 
-        Image image = new Image(null, imageUrl);
+        Image image = new Image(null, imageUrls);
 
         imageRepository.save(image);
 
