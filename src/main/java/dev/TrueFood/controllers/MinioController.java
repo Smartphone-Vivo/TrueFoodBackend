@@ -2,6 +2,8 @@ package dev.TrueFood.controllers;
 
 
 import dev.TrueFood.dto.UploadResponse;
+import dev.TrueFood.entity.Image;
+import dev.TrueFood.repositories.ImageRepository;
 import dev.TrueFood.services.MinioService;
 import io.minio.MinioClient;
 import io.minio.UploadPartResponse;
@@ -20,24 +22,25 @@ public class MinioController {
 
     private final MinioClient minioClient;
     private final MinioService minioService;
+    private final ImageRepository imageRepository;
 
 
-    public MinioController(MinioClient minioClient, MinioService minioService) {
+    public MinioController(MinioClient minioClient, MinioService minioService, ImageRepository imageRepository) {
         this.minioClient = minioClient;
         this.minioService = minioService;
+        this.imageRepository = imageRepository;
     }
 
     @PostMapping("/upload")
     public ResponseEntity<UploadResponse> uploadFile(
-            @RequestParam("file") MultipartFile file,
-            @RequestParam("adverticementId") Long adverticementId){
+            @RequestParam("file") MultipartFile file){
         if(file.isEmpty()){
             return ResponseEntity.badRequest().build();
         }
 
         try{
-            String folder = "item_" + adverticementId;
-            String fileUrl = minioService.uploadFile(file, folder);
+
+            String fileUrl = minioService.uploadFile(file);
 
             UploadResponse response = new UploadResponse(
                     file.getOriginalFilename(),
@@ -45,6 +48,10 @@ public class MinioController {
                     file.getSize(),
                     file.getContentType()
             );
+
+            Image image = new Image(null, fileUrl);
+
+            imageRepository.save(image); //todo
 
             return ResponseEntity.ok(response);
 

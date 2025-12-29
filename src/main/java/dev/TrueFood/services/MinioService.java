@@ -1,5 +1,7 @@
 package dev.TrueFood.services;
 
+import dev.TrueFood.entity.Image;
+import dev.TrueFood.repositories.ImageRepository;
 import io.minio.*;
 import io.minio.http.Method;
 import jakarta.annotation.PostConstruct;
@@ -15,14 +17,16 @@ public class MinioService {
 
 
     private final MinioClient minioClient;
+    private final ImageRepository imageRepository;
 
 
     @Value("${minio.bucket-name}")
     private String bucketName;
 
 
-    public MinioService(MinioClient minioClient) {
+    public MinioService(MinioClient minioClient, ImageRepository imageRepository) {
         this.minioClient = minioClient;
+        this.imageRepository = imageRepository;
     }
 
     @PostConstruct
@@ -37,10 +41,10 @@ public class MinioService {
         }
     }
 
-    public String uploadFile(MultipartFile file, String folder) throws IOException {
+    public String uploadFile(MultipartFile file) throws IOException {
         try{
         String fileName = generateFileName(file.getOriginalFilename());
-        String objectName = folder + "/" + fileName;
+        String objectName = fileName;
 
         minioClient.putObject(
                 PutObjectArgs.builder()
@@ -50,14 +54,21 @@ public class MinioService {
                         .contentType(file.getContentType())
                         .build()
         );
-        return getFileUrl(objectName);
+
+        String fileUrl = getFileUrl(objectName);
+//
+//        Image image = new Image(null, fileUrl);
+//
+//        imageRepository.save(image);
+
+        return fileUrl;
         }catch (Exception e){
             throw new IOException(e.getMessage());
         }
     }
 
     public String generateFileName(String originalFileName) {
-        return UUID.randomUUID().toString()
+        return UUID.randomUUID().toString().substring(0, 32)
                 + getExtention(originalFileName);
     }
 

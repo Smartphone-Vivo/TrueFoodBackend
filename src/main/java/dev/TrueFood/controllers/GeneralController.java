@@ -2,7 +2,6 @@ package dev.TrueFood.controllers;
 
 import dev.TrueFood.entity.Adverticement;
 import dev.TrueFood.entity.Category;
-import dev.TrueFood.repositories.AdverticementRepository;
 import dev.TrueFood.services.AdverticementService;
 import dev.TrueFood.services.CategoryService;
 import dev.TrueFood.utils.PageUtils;
@@ -22,20 +21,6 @@ public class GeneralController {
     private final AdverticementService adverticementService;
     private final CategoryService categoryService;
 
-
-//    @GetMapping("adverticement/{page}/{size}")
-//    public Page<Adverticement> getAllAdverticements(
-//            @PathVariable(name = "page") int page,
-//            @PathVariable(name = "size")int size,
-//
-//            @RequestParam(required = false, defaultValue = "") String name,
-//            @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
-//
-//        PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
-//
-//        return adverticementService.getAdverticementsWithPagination(name, pageRequest);
-//    }
-
     @GetMapping("adverticement/{page}/{size}")
     public Page<Adverticement> getAdverticements(
             @PathVariable(name = "page") int page,
@@ -48,6 +33,13 @@ public class GeneralController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
 
         return adverticementService.getAdverticements(name, categoryId, pageRequest);
+    }
+
+    @GetMapping("advertisement/{id}")
+    public Adverticement getAdverticementById(
+            @PathVariable(name = "id") int id
+    ){
+        return adverticementService.getAdverticementById((long) id);
     }
 
     @PostMapping("adverticement")

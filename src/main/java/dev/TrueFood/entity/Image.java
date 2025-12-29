@@ -19,4 +19,5 @@ public class Image {
 
     @Lob
     private String imageUrl;
+
 }

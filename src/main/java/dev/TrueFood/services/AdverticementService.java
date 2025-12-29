@@ -1,7 +1,9 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.entity.Adverticement;
+import dev.TrueFood.entity.Image;
 import dev.TrueFood.repositories.AdverticementRepository;
+import dev.TrueFood.repositories.ImageRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,7 @@ import java.util.List;
 public class AdverticementService {
 
     private final AdverticementRepository adverticementRepository;
+    private final ImageRepository imageRepository;
 
 
     public List<Adverticement> getAllAdverticements() {
@@ -24,14 +27,17 @@ public class AdverticementService {
     }
 
     public void addAdverticement(Adverticement adverticement) {
+
+        String imageUrl = adverticement.getImagesId().getImageUrl();
+
+        Image image = new Image(null, imageUrl);
+
+        imageRepository.save(image);
+
+        adverticement.setImagesId(image);
+
         adverticementRepository.save(adverticement);
     }
-
-//    public Page<Adverticement> getAdverticementsWithPagination(String name, PageRequest pageRequest) {
-//
-//
-//        return adverticementRepository.getAdverticementsWithPagination(name,  pageRequest);
-//    }
 
     public Page<Adverticement> getAdverticements(String name, Long categoryId, PageRequest pageRequest) {
 
@@ -41,6 +47,10 @@ public class AdverticementService {
         else{
             return adverticementRepository.getAdverticementsByCategory(name, categoryId,  pageRequest);
         }
+    }
+
+    public Adverticement getAdverticementById(Long id) {
+        return adverticementRepository.findById(id).orElse(null);
     }
 
 

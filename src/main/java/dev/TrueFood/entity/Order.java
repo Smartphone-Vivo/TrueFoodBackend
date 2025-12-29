@@ -32,7 +32,6 @@ public class Order {
 
     private int price;
 
-
     @ManyToOne
     @JoinColumn(name = "images_id")
     private Image imagesId;
