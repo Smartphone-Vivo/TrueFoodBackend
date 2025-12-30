@@ -4,7 +4,7 @@ import dev.TrueFood.dto.SignUpRequest;
 import dev.TrueFood.entity.users.User;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper (componentModel = "spring")
 public interface UserMapping {
 
     User toEntity(SignUpRequest signUpRequest);
