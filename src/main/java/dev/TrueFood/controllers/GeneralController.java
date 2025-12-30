@@ -52,5 +52,9 @@ public class GeneralController {
         return categoryService.getAllCategories();
     }
 
+    @GetMapping("zalupa")
+    public String getZalupa() {
+        return "zalupa";
+    }
 
 }

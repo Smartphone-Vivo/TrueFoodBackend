@@ -3,6 +3,9 @@ package dev.TrueFood.repositories;
 import dev.TrueFood.entity.Adverticement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
+import dev.TrueFood.entity.users.Password;
+import dev.TrueFood.entity.users.Role;
+import dev.TrueFood.entity.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,10 +21,14 @@ public class Initializer {
     private CategoryRepository categoryRepository;
     @Autowired
     private ImageRepository imageRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     List<String> imageUrls = new ArrayList<>();
 
     public void initial() {
+
+
 
         imageUrls.add("http://127.0.0.1:9000/images/5b909523-b4ab-4930-83fa-90c2adf5.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9377cc55da28d60d472a3f033911bf37cf8f949b107930c08124cef343d4ade6");
         imageUrls.add("http://127.0.0.1:9000/images/02cc6c40-1081-4444-99ae-dcbb2e6d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=903a54d54be28b0aea666545a7b84b52f6eb79408b8839bd263d9a66157d9b43");
@@ -39,6 +46,22 @@ public class Initializer {
                 "Готовые блюда"
         );
         categoryRepository.save(readyFood);
+
+        Password password = new Password(
+                null,
+                "123"
+        );
+
+        User user = new User(
+                null,
+                "aleksejpopov268@gmail.com",
+                Role.USER,
+                password,
+                true,
+                "Igor Gofman",
+                5
+                );
+        userRepository.save(user);
 
         Category pelmeni = new Category(
                 null,
