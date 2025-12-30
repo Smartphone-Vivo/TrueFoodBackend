@@ -27,10 +27,10 @@ public class AuthController {
         return ResponseEntity.ok(token);
     }
 
-//    @PostMapping("register")
-//    public void register(@RequestBody SignUpRequest signUpRequest){
-//        registerService.register(SignUpRequest);
-//
-//    }
+    @PostMapping("register")
+    public void register(@RequestBody SignUpRequest signUpRequest){
+        registerService.register(signUpRequest);
+
+    }
 
 }

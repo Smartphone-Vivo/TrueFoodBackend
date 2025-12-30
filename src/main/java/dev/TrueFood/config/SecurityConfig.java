@@ -32,12 +32,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(
                                 "/api/auth/register",
-                                "/api/auth/login"
-//                                "/api/general/**"
+                                "/api/auth/",
+                                "/api/general/**"
                                 )
                         .permitAll()
                         .requestMatchers("api/general/zalupa").authenticated()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
