@@ -47,21 +47,37 @@ public class Initializer {
         );
         categoryRepository.save(readyFood);
 
-        Password password = new Password(
+        Password password1 = new Password(
                 null,
-                "123"
+                "1"
         );
 
-        User user = new User(
+        Password password2 = new Password(
                 null,
-                "aleksejpopov268@gmail.com",
+                "2"
+        );
+
+        User user1 = new User(
+                null,
+                "1",
                 Role.USER,
-                password,
+                password1,
                 true,
-                "Igor Gofman",
+                "Людмила",
                 5
                 );
-        userRepository.save(user);
+        userRepository.save(user1);
+
+        User user2 = new User(
+                null,
+                "2",
+                Role.USER,
+                password2,
+                true,
+                "Игорь Гофман",
+                5
+        );
+        userRepository.save(user2);
 
         Category pelmeni = new Category(
                 null,
@@ -144,6 +160,7 @@ public class Initializer {
         Adverticement adverticement1 = new Adverticement(
                 null,
                 "Жареный суп",
+                1L,
                 "опасно",
                 3L,
                 123,
@@ -159,6 +176,7 @@ public class Initializer {
             Adverticement adverticement1123 = new Adverticement(
                     null,
                     "Пицца Маргарита",
+                    1L,
                     "Свежая домашняя пицца с томатным соусом, сыром моцарелла и базиликом. Приготовлена сегодня.",
                     3L,
                     1,
@@ -174,6 +192,7 @@ public class Initializer {
             Adverticement adverticement2234234 = new Adverticement(
                     null,
                     "Суши сет 'Сакура'",
+                    1L,
                     "20 штук: филадельфия, калифорния, спайси тунец. Свежие морепродукты.",
                     3L,
                     1,
@@ -189,6 +208,7 @@ public class Initializer {
             Adverticement adverticemen23423424t3 = new Adverticement(
                     null,
                     "Чизбургер с картошкой",
+                    1L,
                     "Двойная говяжья котлета, сыр чеддер, свежие овощи. Подается с картофелем фри.",
                     3L,
                     1,
@@ -204,6 +224,7 @@ public class Initializer {
             Adverticement adverticement4 = new Adverticement(
                     null,
                     "Салат Цезарь с курицей",
+                    1L,
                     "Хрустящий салат с куриной грудкой, пармезаном, сухариками и соусом цезарь.",
                     3L,
                     1,
@@ -219,6 +240,7 @@ public class Initializer {
             Adverticement adverticement5 = new Adverticement(
                     null,
                     "Паста Карбонара",
+                    1L,
                     "Спагетти с беконом, сливочным соусом, яйцом и пармезаном.",
                     3L,
                     1,
@@ -234,6 +256,7 @@ public class Initializer {
             Adverticement adverticement6 = new Adverticement(
                     null,
                     "Шашлык из свинины",
+                    1L,
                     "Нежный шашлык на углях с овощами гриль. Порция 500г.",
                     3L,
                     1,
@@ -249,6 +272,7 @@ public class Initializer {
             Adverticement adverticement7 = new Adverticement(
                     null,
                     "Борщ украинский",
+                    1L,
                     "Наваристый борщ со сметаной и чесночными пампушками.",
                     3L,
                     1,
@@ -264,6 +288,7 @@ public class Initializer {
             Adverticement adverticement8 = new Adverticement(
                     null,
                     "Запеченные роллы с лососем",
+                    1L,
                     "8 штук, запеченные под сырным соусом с лососем и сливочным сыром.",
                     3L,
                     1,
@@ -279,6 +304,7 @@ public class Initializer {
             Adverticement adverticement9 = new Adverticement(
                     null,
                     "Стейк Рибай",
+                    1L,
                     "Говяжий стейк 300г, средней прожарки, с овощами гриль и соусом.",
                     3L,
                     1,
@@ -294,6 +320,7 @@ public class Initializer {
             Adverticement adverticement10 = new Adverticement(
                     null,
                     "Тирамису классический",
+                    1L,
                     "Итальянский десерт с кофейной пропиткой и сыром маскарпоне.",
                     3L,
                     1,
@@ -309,6 +336,7 @@ public class Initializer {
             Adverticement adverticement11 = new Adverticement(
                     null,
                     "Лапша WOK с курицей",
+                    1L,
                     "Лапша с курицей, овощами и соевым соусом на воке.",
                     3L,
                     1,
@@ -324,6 +352,7 @@ public class Initializer {
             Adverticement adverticement12 = new Adverticement(
                     null,
                     "Пельмени домашние",
+                    2L,
                     "Домашние пельмени с говядиной и свининой, порция 20 штук.",
                     3L,
                     1,
@@ -339,6 +368,7 @@ public class Initializer {
             Adverticement adverticement13 = new Adverticement(
                     null,
                     "Клаб-сэндвич",
+                    2L,
                     "Трехслойный сэндвич с курицей, беконом, сыром и овощами.",
                     3L,
                     1,
@@ -354,6 +384,7 @@ public class Initializer {
             Adverticement adverticement14 = new Adverticement(
                     null,
                     "Дорадо на гриле",
+                    2L,
                     "Свежая дорадо с лимоном и травами, подается с рисом.",
                     3L,
                     1,
@@ -369,6 +400,7 @@ public class Initializer {
             Adverticement adverticement15 = new Adverticement(
                     null,
                     "Английский завтрак",
+                    2L,
                     "Яичница с беконом, сосисками, грибами, помидорами и тостами.",
                     3L,
                     1,
@@ -384,6 +416,7 @@ public class Initializer {
             Adverticement adverticement16 = new Adverticement(
                     null,
                     "Креветки в чесночном соусе",
+                    2L,
                     "Крупные тигровые креветки в сливочно-чесночном соусе.",
                     3L,
                     1,
@@ -399,6 +432,7 @@ public class Initializer {
             Adverticement adverticement17 = new Adverticement(
                     null,
                     "Омлет с ветчиной и сыром",
+                    2L,
                     "Пышный омлет с ветчиной, сыром и зеленью.",
                     3L,
                     1,
@@ -414,6 +448,7 @@ public class Initializer {
             Adverticement adverticement18 = new Adverticement(
                     null,
                     "Курица терияки",
+                    2L,
                     "Куриное филе в соусе терияки с кунжутом и рисом.",
                     3L,
                     1,
@@ -429,6 +464,7 @@ public class Initializer {
             Adverticement adverticement19 = new Adverticement(
                     null,
                     "Тако с говядиной",
+                    2L,
                     "3 тако с мексиканской говядиной, сальсой и гуакамоле.",
                     3L,
                     1,
@@ -444,6 +480,7 @@ public class Initializer {
             Adverticement adverticement20 = new Adverticement(
                     null,
                     "Чизкейк Нью-Йорк",
+                    2L,
                     "Классический чизкейк с ягодным соусом.",
                     3L,
                     1,

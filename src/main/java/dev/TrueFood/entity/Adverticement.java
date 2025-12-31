@@ -1,7 +1,7 @@
 package dev.TrueFood.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import dev.TrueFood.entity.users.User;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -11,8 +11,16 @@ import lombok.*;
 @NoArgsConstructor
 public class Adverticement extends Order {
 
-    public Adverticement(Long id, String title, String description, Long categoryId, int price, String location, Image imagesId, String itemType, String createdAt, boolean enable) {
+    @ManyToOne
+    @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
+    private User Author;
+
+    @Column(name="users_id")
+    private Long authorId;
+
+    public Adverticement(Long id, String title, Long authorId, String description, Long categoryId, int price, String location, Image imagesId, String itemType, String createdAt, boolean enable) {
         super(id, title, description, categoryId, price, location, imagesId, itemType, createdAt, enable);
+        this.authorId = authorId;
     }
 
 

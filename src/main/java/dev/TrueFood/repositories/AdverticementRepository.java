@@ -23,4 +23,11 @@ public interface AdverticementRepository extends JpaRepository<Adverticement, Lo
     """)
     Page<Adverticement> getAdverticementsByCategory(@Param("name") String name, @Param("categoryId") Long categoryId, PageRequest pageRequest);
 
+
+    @Query("""
+    SELECT a FROM Adverticement a
+    WHERE (a.authorId = :id)
+    """)
+    Page<Adverticement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
+
 }
