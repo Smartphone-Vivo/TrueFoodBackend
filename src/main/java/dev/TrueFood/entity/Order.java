@@ -32,6 +32,7 @@ public class Order {
 
     private int price;
 
+    //todo на @OneToOne поменять
     @ManyToOne
     @JoinColumn(name = "images_id")
     private Image imagesId;

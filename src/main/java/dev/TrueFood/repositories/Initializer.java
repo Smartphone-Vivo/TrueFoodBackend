@@ -60,6 +60,7 @@ public class Initializer {
         User user1 = new User(
                 null,
                 "1",
+                image1,
                 Role.USER,
                 password1,
                 true,
@@ -71,6 +72,7 @@ public class Initializer {
         User user2 = new User(
                 null,
                 "2",
+                image1,
                 Role.USER,
                 password2,
                 true,

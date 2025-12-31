@@ -26,7 +26,7 @@ public class AdverticementService {
         return adverticementRepository.findAll();
     }
 
-    public void addAdverticement(Adverticement adverticement) {
+    public void addAdverticement(Adverticement adverticement, Long id) {
 
         List<String> imageUrls = adverticement.getImagesId().getImageUrls();
 
@@ -35,6 +35,8 @@ public class AdverticementService {
         imageRepository.save(image);
 
         adverticement.setImagesId(image);
+
+        adverticement.setAuthorId(id);
 
         adverticementRepository.save(adverticement);
     }

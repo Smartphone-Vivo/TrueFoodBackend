@@ -33,7 +33,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/register",
                                 "/api/auth/",
-                                "/api/general/**"
+                                "/api/general/**",
+                                "api/files/upload"
                                 )
                         .permitAll()
                         .requestMatchers("api/general/zalupa").authenticated()

@@ -2,6 +2,7 @@ package dev.TrueFood.controllers;
 
 import dev.TrueFood.entity.Adverticement;
 import dev.TrueFood.entity.Category;
+import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.AdverticementService;
 import dev.TrueFood.services.CategoryService;
 import dev.TrueFood.utils.PageUtils;
@@ -43,8 +44,9 @@ public class GeneralController {
     }
 
     @PostMapping("adverticement")
-    public void addAdverticement(@RequestBody Adverticement adverticement) {
-        adverticementService.addAdverticement(adverticement);
+    public void addAdverticement(@RequestBody Adverticement adverticement, JwtAuthentication authentication) {
+        Long id = authentication.getUserId();
+        adverticementService.addAdverticement(adverticement, id);
     }
 
     @GetMapping("categories")
