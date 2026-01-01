@@ -44,9 +44,9 @@ public class User extends BaseUser {
 
     }
 
-    public void setFavourites(Advertisement advertisement) {
-        this.favourites.add(advertisement);
-    }
+//    public void setFavourites(Advertisement advertisement) {
+//        this.favourites.add(advertisement);
+//    }
 
     //todo location
 

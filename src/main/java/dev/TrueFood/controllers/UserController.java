@@ -46,7 +46,17 @@ public class UserController {
             @PathVariable(name = "advId") Long advId
     ){
         Long id = authentication.getUserId();
-        userService.addToFavourites(id, advId);
+        userService.addToFavourites(id, advId); //todo перетащить в AdvertisementService
+    }
+
+    @DeleteMapping("delete-favoirite-advertisement/{advId}")
+    public void deleteFavoiriteAdvertisement(
+            JwtAuthentication authentication,
+            @PathVariable(name = "advId") Long advId
+    ){
+        Long id = authentication.getUserId();
+        advertisementService.deleteFavoiriteAdvertisement(id, advId);
+
     }
 
     @GetMapping("get-favourite-advertisements/{page}/{size}") //todo адрес переписать
@@ -61,5 +71,7 @@ public class UserController {
 
         return advertisementService.getFavouriteAdvertisements(id, pageRequest);
     }
+
+
 
 }

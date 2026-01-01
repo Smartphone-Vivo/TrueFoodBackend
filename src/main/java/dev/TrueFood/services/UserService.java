@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,12 +35,16 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         Advertisement advertisement = advertisementRepository.findById(advId).orElseThrow(() -> new RuntimeException("advertisement not found"));
 
-        if(!(user.getFavourites().contains(advertisement))){
-            user.setFavourites(advertisement);
+        List<Advertisement> userFavourites = user.getFavourites();
+
+        if(!(userFavourites.contains(advertisement))){
+
+            userFavourites.add(advertisement);
+
+            user.setFavourites(userFavourites);
 
             userRepository.save(user);
         }
 
     }
-
 }
