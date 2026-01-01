@@ -1,6 +1,6 @@
 package dev.TrueFood.repositories;
 
-import dev.TrueFood.entity.Adverticement;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
 import dev.TrueFood.entity.users.Password;
@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class Initializer {
     @Autowired
-    private AdverticementRepository adverticementRepository;
+    private AdvertisementRepository advertisementRepository;
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -159,7 +159,7 @@ public class Initializer {
         categoryRepository.save(sheep);
 
 
-        Adverticement adverticement1 = new Adverticement(
+        Advertisement advertisement1 = new Advertisement(
                 null,
                 "Жареный суп",
                 1L,
@@ -172,10 +172,10 @@ public class Initializer {
                 "createdAt1",
                 true
         );
-        adverticementRepository.save(adverticement1);
+        advertisementRepository.save(advertisement1);
 
             // 1. Пицца
-            Adverticement adverticement1123 = new Adverticement(
+            Advertisement advertisement1123 = new Advertisement(
                     null,
                     "Пицца Маргарита",
                     1L,
@@ -188,10 +188,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement1123);
+            advertisementRepository.save(advertisement1123);
 
             // 2. Суши
-            Adverticement adverticement2234234 = new Adverticement(
+            Advertisement advertisement2234234 = new Advertisement(
                     null,
                     "Суши сет 'Сакура'",
                     1L,
@@ -204,10 +204,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement2234234);
+            advertisementRepository.save(advertisement2234234);
 
             // 3. Бургер
-            Adverticement adverticemen23423424t3 = new Adverticement(
+            Advertisement adverticemen23423424t3 = new Advertisement(
                     null,
                     "Чизбургер с картошкой",
                     1L,
@@ -220,10 +220,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticemen23423424t3);
+            advertisementRepository.save(adverticemen23423424t3);
 
             // 4. Салат
-            Adverticement adverticement4 = new Adverticement(
+            Advertisement advertisement4 = new Advertisement(
                     null,
                     "Салат Цезарь с курицей",
                     1L,
@@ -236,10 +236,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement4);
+            advertisementRepository.save(advertisement4);
 
             // 5. Паста
-            Adverticement adverticement5 = new Adverticement(
+            Advertisement advertisement5 = new Advertisement(
                     null,
                     "Паста Карбонара",
                     1L,
@@ -252,10 +252,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement5);
+            advertisementRepository.save(advertisement5);
 
             // 6. Шашлык
-            Adverticement adverticement6 = new Adverticement(
+            Advertisement advertisement6 = new Advertisement(
                     null,
                     "Шашлык из свинины",
                     1L,
@@ -268,10 +268,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement6);
+            advertisementRepository.save(advertisement6);
 
             // 7. Суп
-            Adverticement adverticement7 = new Adverticement(
+            Advertisement advertisement7 = new Advertisement(
                     null,
                     "Борщ украинский",
                     1L,
@@ -284,10 +284,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement7);
+            advertisementRepository.save(advertisement7);
 
             // 8. Роллы
-            Adverticement adverticement8 = new Adverticement(
+            Advertisement advertisement8 = new Advertisement(
                     null,
                     "Запеченные роллы с лососем",
                     1L,
@@ -300,10 +300,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement8);
+            advertisementRepository.save(advertisement8);
 
             // 9. Стейк
-            Adverticement adverticement9 = new Adverticement(
+            Advertisement advertisement9 = new Advertisement(
                     null,
                     "Стейк Рибай",
                     1L,
@@ -316,10 +316,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement9);
+            advertisementRepository.save(advertisement9);
 
             // 10. Десерт
-            Adverticement adverticement10 = new Adverticement(
+            Advertisement advertisement10 = new Advertisement(
                     null,
                     "Тирамису классический",
                     1L,
@@ -332,10 +332,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement10);
+            advertisementRepository.save(advertisement10);
 
             // 11. Лапша
-            Adverticement adverticement11 = new Adverticement(
+            Advertisement advertisement11 = new Advertisement(
                     null,
                     "Лапша WOK с курицей",
                     1L,
@@ -348,10 +348,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement11);
+            advertisementRepository.save(advertisement11);
 
             // 12. Пельмени
-            Adverticement adverticement12 = new Adverticement(
+            Advertisement advertisement12 = new Advertisement(
                     null,
                     "Пельмени домашние",
                     2L,
@@ -364,10 +364,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement12);
+            advertisementRepository.save(advertisement12);
 
             // 13. Сэндвич
-            Adverticement adverticement13 = new Adverticement(
+            Advertisement advertisement13 = new Advertisement(
                     null,
                     "Клаб-сэндвич",
                     2L,
@@ -380,10 +380,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement13);
+            advertisementRepository.save(advertisement13);
 
             // 14. Рыба
-            Adverticement adverticement14 = new Adverticement(
+            Advertisement advertisement14 = new Advertisement(
                     null,
                     "Дорадо на гриле",
                     2L,
@@ -396,10 +396,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement14);
+            advertisementRepository.save(advertisement14);
 
             // 15. Завтрак
-            Adverticement adverticement15 = new Adverticement(
+            Advertisement advertisement15 = new Advertisement(
                     null,
                     "Английский завтрак",
                     2L,
@@ -412,10 +412,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement15);
+            advertisementRepository.save(advertisement15);
 
             // 16. Креветки
-            Adverticement adverticement16 = new Adverticement(
+            Advertisement advertisement16 = new Advertisement(
                     null,
                     "Креветки в чесночном соусе",
                     2L,
@@ -428,10 +428,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement16);
+            advertisementRepository.save(advertisement16);
 
             // 17. Омлет
-            Adverticement adverticement17 = new Adverticement(
+            Advertisement advertisement17 = new Advertisement(
                     null,
                     "Омлет с ветчиной и сыром",
                     2L,
@@ -444,10 +444,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement17);
+            advertisementRepository.save(advertisement17);
 
             // 18. Курица
-            Adverticement adverticement18 = new Adverticement(
+            Advertisement advertisement18 = new Advertisement(
                     null,
                     "Курица терияки",
                     2L,
@@ -460,10 +460,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement18);
+            advertisementRepository.save(advertisement18);
 
             // 19. Тако
-            Adverticement adverticement19 = new Adverticement(
+            Advertisement advertisement19 = new Advertisement(
                     null,
                     "Тако с говядиной",
                     2L,
@@ -476,10 +476,10 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement19);
+            advertisementRepository.save(advertisement19);
 
             // 20. Чизкейк
-            Adverticement adverticement20 = new Adverticement(
+            Advertisement advertisement20 = new Advertisement(
                     null,
                     "Чизкейк Нью-Йорк",
                     2L,
@@ -492,7 +492,7 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-            adverticementRepository.save(adverticement20);
+            advertisementRepository.save(advertisement20);
         }
     }
 

@@ -25,24 +25,16 @@ public class RegisterService {
 
     public void register(SignUpRequest signUpRequest) {
 
-
-
         Password password = new Password(null, signUpRequest.getPassword());
 
         List<String> images = new ArrayList<>();
 
-        String avatar = signUpRequest.getImageUrl();
+        images.add(signUpRequest.getImageUrl());
 
-        images.add(avatar);
-
-        Image image = new Image(
-                null,
-                images
-        );
+        Image image = new Image(null, images);
 
         imageRepository.save(image);
 
-        //todo Image это лист надо подумать над этим в следующем году)))
         User user = new User(
                 null,
                 signUpRequest.getEmail(),
@@ -53,8 +45,6 @@ public class RegisterService {
                 signUpRequest.getFio(),
                 5
         );
-
-//        User user = userMapping.toEntity(signUpRequest);
 
         userRepository.save(user);
     }

@@ -1,9 +1,9 @@
 package dev.TrueFood.controllers;
 
-import dev.TrueFood.entity.Adverticement;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.jwt.JwtAuthentication;
-import dev.TrueFood.services.AdverticementService;
+import dev.TrueFood.services.AdvertisementService;
 import dev.TrueFood.services.CategoryService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +19,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GeneralController {
 
-    private final AdverticementService adverticementService;
+    private final AdvertisementService advertisementService;
     private final CategoryService categoryService;
 
     @GetMapping("adverticement/{page}/{size}")
-    public Page<Adverticement> getAdverticements(
+    public Page<Advertisement> getAdverticements(
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size,
 
@@ -33,20 +33,20 @@ public class GeneralController {
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
 
-        return adverticementService.getAdverticements(name, categoryId, pageRequest);
+        return advertisementService.getAdverticements(name, categoryId, pageRequest);
     }
 
     @GetMapping("advertisement/{id}")
-    public Adverticement getAdverticementById(
+    public Advertisement getAdverticementById(
             @PathVariable(name = "id") int id
     ){
-        return adverticementService.getAdverticementById((long) id);
+        return advertisementService.getAdverticementById((long) id);
     }
 
     @PostMapping("adverticement")
-    public void addAdverticement(@RequestBody Adverticement adverticement, JwtAuthentication authentication) {
+    public void addAdverticement(@RequestBody Advertisement advertisement, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
-        adverticementService.addAdverticement(adverticement, id);
+        advertisementService.addAdverticement(advertisement, id);
     }
 
     @GetMapping("categories")
@@ -54,9 +54,6 @@ public class GeneralController {
         return categoryService.getAllCategories();
     }
 
-    @GetMapping("zalupa")
-    public String getZalupa() {
-        return "zalupa";
-    }
+
 
 }

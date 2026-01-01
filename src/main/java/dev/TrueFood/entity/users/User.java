@@ -1,12 +1,8 @@
 package dev.TrueFood.entity.users;
 
-import dev.TrueFood.entity.Adverticement;
 import dev.TrueFood.entity.Image;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,8 +21,6 @@ public class User extends BaseUser {
     @JoinColumn(name = "images_id")
     private Image avatar;
 
-
-
     private int rating;
 
     public User(Long id, String email, Image avatar, Role role, Password password, boolean enable, String fio, int rating) {
@@ -39,7 +33,4 @@ public class User extends BaseUser {
 
     //todo location
 
-//    @OneToMany
-//    @JoinColumn(name = "adverticements_id")
-//    private List<Adverticement> ads;
 }

@@ -29,7 +29,6 @@ public class AuthService {
 
         String signInRequestPassword = signInRequest.getPassword();
 
-//        if(passwordEncoder.matches(encodedPassword, signInRequestPassword)){
         if(Objects.equals(encodedPassword, signInRequestPassword)){
             final String token = jwtProvider.generateAccessToken(baseUser);
             return new JwtResponse(token);

@@ -1,9 +1,8 @@
 package dev.TrueFood.controllers;
 
-import dev.TrueFood.entity.Adverticement;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.jwt.JwtAuthentication;
-import dev.TrueFood.repositories.UserRepository;
 import dev.TrueFood.services.UserService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +25,12 @@ public class UserController {
     }
 
     @GetMapping("advertisements-by-user/{id}/{page}/{size}")
-    public Page<Adverticement> getAdvertisementsByUser(
+    public Page<Advertisement> getAdvertisementsByUser(
             @PathVariable(name = "id") Long id,
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size
 
-    ) {
+    ){
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 

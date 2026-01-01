@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Adverticement extends Order {
+public class Advertisement extends Order {
 
     @ManyToOne
     @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
@@ -18,7 +18,7 @@ public class Adverticement extends Order {
     @Column(name="users_id")
     private Long authorId;
 
-    public Adverticement(Long id, String title, Long authorId, String description, Long categoryId, int price, String location, Image imagesId, String itemType, String createdAt, boolean enable) {
+    public Advertisement(Long id, String title, Long authorId, String description, Long categoryId, int price, String location, Image imagesId, String itemType, String createdAt, boolean enable) {
         super(id, title, description, categoryId, price, location, imagesId, itemType, createdAt, enable);
         this.authorId = authorId;
     }

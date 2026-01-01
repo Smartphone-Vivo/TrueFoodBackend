@@ -19,7 +19,6 @@ public class MinioService {
     private final MinioClient minioClient;
     private final ImageRepository imageRepository;
 
-
     @Value("${minio.bucket-name}")
     private String bucketName;
 
@@ -56,10 +55,6 @@ public class MinioService {
         );
 
         String fileUrl = getFileUrl(objectName);
-//
-//        Image image = new Image(null, fileUrl);
-//
-//        imageRepository.save(image);
 
         return fileUrl;
         }catch (Exception e){

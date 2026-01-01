@@ -2,7 +2,6 @@ package dev.TrueFood.controllers;
 
 
 import dev.TrueFood.dto.UploadResponse;
-import dev.TrueFood.entity.Image;
 import dev.TrueFood.repositories.ImageRepository;
 import dev.TrueFood.services.MinioService;
 import io.minio.MinioClient;
@@ -18,7 +17,7 @@ import java.util.List;
 @RequestMapping("api/files")
 @CrossOrigin
 
-public class MinioController {
+public class ImageController {
 
 
     private final MinioClient minioClient;
@@ -26,14 +25,18 @@ public class MinioController {
     private final ImageRepository imageRepository;
 
 
-    public MinioController(MinioClient minioClient, MinioService minioService, ImageRepository imageRepository) {
+    public ImageController(MinioClient minioClient, MinioService minioService, ImageRepository imageRepository) {
         this.minioClient = minioClient;
         this.minioService = minioService;
         this.imageRepository = imageRepository;
     }
 
+
     @PostMapping("/upload")
     public ResponseEntity<List<UploadResponse>> uploadFile(
+
+            //todo логику из контроллера убрать
+
             @RequestParam("file") MultipartFile[] files){
         if(files.length == 0){
             return ResponseEntity.badRequest().build();
@@ -43,7 +46,6 @@ public class MinioController {
         List<UploadResponse> responses = new ArrayList<>();
 
         try{
-
             for(MultipartFile file : files){
                 if(!file.isEmpty()){
                     String fileUrl = minioService.uploadFile(file);
@@ -55,16 +57,9 @@ public class MinioController {
                             file.getContentType()
                     );
                     responses.add(uploadResponse);
-
                     fileUrls.add(fileUrl);
-
                 }
             }
-
-//            Image image = new Image(null, fileUrls);
-//
-//            imageRepository.save(image);
-
             return ResponseEntity.ok(responses);
 
         }catch (Exception e){

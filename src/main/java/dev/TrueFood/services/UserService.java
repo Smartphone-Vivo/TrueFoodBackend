@@ -1,11 +1,10 @@
 package dev.TrueFood.services;
 
-import dev.TrueFood.entity.Adverticement;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.users.User;
-import dev.TrueFood.repositories.AdverticementRepository;
+import dev.TrueFood.repositories.AdvertisementRepository;
 import dev.TrueFood.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -16,14 +15,14 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final AdverticementRepository adverticementRepository;
+    private final AdvertisementRepository advertisementRepository;
 
     public User getMyProfile(Long id){
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("student not found"));
     }
 
-    public Page<Adverticement> getAdvertisementsByUser(Long id, PageRequest pageRequest){
-        return adverticementRepository.getAdverticementByUser(id, pageRequest);
+    public Page<Advertisement> getAdvertisementsByUser(Long id, PageRequest pageRequest){
+        return advertisementRepository.getAdverticementByUser(id, pageRequest);
     }
 
 }
