@@ -1,8 +1,12 @@
 package dev.TrueFood.entity.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Image;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,12 +27,25 @@ public class User extends BaseUser {
 
     private int rating;
 
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(
+            name = "user_favourites",
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "adverticements_id")
+    )
+    private List<Advertisement> favourites;
+
     public User(Long id, String email, Image avatar, Role role, Password password, boolean enable, String fio, int rating) {
         super(id, email, role, password, enable);
         this.fio = fio;
         this.avatar = avatar;
         this.rating = rating;
 
+    }
+
+    public void setFavourites(Advertisement advertisement) {
+        this.favourites.add(advertisement);
     }
 
     //todo location

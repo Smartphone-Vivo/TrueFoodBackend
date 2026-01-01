@@ -3,6 +3,8 @@ package dev.TrueFood.controllers;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.jwt.JwtAuthentication;
+import dev.TrueFood.repositories.AdvertisementRepository;
+import dev.TrueFood.services.AdvertisementService;
 import dev.TrueFood.services.UserService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final AdvertisementService advertisementService;
 
     @GetMapping("my-profile")
     public User getMyProfile(JwtAuthentication authentication) {
@@ -35,6 +38,28 @@ public class UserController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
         return userService.getAdvertisementsByUser(id, pageRequest);
+    }
+
+    @GetMapping("add-to-favourites/{advId}")
+    public void addToFavourites(
+            JwtAuthentication authentication,
+            @PathVariable(name = "advId") Long advId
+    ){
+        Long id = authentication.getUserId();
+        userService.addToFavourites(id, advId);
+    }
+
+    @GetMapping("get-favourite-advertisements/{page}/{size}") //todo адрес переписать
+    public Page<Advertisement> getAdvertisements(
+            JwtAuthentication authentication,
+            @PathVariable(name = "page") int page,
+            @PathVariable(name = "size")int size
+    ){
+        Long id = authentication.getUserId();
+
+        PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
+
+        return advertisementService.getFavouriteAdvertisements(id, pageRequest);
     }
 
 }

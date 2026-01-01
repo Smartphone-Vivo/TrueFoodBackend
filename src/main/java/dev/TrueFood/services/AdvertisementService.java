@@ -49,5 +49,10 @@ public class AdvertisementService {
         return advertisementRepository.findById(id).orElse(null);
     }
 
+    public Page<Advertisement> getFavouriteAdvertisements(Long id, PageRequest pageRequest) {
+
+        Page<Advertisement> response = advertisementRepository.getFavouritesAdvertisements(id, pageRequest);
+        return response;
+    }
 
 }
