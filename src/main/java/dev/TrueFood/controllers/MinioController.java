@@ -61,9 +61,9 @@ public class MinioController {
                 }
             }
 
-            Image image = new Image(null, fileUrls);
-
-            imageRepository.save(image);
+//            Image image = new Image(null, fileUrls);
+//
+//            imageRepository.save(image);
 
             return ResponseEntity.ok(responses);
 

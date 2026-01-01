@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class SignUpRequest {
 
-    private Image avatar;
+    private String imageUrl;
     private String email;
     private String password;
     private String fio;
