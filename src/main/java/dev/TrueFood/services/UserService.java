@@ -37,14 +37,17 @@ public class UserService {
 
         List<Advertisement> userFavourites = user.getFavourites();
 
-        if(!(userFavourites.contains(advertisement))){
-
+        if(userFavourites.contains(advertisement)){
+            throw new RuntimeException("advertisement is already in favourite");
+        }
+        else{
             userFavourites.add(advertisement);
 
             user.setFavourites(userFavourites);
 
             userRepository.save(user);
         }
+
 
     }
 }

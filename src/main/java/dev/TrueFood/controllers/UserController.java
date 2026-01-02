@@ -59,7 +59,7 @@ public class UserController {
 
     }
 
-    @GetMapping("get-favourite-advertisements/{page}/{size}") //todo адрес переписать
+    @GetMapping("get-favourite-advertisements/{page}/{size}")
     public Page<Advertisement> getAdvertisements(
             JwtAuthentication authentication,
             @PathVariable(name = "page") int page,
