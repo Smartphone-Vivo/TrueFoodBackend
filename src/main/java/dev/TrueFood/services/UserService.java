@@ -2,9 +2,11 @@ package dev.TrueFood.services;
 
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Image;
+import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.repositories.AdvertisementRepository;
 import dev.TrueFood.repositories.ImageRepository;
+import dev.TrueFood.repositories.ReviewRepository;
 import dev.TrueFood.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +25,19 @@ public class UserService {
     private final UserRepository userRepository;
     private final AdvertisementRepository advertisementRepository;
     private final ImageRepository imageRepository;
+    private final ReviewRepository reviewRepository;
 
     public User getMyProfile(Long id){
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("student not found"));
+    }
+
+    public User getProfile(Long id, Long userId){
+        if(Objects.equals(id, userId)){
+            return getMyProfile(id);
+        }
+        else{
+            return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
+        }
     }
 
     public Page<Advertisement> getAdvertisementsByUser(Long id, PageRequest pageRequest){
@@ -47,7 +60,19 @@ public class UserService {
 
             userRepository.save(user);
         }
+    }
 
-
+    public void addReview(Review review, Long id, Long userId){
+        if(Objects.equals(id, userId)){
+            throw new RuntimeException("самолайк отклонен(");
+        }
+        else{
+            User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
+            reviewRepository.save(review);
+            List<Review> userReviews = user.getReviews();
+            userReviews.add(review);
+            user.setReviews(userReviews);
+            userRepository.save(user);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package dev.TrueFood.entity.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class BaseUser{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "password_id", nullable = false)
+    @JsonIgnore
     private Password password;
 
     private boolean enable;

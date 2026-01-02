@@ -39,8 +39,9 @@ public class User extends BaseUser {
     @JsonIgnoreProperties({"author", "favourites"})
     private List<Advertisement> favourites;
 
-     @ManyToOne
-     private Review reviews;
+     @OneToMany
+     @JoinColumn(name = "reviews_id")
+     private List<Review> reviews;
 
     public User(Long id, String email, Image avatar, Role role, Password password, boolean enable, String fio, int rating) {
         super(id, email, role, password, enable);

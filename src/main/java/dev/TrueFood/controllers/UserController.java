@@ -1,6 +1,7 @@
 package dev.TrueFood.controllers;
 
 import dev.TrueFood.entity.Advertisement;
+import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.repositories.AdvertisementRepository;
@@ -25,6 +26,12 @@ public class UserController {
     public User getMyProfile(JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         return userService.getMyProfile(id);
+    }
+
+    @GetMapping("profile/{userId}")
+    public User getProfile(@PathVariable Long userId, JwtAuthentication authentication) {
+        Long id = authentication.getUserId();
+        return userService.getProfile(id, userId);
     }
 
     @GetMapping("advertisements-by-user/{id}/{page}/{size}")
@@ -70,6 +77,15 @@ public class UserController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
         return advertisementService.getFavouriteAdvertisements(id, pageRequest);
+    }
+
+    @PostMapping("add-review/{userId}")
+    public void addReview(
+            @PathVariable(name = "userId") Long userId,
+            @RequestBody Review review,
+            JwtAuthentication authentication){
+        Long id = authentication.getUserId();
+        userService.addReview(review, id, userId);
     }
 
 
