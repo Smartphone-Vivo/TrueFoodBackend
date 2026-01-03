@@ -497,10 +497,51 @@ public class Initializer {
                     true
             );
         orderRepository.save(advertisement20);
+
+        Order task1 = new Order(
+                null,
+                "Чизкейк Нью-Йорк",
+                2L,
+                "Классический чизкейк с ягодным соусом.",
+                3L,
+                1,
+                "ул. Десертная, 8",
+                image1,
+                OrderType.TASK,
+                "2024-01-15",
+                true
+        );
+        orderRepository.save(task1);
+
+        Order task2 = new Order(
+                null,
+                "Чизкейк Нью-Йорк",
+                2L,
+                "Классический чизкейк с ягодным соусом.",
+                3L,
+                1,
+                "ул. Десертная, 8",
+                image1,
+                OrderType.TASK,
+                "2024-01-15",
+                true
+        );
+        orderRepository.save(task2);
+
+        Order task3 = new Order(
+                null,
+                "Чизкейк Нью-Йорк",
+                2L,
+                "Классический чизкейк с ягодным соусом.",
+                3L,
+                1,
+                "ул. Десертная, 8",
+                image1,
+                OrderType.TASK,
+                "2024-01-15",
+                true
+        );
+        orderRepository.save(task3);
         }
+
     }
-
-
-
-
-

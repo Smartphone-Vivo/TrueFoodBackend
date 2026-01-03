@@ -40,9 +40,9 @@ public class OrderService {
 
         orderDto.setImagesId(image);
 
-//        order.setAuthorId(id);
-
         Order order = orderMapping.toEntity(orderDto);
+
+        order.setAuthorId(id);
 
         orderRepository.save(order);
     }
