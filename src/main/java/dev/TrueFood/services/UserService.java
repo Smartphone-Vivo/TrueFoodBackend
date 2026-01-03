@@ -30,13 +30,9 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("student not found"));
     }
 
-    public User getProfile(Long id, Long userId){
-        if(Objects.equals(id, userId)){
-            return getMyProfile(id);
-        }
-        else{
-            return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
-        }
+    public User getProfile(Long id){
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+
     }
 
     public Page<Order> getAdvertisementsByUser(Long id, PageRequest pageRequest){

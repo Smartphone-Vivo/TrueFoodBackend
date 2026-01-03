@@ -1,5 +1,6 @@
 package dev.TrueFood.controllers;
 
+import dev.TrueFood.dto.OrderDto;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
@@ -22,28 +23,33 @@ public class UserController {
     private final UserService userService;
     private final OrderService orderService;
 
-    @GetMapping("my-profile")
-    public User getMyProfile(JwtAuthentication authentication) {
-        Long id = authentication.getUserId();
-        return userService.getMyProfile(id);
-    }
-
-    @GetMapping("profile/{userId}")
-    public User getProfile(@PathVariable Long userId, JwtAuthentication authentication) {
-        Long id = authentication.getUserId();
-        return userService.getProfile(id, userId);
-    }
-
     @GetMapping("advertisements-by-user/{id}/{page}/{size}")
     public Page<Order> getAdvertisementsByUser(
             @PathVariable(name = "id") Long id,
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size
     ){
-
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
         return userService.getAdvertisementsByUser(id, pageRequest);
+    }
+
+    @GetMapping("my-profile")
+    public User getMyProfile(JwtAuthentication authentication) {
+        Long id = authentication.getUserId();
+        return userService.getMyProfile(id);
+    }
+
+    @PostMapping("advertisement") //todo исправить
+    public void addAdvertisement(@RequestBody OrderDto orderDto, JwtAuthentication authentication) {
+        Long id = authentication.getUserId();
+        orderService.addAdverticement(orderDto, id);
+    }
+
+    @PostMapping("task")
+    public void addTask(@RequestBody OrderDto OrderDto, JwtAuthentication authentication){
+        Long id = authentication.getUserId();
+        orderService.addTask(OrderDto, id);
     }
 
     @GetMapping("add-to-favourites/{advId}")
@@ -56,13 +62,12 @@ public class UserController {
     }
 
     @DeleteMapping("delete-favoirite-advertisement/{advId}")
-    public void deleteFavoiriteAdvertisement(
+    public void deleteFavouriteAdvertisement(
             JwtAuthentication authentication,
             @PathVariable(name = "advId") Long advId
     ){
         Long id = authentication.getUserId();
         orderService.deleteFavoiriteAdvertisement(id, advId);
-
     }
 
     @GetMapping("get-favourite-advertisements/{page}/{size}")
@@ -86,7 +91,6 @@ public class UserController {
         Long id = authentication.getUserId();
         userService.addReview(review, id, userId);
     }
-
 
 
 
