@@ -1,9 +1,6 @@
 package dev.TrueFood.repositories;
 
-import dev.TrueFood.entity.Advertisement;
-import dev.TrueFood.entity.Category;
-import dev.TrueFood.entity.Image;
-import dev.TrueFood.entity.Order;
+import dev.TrueFood.entity.*;
 import dev.TrueFood.entity.users.OrderType;
 import dev.TrueFood.entity.users.Password;
 import dev.TrueFood.entity.users.Role;
@@ -25,6 +22,8 @@ public class Initializer {
     private ImageRepository imageRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TaskRepository taskRepository;
 
     List<String> imageUrls = new ArrayList<>();
     @Autowired
@@ -178,309 +177,309 @@ public class Initializer {
         );
         orderRepository.save(advertisement1);
 
-            // 1. Пицца
-        Order advertisement1123 = new Order(
-                    null,
-                    "Пицца Маргарита",
-                    1L,
-                    "Свежая домашняя пицца с томатным соусом, сыром моцарелла и базиликом. Приготовлена сегодня.",
-                    3L,
-                    1,
-                    "ул. Пушкина, 10",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement1123);
+        // 1. Пицца
+        Advertisement advertisement1123 = new Advertisement(
+                null,
+                "Пицца Маргарита",
+                "Свежая домашняя пицца с томатным соусом, сыром моцарелла и базиликом. Приготовлена сегодня.",
+                1L,
+                3L,
+                1,
+                "ул. Пушкина, 10",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement1123);
 
-            // 2. Суши
-        Order advertisement2234234 = new Order(
-                    null,
-                    "Суши сет 'Сакура'",
-                    1L,
-                    "20 штук: филадельфия, калифорния, спайси тунец. Свежие морепродукты.",
-                    3L,
-                    1,
-                    "пр. Ленина, 25",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement2234234);
+        // 2. Суши
+        Advertisement advertisement2234234 = new Advertisement(
+                null,
+                "Суши сет 'Сакура'",
+                "20 штук: филадельфия, калифорния, спайси тунец. Свежие морепродукты.",
+                1L,
+                3L,
+                1,
+                "пр. Ленина, 25",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement2234234);
 
-            // 3. Бургер
-        Order adverticemen23423424t3 = new Order(
-                    null,
-                    "Чизбургер с картошкой",
-                    1L,
-                    "Двойная говяжья котлета, сыр чеддер, свежие овощи. Подается с картофелем фри.",
-                    3L,
-                    1,
-                    "ул. Гагарина, 15",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(adverticemen23423424t3);
+        // 3. Бургер
+        Advertisement advertisement23423424 = new Advertisement(
+                null,
+                "Чизбургер с картошкой",
+                "Двойная говяжья котлета, сыр чеддер, свежие овощи. Подается с картофелем фри.",
+                1L,
+                3L,
+                1,
+                "ул. Гагарина, 15",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement23423424);
 
-            // 4. Салат
-        Order advertisement4 = new Order(
-                    null,
-                    "Салат Цезарь с курицей",
-                    1L,
-                    "Хрустящий салат с куриной грудкой, пармезаном, сухариками и соусом цезарь.",
-                    3L,
-                    1,
-                    "ул. Садовая, 8",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement4);
+        // 4. Салат
+        Advertisement advertisement4 = new Advertisement(
+                null,
+                "Салат Цезарь с курицей",
+                "Хрустящий салат с куриной грудкой, пармезаном, сухариками и соусом цезарь.",
+                1L,
+                3L,
+                1,
+                "ул. Садовая, 8",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement4);
 
-            // 5. Паста
-        Order advertisement5 = new Order(
-                    null,
-                    "Паста Карбонара",
-                    1L,
-                    "Спагетти с беконом, сливочным соусом, яйцом и пармезаном.",
-                    3L,
-                    1,
-                    "пр. Мира, 33",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement5);
+        // 5. Паста
+        Advertisement advertisement5 = new Advertisement(
+                null,
+                "Паста Карбонара",
+                "Спагетти с беконом, сливочным соусом, яйцом и пармезаном.",
+                1L,
+                3L,
+                1,
+                "пр. Мира, 33",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement5);
 
-            // 6. Шашлык
-        Order advertisement6 = new Order(
-                    null,
-                    "Шашлык из свинины",
-                    1L,
-                    "Нежный шашлык на углях с овощами гриль. Порция 500г.",
-                    3L,
-                    1,
-                    "ул. Грильмастеров, 5",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement6);
+        // 6. Шашлык
+        Advertisement advertisement6 = new Advertisement(
+                null,
+                "Шашлык из свинины",
+                "Нежный шашлык на углях с овощами гриль. Порция 500г.",
+                1L,
+                3L,
+                1,
+                "ул. Грильмастеров, 5",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement6);
 
-            // 7. Суп
-        Order advertisement7 = new Order(
-                    null,
-                    "Борщ украинский",
-                    1L,
-                    "Наваристый борщ со сметаной и чесночными пампушками.",
-                    3L,
-                    1,
-                    "ул. Украинская, 12",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement7);
+        // 7. Суп
+        Advertisement advertisement7 = new Advertisement(
+                null,
+                "Борщ украинский",
+                "Наваристый борщ со сметаной и чесночными пампушками.",
+                1L,
+                3L,
+                1,
+                "ул. Украинская, 12",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement7);
 
-            // 8. Роллы
-        Order advertisement8 = new Order(
-                    null,
-                    "Запеченные роллы с лососем",
-                    1L,
-                    "8 штук, запеченные под сырным соусом с лососем и сливочным сыром.",
-                    3L,
-                    1,
-                    "ул. Рыбацкая, 18",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement8);
+        // 8. Роллы
+        Advertisement advertisement8 = new Advertisement(
+                null,
+                "Запеченные роллы с лососем",
+                "8 штук, запеченные под сырным соусом с лососем и сливочным сыром.",
+                1L,
+                3L,
+                1,
+                "ул. Рыбацкая, 18",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement8);
 
-            // 9. Стейк
-        Order advertisement9 = new Order(
-                    null,
-                    "Стейк Рибай",
-                    1L,
-                    "Говяжий стейк 300г, средней прожарки, с овощами гриль и соусом.",
-                    3L,
-                    1,
-                    "ул. Мясная, 22",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement9);
+        // 9. Стейк
+        Advertisement advertisement9 = new Advertisement(
+                null,
+                "Стейк Рибай",
+                "Говяжий стейк 300г, средней прожарки, с овощами гриль и соусом.",
+                1L,
+                3L,
+                1,
+                "ул. Мясная, 22",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement9);
 
-            // 10. Десерт
-        Order advertisement10 = new Order(
-                    null,
-                    "Тирамису классический",
-                    1L,
-                    "Итальянский десерт с кофейной пропиткой и сыром маскарпоне.",
-                    3L,
-                    1,
-                    "ул. Сладкая, 7",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement10);
+        // 10. Десерт
+        Advertisement advertisement10 = new Advertisement(
+                null,
+                "Тирамису классический",
+                "Итальянский десерт с кофейной пропиткой и сыром маскарпоне.",
+                1L,
+                3L,
+                1,
+                "ул. Сладкая, 7",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement10);
 
-            // 11. Лапша
-        Order advertisement11 = new Order(
-                    null,
-                    "Лапша WOK с курицей",
-                    1L,
-                    "Лапша с курицей, овощами и соевым соусом на воке.",
-                    3L,
-                    1,
-                    "ул. Азиатская, 14",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement11);
+        // 11. Лапша
+        Advertisement advertisement11 = new Advertisement(
+                null,
+                "Лапша WOK с курицей",
+                "Лапша с курицей, овощами и соевым соусом на воке.",
+                1L,
+                3L,
+                1,
+                "ул. Азиатская, 14",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement11);
 
-            // 12. Пельмени
-        Order advertisement12 = new Order(
-                    null,
-                    "Пельмени домашние",
-                    2L,
-                    "Домашние пельмени с говядиной и свининой, порция 20 штук.",
-                    3L,
-                    1,
-                    "ул. Домашняя, 9",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement12);
+        // 12. Пельмени
+        Advertisement advertisement12 = new Advertisement(
+                null,
+                "Пельмени домашние",
+                "Домашние пельмени с говядиной и свининой, порция 20 штук.",
+                2L,
+                3L,
+                1,
+                "ул. Домашняя, 9",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement12);
 
-            // 13. Сэндвич
-        Order advertisement13 = new Order(
-                    null,
-                    "Клаб-сэндвич",
-                    2L,
-                    "Трехслойный сэндвич с курицей, беконом, сыром и овощами.",
-                    3L,
-                    1,
-                    "ул. Бутербродная, 3",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement13);
+        // 13. Сэндвич
+        Advertisement advertisement13 = new Advertisement(
+                null,
+                "Клаб-сэндвич",
+                "Трехслойный сэндвич с курицей, беконом, сыром и овощами.",
+                2L,
+                3L,
+                1,
+                "ул. Бутербродная, 3",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement13);
 
-            // 14. Рыба
-        Order advertisement14 = new Order(
-                    null,
-                    "Дорадо на гриле",
-                    2L,
-                    "Свежая дорадо с лимоном и травами, подается с рисом.",
-                    3L,
-                    1,
-                    "ул. Морская, 11",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement14);
+        // 14. Рыба
+        Advertisement advertisement14 = new Advertisement(
+                null,
+                "Дорадо на гриле",
+                "Свежая дорадо с лимоном и травами, подается с рисом.",
+                2L,
+                3L,
+                1,
+                "ул. Морская, 11",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement14);
 
-            // 15. Завтрак
-        Order advertisement15 = new Order(
-                    null,
-                    "Английский завтрак",
-                    2L,
-                    "Яичница с беконом, сосисками, грибами, помидорами и тостами.",
-                    3L,
-                    1,
-                    "ул. Утренняя, 6",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement15);
+        // 15. Завтрак
+        Advertisement advertisement15 = new Advertisement(
+                null,
+                "Английский завтрак",
+                "Яичница с беконом, сосисками, грибами, помидорами и тостами.",
+                2L,
+                3L,
+                1,
+                "ул. Утренняя, 6",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement15);
 
-            // 16. Креветки
-        Order advertisement16 = new Order(
-                    null,
-                    "Креветки в чесночном соусе",
-                    2L,
-                    "Крупные тигровые креветки в сливочно-чесночном соусе.",
-                    3L,
-                    1,
-                    "ул. Креветочная, 4",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement16);
+        // 16. Креветки
+        Advertisement advertisement16 = new Advertisement(
+                null,
+                "Креветки в чесночном соусе",
+                "Крупные тигровые креветки в сливочно-чесночном соусе.",
+                2L,
+                3L,
+                1,
+                "ул. Креветочная, 4",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement16);
 
-            // 17. Омлет
-        Order advertisement17 = new Order(
-                    null,
-                    "Омлет с ветчиной и сыром",
-                    2L,
-                    "Пышный омлет с ветчиной, сыром и зеленью.",
-                    3L,
-                    1,
-                    "ул. Яичная, 2",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement17);
+        // 17. Омлет
+        Advertisement advertisement17 = new Advertisement(
+                null,
+                "Омлет с ветчиной и сыром",
+                "Пышный омлет с ветчиной, сыром и зеленью.",
+                2L,
+                3L,
+                1,
+                "ул. Яичная, 2",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement17);
 
-            // 18. Курица
-        Order advertisement18 = new Order(
-                    null,
-                    "Курица терияки",
-                    2L,
-                    "Куриное филе в соусе терияки с кунжутом и рисом.",
-                    3L,
-                    1,
-                    "ул. Восточная, 17",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement18);
+        // 18. Курица
+        Advertisement advertisement18 = new Advertisement(
+                null,
+                "Курица терияки",
+                "Куриное филе в соусе терияки с кунжутом и рисом.",
+                2L,
+                3L,
+                1,
+                "ул. Восточная, 17",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement18);
 
-            // 19. Тако
-        Order advertisement19 = new Order(
-                    null,
-                    "Тако с говядиной",
-                    2L,
-                    "3 тако с мексиканской говядиной, сальсой и гуакамоле.",
-                    3L,
-                    1,
-                    "ул. Мексиканская, 13",
-                    image1,
-                    OrderType.ADVERTISEMENT,
-                    "2024-01-15",
-                    true
-            );
-        orderRepository.save(advertisement19);
+        // 19. Тако
+        Advertisement advertisement19 = new Advertisement(
+                null,
+                "Тако с говядиной",
+                "3 тако с мексиканской говядиной, сальсой и гуакамоле.",
+                2L,
+                3L,
+                1,
+                "ул. Мексиканская, 13",
+                image1,
+                OrderType.ADVERTISEMENT,
+                "2024-01-15",
+                true
+        );
+        advertisementRepository.save(advertisement19);
 
             // 20. Чизкейк
         Advertisement advertisement20 = new Advertisement(
@@ -498,50 +497,54 @@ public class Initializer {
             );
         advertisementRepository.save(advertisement20);
 
-        Order task1 = new Order(
+        Task task1 = new Task(
                 null,
-                "Чизкейк Нью-Йорк",
+                "Торт в виде бобра на детский праздник",
+                "приготовить торт на день рождения, высота 2 метра, цвет: синий, вкус: сладкий\n" +
+                        "написать кремом: с др",
                 2L,
-                "Классический чизкейк с ягодным соусом.",
                 3L,
-                1,
+                2000,
                 "ул. Десертная, 8",
                 image1,
-                OrderType.TASK,
+                OrderType.ADVERTISEMENT,
                 "2024-01-15",
                 true
         );
-        orderRepository.save(task1);
+        taskRepository.save(task1);
 
-        Order task2 = new Order(
+        Task task2 = new Task(
                 null,
-                "Чизкейк Нью-Йорк",
+                "Торт в виде бобра на детский праздник",
+                "приготовить торт на день рождения, высота 2 метра, цвет: синий, вкус: сладкий\n" +
+                        "написать кремом: с др",
                 2L,
-                "Классический чизкейк с ягодным соусом.",
                 3L,
-                1,
+                2000,
                 "ул. Десертная, 8",
                 image1,
-                OrderType.TASK,
+                OrderType.ADVERTISEMENT,
                 "2024-01-15",
                 true
         );
         orderRepository.save(task2);
 
-        Order task3 = new Order(
+        Task task3 = new Task(
                 null,
-                "Чизкейк Нью-Йорк",
+                "Торт в виде бобра на детский праздник",
+                "приготовить торт на день рождения, высота 2 метра, цвет: синий, вкус: сладкий\n" +
+                        "написать кремом: с др",
                 2L,
-                "Классический чизкейк с ягодным соусом.",
                 3L,
-                1,
+                2000,
                 "ул. Десертная, 8",
                 image1,
-                OrderType.TASK,
+                OrderType.ADVERTISEMENT,
                 "2024-01-15",
                 true
         );
         orderRepository.save(task3);
+
         }
 
     }

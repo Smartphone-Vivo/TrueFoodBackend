@@ -1,11 +1,9 @@
 package dev.TrueFood.entity;
 
+import dev.TrueFood.entity.users.OrderType;
 import dev.TrueFood.entity.users.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -25,5 +23,8 @@ public class Task extends Order {
     )
     private List<User> workers;
 
+    public Task(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, String createdAt, boolean enable) {
+        super(id, title, authorId, description, categoryId, price, location, imagesId, orderType, createdAt, enable);
+    }
 
 }

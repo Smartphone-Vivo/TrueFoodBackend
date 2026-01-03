@@ -4,9 +4,12 @@ import dev.TrueFood.dto.OrderDto;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
+import dev.TrueFood.entity.Task;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.jwt.JwtAuthentication;
+import dev.TrueFood.services.AdvertisementService;
 import dev.TrueFood.services.OrderService;
+import dev.TrueFood.services.TaskService;
 import dev.TrueFood.services.UserService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,8 @@ public class UserController {
 
     private final UserService userService;
     private final OrderService orderService;
+    private final AdvertisementService advertisementService;
+    private final TaskService taskService;
 
     @GetMapping("advertisements-by-user/{id}/{page}/{size}")
     public Page<Order> getAdvertisementsByUser(
@@ -41,15 +46,15 @@ public class UserController {
     }
 
     @PostMapping("advertisement") //todo исправить
-    public void addAdvertisement(@RequestBody OrderDto orderDto, JwtAuthentication authentication) {
+    public void addAdvertisement(@RequestBody Advertisement advertisement, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
-        orderService.addAdverticement(orderDto, id);
+        advertisementService.addAdvertisement(advertisement, id);
     }
 
     @PostMapping("task")
-    public void addTask(@RequestBody OrderDto OrderDto, JwtAuthentication authentication){
+    public void addTask(@RequestBody Task task, JwtAuthentication authentication){
         Long id = authentication.getUserId();
-        orderService.addTask(OrderDto, id);
+        taskService.addTask(task, id);
     }
 
     @GetMapping("add-to-favourites/{advId}")
@@ -61,7 +66,7 @@ public class UserController {
         userService.addToFavourites(id, advId); //todo перетащить в AdvertisementService
     }
 
-    @DeleteMapping("delete-favoirite-advertisement/{advId}")
+    @DeleteMapping("delete-favourite-advertisement/{advId}")
     public void deleteFavouriteAdvertisement(
             JwtAuthentication authentication,
             @PathVariable(name = "advId") Long advId

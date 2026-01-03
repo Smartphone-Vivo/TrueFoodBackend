@@ -62,23 +62,23 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public Page<Order> getOrders(String name, String orderTypeString, Long categoryId, PageRequest pageRequest) {
-
-        OrderType orderType;
-
-        try{
-            orderType = OrderType.valueOf(orderTypeString.toUpperCase());
-        }catch (IllegalArgumentException e){
-            throw new RuntimeException("");
-        }
-
-        if(categoryId == null) {
-            return orderRepository.getOrdersWithPagination(name, orderType,  pageRequest);
-        }
-        else{
-            return orderRepository.getOrdersByCategory(name, orderType, categoryId,  pageRequest);
-        }
-    }
+//    public Page<Order> getOrders(String name, String orderTypeString, Long categoryId, PageRequest pageRequest) {
+//
+//        OrderType orderType;
+//
+//        try{
+//            orderType = OrderType.valueOf(orderTypeString.toUpperCase());
+//        }catch (IllegalArgumentException e){
+//            throw new RuntimeException("");
+//        }
+//
+//        if(categoryId == null) {
+//            return orderRepository.getOrdersWithPagination(name, orderType,  pageRequest);
+//        }
+//        else{
+//            return orderRepository.getOrdersByCategory(name, orderType, categoryId,  pageRequest);
+//        }
+//    }
 
     public Order getAdverticementById(Long id) {
         return orderRepository.findById(id).orElseThrow(() -> new RuntimeException("advertisement not found"));
