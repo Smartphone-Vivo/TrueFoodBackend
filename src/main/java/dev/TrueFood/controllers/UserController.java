@@ -1,11 +1,11 @@
 package dev.TrueFood.controllers;
 
 import dev.TrueFood.entity.Advertisement;
+import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.jwt.JwtAuthentication;
-import dev.TrueFood.repositories.AdvertisementRepository;
-import dev.TrueFood.services.AdvertisementService;
+import dev.TrueFood.services.OrderService;
 import dev.TrueFood.services.UserService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-    private final AdvertisementService advertisementService;
+    private final OrderService orderService;
 
     @GetMapping("my-profile")
     public User getMyProfile(JwtAuthentication authentication) {
@@ -35,11 +35,10 @@ public class UserController {
     }
 
     @GetMapping("advertisements-by-user/{id}/{page}/{size}")
-    public Page<Advertisement> getAdvertisementsByUser(
+    public Page<Order> getAdvertisementsByUser(
             @PathVariable(name = "id") Long id,
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size
-
     ){
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
@@ -62,7 +61,7 @@ public class UserController {
             @PathVariable(name = "advId") Long advId
     ){
         Long id = authentication.getUserId();
-        advertisementService.deleteFavoiriteAdvertisement(id, advId);
+        orderService.deleteFavoiriteAdvertisement(id, advId);
 
     }
 
@@ -76,7 +75,7 @@ public class UserController {
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
-        return advertisementService.getFavouriteAdvertisements(id, pageRequest);
+        return orderService.getFavouriteAdvertisements(id, pageRequest);
     }
 
     @PostMapping("add-review/{userId}")

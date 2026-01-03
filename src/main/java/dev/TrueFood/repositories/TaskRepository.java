@@ -1,0 +1,7 @@
+package dev.TrueFood.repositories;
+
+import dev.TrueFood.entity.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TaskRepository extends JpaRepository<Task, Long> {
+}

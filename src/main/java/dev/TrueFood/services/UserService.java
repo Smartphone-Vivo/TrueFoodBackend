@@ -2,12 +2,10 @@ package dev.TrueFood.services;
 
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Image;
+import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.users.User;
-import dev.TrueFood.repositories.AdvertisementRepository;
-import dev.TrueFood.repositories.ImageRepository;
-import dev.TrueFood.repositories.ReviewRepository;
-import dev.TrueFood.repositories.UserRepository;
+import dev.TrueFood.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +24,7 @@ public class UserService {
     private final AdvertisementRepository advertisementRepository;
     private final ImageRepository imageRepository;
     private final ReviewRepository reviewRepository;
+    private final OrderRepository orderRepository;
 
     public User getMyProfile(Long id){
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("student not found"));
@@ -40,21 +39,21 @@ public class UserService {
         }
     }
 
-    public Page<Advertisement> getAdvertisementsByUser(Long id, PageRequest pageRequest){
+    public Page<Order> getAdvertisementsByUser(Long id, PageRequest pageRequest){
         return advertisementRepository.getAdverticementByUser(id, pageRequest);
     }
 
     public void addToFavourites(Long id, Long advId){
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
-        Advertisement advertisement = advertisementRepository.findById(advId).orElseThrow(() -> new RuntimeException("advertisement not found"));
+        Order order = orderRepository.findById(advId).orElseThrow(() -> new RuntimeException("advertisement not found"));
 
-        List<Advertisement> userFavourites = user.getFavourites();
+        List<Order> userFavourites = user.getFavourites();
 
-        if(userFavourites.contains(advertisement)){
+        if(userFavourites.contains(order)){
             throw new RuntimeException("advertisement is already in favourite");
         }
         else{
-            userFavourites.add(advertisement);
+            userFavourites.add(order);
 
             user.setFavourites(userFavourites);
 

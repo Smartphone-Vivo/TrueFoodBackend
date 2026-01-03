@@ -3,6 +3,8 @@ package dev.TrueFood.repositories;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
+import dev.TrueFood.entity.Order;
+import dev.TrueFood.entity.users.OrderType;
 import dev.TrueFood.entity.users.Password;
 import dev.TrueFood.entity.users.Role;
 import dev.TrueFood.entity.users.User;
@@ -25,6 +27,8 @@ public class Initializer {
     private UserRepository userRepository;
 
     List<String> imageUrls = new ArrayList<>();
+    @Autowired
+    private OrderRepository orderRepository;
 
     public void initial() {
 
@@ -159,7 +163,7 @@ public class Initializer {
         categoryRepository.save(sheep);
 
 
-        Advertisement advertisement1 = new Advertisement(
+        Order advertisement1 = new Order(
                 null,
                 "Жареный суп",
                 1L,
@@ -168,14 +172,14 @@ public class Initializer {
                 123,
                 "location1",
                 image1,
-                "itemType1",
+                OrderType.ADVERTISEMENT,
                 "createdAt1",
                 true
         );
-        advertisementRepository.save(advertisement1);
+        orderRepository.save(advertisement1);
 
             // 1. Пицца
-            Advertisement advertisement1123 = new Advertisement(
+        Order advertisement1123 = new Order(
                     null,
                     "Пицца Маргарита",
                     1L,
@@ -184,14 +188,14 @@ public class Initializer {
                     1,
                     "ул. Пушкина, 10",
                     image1,
-                    "Итальянская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement1123);
+        orderRepository.save(advertisement1123);
 
             // 2. Суши
-            Advertisement advertisement2234234 = new Advertisement(
+        Order advertisement2234234 = new Order(
                     null,
                     "Суши сет 'Сакура'",
                     1L,
@@ -200,14 +204,14 @@ public class Initializer {
                     1,
                     "пр. Ленина, 25",
                     image1,
-                    "Японская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement2234234);
+        orderRepository.save(advertisement2234234);
 
             // 3. Бургер
-            Advertisement adverticemen23423424t3 = new Advertisement(
+        Order adverticemen23423424t3 = new Order(
                     null,
                     "Чизбургер с картошкой",
                     1L,
@@ -216,14 +220,14 @@ public class Initializer {
                     1,
                     "ул. Гагарина, 15",
                     image1,
-                    "Фастфуд",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(adverticemen23423424t3);
+        orderRepository.save(adverticemen23423424t3);
 
             // 4. Салат
-            Advertisement advertisement4 = new Advertisement(
+        Order advertisement4 = new Order(
                     null,
                     "Салат Цезарь с курицей",
                     1L,
@@ -232,14 +236,14 @@ public class Initializer {
                     1,
                     "ул. Садовая, 8",
                     image1,
-                    "Салаты",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement4);
+        orderRepository.save(advertisement4);
 
             // 5. Паста
-            Advertisement advertisement5 = new Advertisement(
+        Order advertisement5 = new Order(
                     null,
                     "Паста Карбонара",
                     1L,
@@ -248,14 +252,14 @@ public class Initializer {
                     1,
                     "пр. Мира, 33",
                     image1,
-                    "Итальянская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement5);
+        orderRepository.save(advertisement5);
 
             // 6. Шашлык
-            Advertisement advertisement6 = new Advertisement(
+        Order advertisement6 = new Order(
                     null,
                     "Шашлык из свинины",
                     1L,
@@ -264,14 +268,14 @@ public class Initializer {
                     1,
                     "ул. Грильмастеров, 5",
                     image1,
-                    "Барбекю",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement6);
+        orderRepository.save(advertisement6);
 
             // 7. Суп
-            Advertisement advertisement7 = new Advertisement(
+        Order advertisement7 = new Order(
                     null,
                     "Борщ украинский",
                     1L,
@@ -280,14 +284,14 @@ public class Initializer {
                     1,
                     "ул. Украинская, 12",
                     image1,
-                    "Первые блюда",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement7);
+        orderRepository.save(advertisement7);
 
             // 8. Роллы
-            Advertisement advertisement8 = new Advertisement(
+        Order advertisement8 = new Order(
                     null,
                     "Запеченные роллы с лососем",
                     1L,
@@ -296,14 +300,14 @@ public class Initializer {
                     1,
                     "ул. Рыбацкая, 18",
                     image1,
-                    "Японская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement8);
+        orderRepository.save(advertisement8);
 
             // 9. Стейк
-            Advertisement advertisement9 = new Advertisement(
+        Order advertisement9 = new Order(
                     null,
                     "Стейк Рибай",
                     1L,
@@ -312,14 +316,14 @@ public class Initializer {
                     1,
                     "ул. Мясная, 22",
                     image1,
-                    "Мясные блюда",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement9);
+        orderRepository.save(advertisement9);
 
             // 10. Десерт
-            Advertisement advertisement10 = new Advertisement(
+        Order advertisement10 = new Order(
                     null,
                     "Тирамису классический",
                     1L,
@@ -328,14 +332,14 @@ public class Initializer {
                     1,
                     "ул. Сладкая, 7",
                     image1,
-                    "Десерты",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement10);
+        orderRepository.save(advertisement10);
 
             // 11. Лапша
-            Advertisement advertisement11 = new Advertisement(
+        Order advertisement11 = new Order(
                     null,
                     "Лапша WOK с курицей",
                     1L,
@@ -344,14 +348,14 @@ public class Initializer {
                     1,
                     "ул. Азиатская, 14",
                     image1,
-                    "Азиатская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement11);
+        orderRepository.save(advertisement11);
 
             // 12. Пельмени
-            Advertisement advertisement12 = new Advertisement(
+        Order advertisement12 = new Order(
                     null,
                     "Пельмени домашние",
                     2L,
@@ -360,14 +364,14 @@ public class Initializer {
                     1,
                     "ул. Домашняя, 9",
                     image1,
-                    "Русская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement12);
+        orderRepository.save(advertisement12);
 
             // 13. Сэндвич
-            Advertisement advertisement13 = new Advertisement(
+        Order advertisement13 = new Order(
                     null,
                     "Клаб-сэндвич",
                     2L,
@@ -376,14 +380,14 @@ public class Initializer {
                     1,
                     "ул. Бутербродная, 3",
                     image1,
-                    "Фастфуд",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement13);
+        orderRepository.save(advertisement13);
 
             // 14. Рыба
-            Advertisement advertisement14 = new Advertisement(
+        Order advertisement14 = new Order(
                     null,
                     "Дорадо на гриле",
                     2L,
@@ -392,14 +396,14 @@ public class Initializer {
                     1,
                     "ул. Морская, 11",
                     image1,
-                    "Рыбные блюда",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement14);
+        orderRepository.save(advertisement14);
 
             // 15. Завтрак
-            Advertisement advertisement15 = new Advertisement(
+        Order advertisement15 = new Order(
                     null,
                     "Английский завтрак",
                     2L,
@@ -408,14 +412,14 @@ public class Initializer {
                     1,
                     "ул. Утренняя, 6",
                     image1,
-                    "Завтраки",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement15);
+        orderRepository.save(advertisement15);
 
             // 16. Креветки
-            Advertisement advertisement16 = new Advertisement(
+        Order advertisement16 = new Order(
                     null,
                     "Креветки в чесночном соусе",
                     2L,
@@ -424,14 +428,14 @@ public class Initializer {
                     1,
                     "ул. Креветочная, 4",
                     image1,
-                    "Морепродукты",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement16);
+        orderRepository.save(advertisement16);
 
             // 17. Омлет
-            Advertisement advertisement17 = new Advertisement(
+        Order advertisement17 = new Order(
                     null,
                     "Омлет с ветчиной и сыром",
                     2L,
@@ -440,14 +444,14 @@ public class Initializer {
                     1,
                     "ул. Яичная, 2",
                     image1,
-                    "Завтраки",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement17);
+        orderRepository.save(advertisement17);
 
             // 18. Курица
-            Advertisement advertisement18 = new Advertisement(
+        Order advertisement18 = new Order(
                     null,
                     "Курица терияки",
                     2L,
@@ -456,14 +460,14 @@ public class Initializer {
                     1,
                     "ул. Восточная, 17",
                     image1,
-                    "Азиатская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement18);
+        orderRepository.save(advertisement18);
 
             // 19. Тако
-            Advertisement advertisement19 = new Advertisement(
+        Order advertisement19 = new Order(
                     null,
                     "Тако с говядиной",
                     2L,
@@ -472,14 +476,14 @@ public class Initializer {
                     1,
                     "ул. Мексиканская, 13",
                     image1,
-                    "Мексиканская кухня",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement19);
+        orderRepository.save(advertisement19);
 
             // 20. Чизкейк
-            Advertisement advertisement20 = new Advertisement(
+        Order advertisement20 = new Order(
                     null,
                     "Чизкейк Нью-Йорк",
                     2L,
@@ -488,11 +492,11 @@ public class Initializer {
                     1,
                     "ул. Десертная, 8",
                     image1,
-                    "Десерты",
+                    OrderType.ADVERTISEMENT,
                     "2024-01-15",
                     true
             );
-            advertisementRepository.save(advertisement20);
+        orderRepository.save(advertisement20);
         }
     }
 

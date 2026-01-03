@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Image;
+import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,10 +35,10 @@ public class User extends BaseUser {
     @JoinTable(
             name = "user_favourites",
             joinColumns = @JoinColumn(name = "users_id"),
-            inverseJoinColumns = @JoinColumn(name = "adverticements_id")
+            inverseJoinColumns = @JoinColumn(name = "Orders_id")
     )
     @JsonIgnoreProperties({"author", "favourites"})
-    private List<Advertisement> favourites;
+    private List<Order> favourites;
 
      @OneToMany
      @JoinColumn(name = "reviews_id")

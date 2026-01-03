@@ -1,5 +1,6 @@
 package dev.TrueFood.entity;
 
+import dev.TrueFood.entity.users.OrderType;
 import dev.TrueFood.entity.users.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,21 +9,8 @@ import lombok.*;
 @Table(name = "adverticements")
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor //todo RequiredArgsConstructor можно впихнуть
 public class Advertisement extends Order {
-
-    @ManyToOne
-    @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
-    private User Author;
-
-    @Column(name="users_id")
-    private Long authorId;
-
-    public Advertisement(Long id, String title, Long authorId, String description, Long categoryId, int price, String location, Image imagesId, String itemType, String createdAt, boolean enable) {
-        super(id, title, description, categoryId, price, location, imagesId, itemType, createdAt, enable);
-        this.authorId = authorId;
-    }
-
 
 
 }

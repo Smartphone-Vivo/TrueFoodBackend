@@ -1,6 +1,7 @@
 package dev.TrueFood.repositories;
 
 import dev.TrueFood.entity.Advertisement;
+import dev.TrueFood.entity.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +16,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     """)
     Page<Advertisement> getAdverticementsWithPagination(@Param("name") String name, PageRequest pageRequest);
 
-
     @Query("""
     SELECT a FROM Advertisement a
     WHERE (a.title LIKE CONCAT('%', :name,'%'))
@@ -23,14 +23,11 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     """)
     Page<Advertisement> getAdverticementsByCategory(@Param("name") String name, @Param("categoryId") Long categoryId, PageRequest pageRequest);
 
-
     @Query("""
-    SELECT a FROM Advertisement a
-    WHERE (a.authorId = :id)
+    SELECT o FROM Order o
+    WHERE (o.authorId = :id)
     """)
-    Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
-
-
+    Page<Order> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
 
 //    @Query("""
 //    SELECT u.favourites FROM User u
