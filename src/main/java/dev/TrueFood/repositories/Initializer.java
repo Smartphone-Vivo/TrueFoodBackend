@@ -483,11 +483,11 @@ public class Initializer {
         orderRepository.save(advertisement19);
 
             // 20. Чизкейк
-        Order advertisement20 = new Order(
+        Advertisement advertisement20 = new Advertisement(
                     null,
                     "Чизкейк Нью-Йорк",
-                    2L,
                     "Классический чизкейк с ягодным соусом.",
+                    2L,
                     3L,
                     1,
                     "ул. Десертная, 8",
@@ -496,7 +496,7 @@ public class Initializer {
                     "2024-01-15",
                     true
             );
-        orderRepository.save(advertisement20);
+        advertisementRepository.save(advertisement20);
 
         Order task1 = new Order(
                 null,

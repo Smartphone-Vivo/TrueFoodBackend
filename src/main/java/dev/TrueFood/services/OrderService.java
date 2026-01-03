@@ -20,7 +20,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional //todo вот эту ебатню разгрести
 public class OrderService {
 
     private final AdvertisementRepository advertisementRepository;

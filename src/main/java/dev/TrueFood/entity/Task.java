@@ -17,13 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Task extends Order {
 
-    @ManyToOne
-    @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
-    private User Author;
-
-    @Column(name="users_id")
-    private Long authorId;
-
     @ManyToMany
     @JoinTable(
             name = "task-workers",
