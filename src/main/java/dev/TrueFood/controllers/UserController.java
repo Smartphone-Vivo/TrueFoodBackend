@@ -1,6 +1,7 @@
 package dev.TrueFood.controllers;
 
 import dev.TrueFood.dto.OrderDto;
+import dev.TrueFood.dto.TaskResponse;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
@@ -97,6 +98,17 @@ public class UserController {
         userService.addReview(review, id, userId);
     }
 
+    @GetMapping("add-task-response/{task-id}")
+    public Task addTaskResponse(
+            JwtAuthentication authentication,
+            @PathVariable(name = "task-id") Long taskId
+
+            ){
+        Long id = authentication.getUserId();
+
+        return taskService.addTaskResponse(id, taskId);
+
+    }
 
 
 }

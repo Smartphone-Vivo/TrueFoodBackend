@@ -1,5 +1,6 @@
 package dev.TrueFood.entity;
 
+import dev.TrueFood.dto.TaskResponse;
 import dev.TrueFood.entity.users.OrderType;
 import dev.TrueFood.entity.users.User;
 import jakarta.persistence.*;
