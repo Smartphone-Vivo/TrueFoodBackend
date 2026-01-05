@@ -51,10 +51,6 @@ public class User extends BaseUser {
         this.rating = rating;
     }
 
-//    public void setFavourites(Advertisement advertisement) {
-//        this.favourites.add(advertisement);
-//    }
-
     //todo location
 
 }

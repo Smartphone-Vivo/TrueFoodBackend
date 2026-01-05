@@ -1,7 +1,7 @@
 package dev.TrueFood.controllers;
 
-import dev.TrueFood.dto.OrderDto;
-import dev.TrueFood.dto.TaskResponse;
+import dev.TrueFood.dto.*;
+import dev.TrueFood.dto.mapping.AdvertisementMapping;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
@@ -28,9 +28,10 @@ public class UserController {
     private final OrderService orderService;
     private final AdvertisementService advertisementService;
     private final TaskService taskService;
+    private final AdvertisementMapping advertisementMapping;
 
     @GetMapping("advertisements-by-user/{id}/{page}/{size}")
-    public Page<Order> getAdvertisementsByUser(
+    public Page<AdvertisementDto> getAdvertisementsByUser(
             @PathVariable(name = "id") Long id,
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size
@@ -41,21 +42,21 @@ public class UserController {
     }
 
     @GetMapping("my-profile")
-    public User getMyProfile(JwtAuthentication authentication) {
+    public UserDto getMyProfile(JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         return userService.getMyProfile(id);
     }
 
     @PostMapping("advertisement") //todo исправить
-    public void addAdvertisement(@RequestBody Advertisement advertisement, JwtAuthentication authentication) {
+    public void addAdvertisement(@RequestBody AdvertisementDto advertisementDto, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
-        advertisementService.addAdvertisement(advertisement, id);
+        advertisementService.addAdvertisement(advertisementDto, id);
     }
 
     @PostMapping("task")
-    public void addTask(@RequestBody Task task, JwtAuthentication authentication){
+    public void addTask(@RequestBody TaskDto taskDto, JwtAuthentication authentication){
         Long id = authentication.getUserId();
-        taskService.addTask(task, id);
+        taskService.addTask(taskDto, id);
     }
 
     @GetMapping("add-to-favourites/{advId}")
@@ -77,7 +78,7 @@ public class UserController {
     }
 
     @GetMapping("get-favourite-advertisements/{page}/{size}")
-    public Page<Advertisement> getAdvertisements(
+    public Page<AdvertisementDto> getFavouriteAdvertisements(
             JwtAuthentication authentication,
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size
@@ -86,7 +87,7 @@ public class UserController {
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
-        return orderService.getFavouriteAdvertisements(id, pageRequest);
+        return orderService.getFavouriteAdvertisements(id, pageRequest); //todo перенести в advertisementService
     }
 
     @PostMapping("add-review/{userId}")
@@ -99,14 +100,14 @@ public class UserController {
     }
 
     @GetMapping("add-task-response/{task-id}")
-    public Task addTaskResponse(
+    public void addTaskResponse(
             JwtAuthentication authentication,
             @PathVariable(name = "task-id") Long taskId
 
             ){
         Long id = authentication.getUserId();
 
-        return taskService.addTaskResponse(id, taskId);
+        taskService.addTaskResponse(id, taskId);
 
     }
 

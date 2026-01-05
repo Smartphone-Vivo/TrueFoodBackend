@@ -1,5 +1,9 @@
 package dev.TrueFood.controllers;
 
+import dev.TrueFood.dto.AdvertisementDto;
+import dev.TrueFood.dto.CategoryDto;
+import dev.TrueFood.dto.TaskDto;
+import dev.TrueFood.dto.UserDto;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Order;
@@ -26,8 +30,8 @@ public class GuestController {
     private final AdvertisementService advertisementService;
     private final TaskService taskService;
 
-    @GetMapping("advertisements/{page}/{size}") //todo разделить объявления и задачи
-    public Page<Advertisement> getAdvertisements(
+    @GetMapping("advertisements/{page}/{size}")
+    public Page<AdvertisementDto> getAdvertisements(
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size,
 
@@ -40,8 +44,8 @@ public class GuestController {
         return advertisementService.getAdvertisements(name ,categoryId, pageRequest);
     }
 
-    @GetMapping("tasks/{page}/{size}") //todo разделить объявления и задачи
-    public Page<Task> getTasks(
+    @GetMapping("tasks/{page}/{size}")
+    public Page<TaskDto> getTasks(
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size,
 
@@ -55,19 +59,19 @@ public class GuestController {
     }
 
     @GetMapping("advertisement/{id}")
-    public Advertisement getAdvertisementById(
+    public AdvertisementDto getAdvertisementById(
             @PathVariable(name = "id") int id)
     {
         return advertisementService.getAdvertisementById((long) id);
     }
 
     @GetMapping("profile/{id}")
-    public User getProfile(@PathVariable Long id) {
+    public UserDto getProfile(@PathVariable Long id) {
         return userService.getProfile(id);
     }
 
     @GetMapping("categories")
-    public List<Category> getAllCategories() {
+    public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
 

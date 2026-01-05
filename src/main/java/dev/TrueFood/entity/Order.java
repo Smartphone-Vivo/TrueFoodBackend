@@ -44,7 +44,7 @@ public class Order {
     //todo
     private String location;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
     private User Author;
 

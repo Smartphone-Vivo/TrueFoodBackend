@@ -38,10 +38,10 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
                                                     PageRequest pageRequest); //todo
 
     @Query("""
-    SELECT o FROM Order o
-    WHERE (o.authorId = :id)
+    SELECT a FROM Advertisement a
+    WHERE (a.authorId = :id)
     """)
-    Page<Order> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
+    Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
 
 //    @Query("""
 //    SELECT u.favourites FROM User u

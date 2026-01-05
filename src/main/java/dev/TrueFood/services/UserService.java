@@ -1,7 +1,9 @@
 package dev.TrueFood.services;
 
-import dev.TrueFood.entity.Advertisement;
-import dev.TrueFood.entity.Image;
+import dev.TrueFood.dto.AdvertisementDto;
+import dev.TrueFood.dto.UserDto;
+import dev.TrueFood.dto.mapping.AdvertisementMapping;
+import dev.TrueFood.dto.mapping.UserMapping;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.users.User;
@@ -11,9 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,18 +27,23 @@ public class UserService {
     private final ImageRepository imageRepository;
     private final ReviewRepository reviewRepository;
     private final OrderRepository orderRepository;
+    private final AdvertisementMapping advertisementMapping;
+    private final UserMapping userMapping;
 
-    public User getMyProfile(Long id){
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("student not found"));
+    public UserDto getMyProfile(Long id){
+        return userRepository.findById(id).map(userMapping::toDto).orElse(null);
     }
 
-    public User getProfile(Long id){
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+    public UserDto getProfile(Long id){
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
 
+        UserDto userDto = userMapping.toDto(user);
+
+        return userDto;
     }
 
-    public Page<Order> getAdvertisementsByUser(Long id, PageRequest pageRequest){
-        return advertisementRepository.getAdverticementByUser(id, pageRequest);
+    public Page<AdvertisementDto> getAdvertisementsByUser(Long id, PageRequest pageRequest){
+        return advertisementRepository.getAdverticementByUser(id, pageRequest).map(advertisementMapping::toDto);
     }
 
     public void addToFavourites(Long id, Long advId){

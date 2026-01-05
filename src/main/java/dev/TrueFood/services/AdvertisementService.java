@@ -1,5 +1,7 @@
 package dev.TrueFood.services;
 
+import dev.TrueFood.dto.AdvertisementDto;
+import dev.TrueFood.dto.mapping.AdvertisementMapping;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
@@ -18,20 +20,24 @@ public class AdvertisementService {
     private final AdvertisementRepository advertisementRepository;
     private final ImageRepository imageRepository;
     private final CategoryRepository categoryRepository;
+    private final AdvertisementMapping advertisementMapping;
 
-    public Page<Advertisement> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
+    public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
 
         if(categoryId == null) {
-            return advertisementRepository.getAdvertisementsWithPagination(name, pageRequest);
+            return advertisementRepository.getAdvertisementsWithPagination(name, pageRequest).map(advertisementMapping::toDto);
         }
         else{
             Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new RuntimeException("category not found"));
             List<Long> children = category.getChildrenId();
-            return advertisementRepository.getAdvertisementsByCategory(name, category, children, pageRequest);
+            return advertisementRepository.getAdvertisementsByCategory(name, category, children, pageRequest).map(advertisementMapping::toDto);
         }
     }
 
-    public void addAdvertisement(Advertisement advertisement, Long id) {
+    public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
+
+        Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
+
         List<String> imageUrls = advertisement.getImagesId().getImageUrls();
 
         Image image = new Image(null, imageUrls);
@@ -42,13 +48,13 @@ public class AdvertisementService {
 
         advertisement.setAuthorId(id);
 
-        advertisement.setCategory(categoryRepository.findById(advertisement.getCategoryId()).orElseThrow(() -> new RuntimeException("category not found")));
+        advertisement.setCategory(categoryRepository.findById(advertisementDto.getCategoryId()).orElseThrow(() -> new RuntimeException("category not found")));
 
         advertisementRepository.save(advertisement);
     }
 
-    public Advertisement getAdvertisementById(Long id){
-        return advertisementRepository.findById(id).orElseThrow(() -> new RuntimeException("advertisement not found"));
+    public AdvertisementDto getAdvertisementById(Long id){
+        return advertisementRepository.findById(id).map(advertisementMapping::toDto).orElseThrow(() -> new RuntimeException("advertisement not found"));
     }
 
 }

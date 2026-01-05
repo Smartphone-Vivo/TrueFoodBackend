@@ -1,11 +1,8 @@
 package dev.TrueFood.services;
 
-import dev.TrueFood.dto.OrderDto;
-import dev.TrueFood.dto.mapping.OrderMapping;
-import dev.TrueFood.entity.Advertisement;
-import dev.TrueFood.entity.Image;
-import dev.TrueFood.entity.Order;
-import dev.TrueFood.entity.Task;
+import dev.TrueFood.dto.TaskDto;
+import dev.TrueFood.dto.mapping.TaskMapping;
+import dev.TrueFood.entity.*;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.repositories.*;
 import lombok.RequiredArgsConstructor;
@@ -22,42 +19,49 @@ public class TaskService {
     private final ImageRepository imageRepository;
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
+    private final TaskMapping taskMapping;
+    private final CategoryRepository categoryRepository;
 
-
-    public Page<Task> getTasks(String name, Long categoryId, PageRequest pageRequest) {
+    public Page<TaskDto> getTasks(String name, Long categoryId, PageRequest pageRequest) {
 
         if(categoryId == null) {
-            return taskRepository.getTasksWithPagination(name, pageRequest);
+            return taskRepository.getTasksWithPagination(name, pageRequest).map(taskMapping::toDto);
         }
         else{
-            return taskRepository.getTasksByCategory(name, categoryId,  pageRequest);
+            return taskRepository.getTasksByCategory(name, categoryId,  pageRequest).map(taskMapping::toDto);
         }
     }
 
-    public void addTask(Task task, Long id) {
-        List<String> imageUrls = task.getImagesId().getImageUrls();
+    public void addTask(TaskDto taskDto, Long id) {
+        List<String> imageUrls = taskDto.getImagesId().getImageUrls();
+
+        Category category = categoryRepository.findById(taskDto.getCategoryId()).orElse(null);
+
+        taskDto.setCategoryId(category.getId());
+
+        taskDto.setCategory(category);
 
         Image image = new Image(null, imageUrls);
 
         imageRepository.save(image);
 
-        task.setImagesId(image);
+        taskDto.setImagesId(image);
 
-        task.setAuthorId(id);
+        taskDto.setAuthorId(id);
+
+        Task task = taskMapping.toEntity(taskDto);
 
         taskRepository.save(task);
     }
 
 
-    public Task addTaskResponse(Long id, Long taskId){
+    public void addTaskResponse(Long id, Long taskId) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found"));
 
         task.getWorkers().add(user);
+
         taskRepository.save(task);
-
-        return task;
-
     }
 
 }
