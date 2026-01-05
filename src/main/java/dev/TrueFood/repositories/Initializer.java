@@ -140,7 +140,6 @@ public class Initializer {
                 "location1",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "createdAt1",
                 true
         );
         orderRepository.save(advertisement1);
@@ -156,7 +155,6 @@ public class Initializer {
                 "ул. Пушкина, 10",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement1123);
@@ -172,7 +170,6 @@ public class Initializer {
                 "пр. Ленина, 25",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement2234234);
@@ -188,7 +185,6 @@ public class Initializer {
                 "ул. Гагарина, 15",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement23423424);
@@ -204,7 +200,6 @@ public class Initializer {
                 "ул. Садовая, 8",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement4);
@@ -220,7 +215,6 @@ public class Initializer {
                 "пр. Мира, 33",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement5);
@@ -236,7 +230,6 @@ public class Initializer {
                 "ул. Грильмастеров, 5",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement6);
@@ -252,7 +245,6 @@ public class Initializer {
                 "ул. Украинская, 12",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement7);
@@ -268,7 +260,6 @@ public class Initializer {
                 "ул. Рыбацкая, 18",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement8);
@@ -284,7 +275,6 @@ public class Initializer {
                 "ул. Мясная, 22",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement9);
@@ -300,7 +290,6 @@ public class Initializer {
                 "ул. Сладкая, 7",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement10);
@@ -316,7 +305,6 @@ public class Initializer {
                 "ул. Азиатская, 14",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement11);
@@ -332,7 +320,6 @@ public class Initializer {
                 "ул. Домашняя, 9",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement12);
@@ -348,7 +335,6 @@ public class Initializer {
                 "ул. Бутербродная, 3",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement13);
@@ -364,7 +350,6 @@ public class Initializer {
                 "ул. Морская, 11",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement14);
@@ -380,7 +365,6 @@ public class Initializer {
                 "ул. Утренняя, 6",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement15);
@@ -396,7 +380,6 @@ public class Initializer {
                 "ул. Креветочная, 4",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement16);
@@ -412,7 +395,6 @@ public class Initializer {
                 "ул. Яичная, 2",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement17);
@@ -428,7 +410,6 @@ public class Initializer {
                 "ул. Восточная, 17",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement18);
@@ -444,7 +425,6 @@ public class Initializer {
                 "ул. Мексиканская, 13",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         advertisementRepository.save(advertisement19);
@@ -460,7 +440,6 @@ public class Initializer {
                     "ул. Десертная, 8",
                     image1,
                     OrderType.ADVERTISEMENT,
-                    "2024-01-15",
                     true
             );
         advertisementRepository.save(advertisement20);
@@ -476,7 +455,6 @@ public class Initializer {
                 "ул. Десертная, 8",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         taskRepository.save(task1);
@@ -492,7 +470,6 @@ public class Initializer {
                 "ул. Десертная, 8",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         orderRepository.save(task2);
@@ -508,7 +485,6 @@ public class Initializer {
                 "ул. Десертная, 8",
                 image1,
                 OrderType.ADVERTISEMENT,
-                "2024-01-15",
                 true
         );
         orderRepository.save(task3);

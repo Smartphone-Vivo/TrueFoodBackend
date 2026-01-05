@@ -24,8 +24,8 @@ public class Task extends Order {
     )
     private List<User> workers;
 
-    public Task(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, String createdAt, boolean enable) {
-        super(id, title, authorId, description, categoryId, price, location, imagesId, orderType, createdAt, enable);
+    public Task(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, boolean enable) {
+        super(id, title, authorId, description, categoryId, price, location, imagesId, orderType, enable);
     }
 
 }

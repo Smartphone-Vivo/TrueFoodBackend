@@ -22,7 +22,6 @@ public class OrderMapping {
         OrderType orderType = OrderType.valueOf(orderDto.getOrderType().toUpperCase());
         order.setOrderType(orderType);
 
-        order.setCreatedAt(orderDto.getCreatedAt());
         order.setEnable(orderDto.isEnable());
 
         return order;

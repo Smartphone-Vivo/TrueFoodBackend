@@ -13,7 +13,7 @@ import lombok.*;
 //todo RequiredArgsConstructor можно впихнуть
 public class Advertisement extends Order {
 
-    public Advertisement(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, String createdAt, boolean enable) {
-        super(id, title, authorId, description, categoryId, price, location, imagesId, orderType, createdAt, enable);
+    public Advertisement(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, boolean enable) {
+        super(id, title, authorId, description, categoryId, price, location, imagesId, orderType, enable);
     }
 }

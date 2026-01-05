@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "Orders")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -42,12 +44,7 @@ public class Order {
     //todo
     private String location;
 
-    //todo List
-
-//    //todo enum
-//    private String itemType;
-
-    @ManyToOne //todo перетащить в order
+    @ManyToOne
     @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
     private User Author;
 
@@ -58,12 +55,12 @@ public class Order {
     private OrderType orderType;
 
     //todo Date
-    private String createdAt;
+    private Date createdAt;
 
     private boolean enable;
 
 
-    public Order(Long id, String title, Long authorId, String description, Long categoryId,  int price,  String location, Image imagesId, OrderType orderType, String createdAt, boolean enable) {
+    public Order(Long id, String title, Long authorId, String description, Long categoryId,  int price,  String location, Image imagesId, OrderType orderType, boolean enable) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -73,7 +70,7 @@ public class Order {
         this.location = location;
         this.authorId = authorId;
         this.orderType = orderType;
-        this.createdAt = createdAt;
+        this.createdAt = new Date();
         this.enable = enable;
     }
 
