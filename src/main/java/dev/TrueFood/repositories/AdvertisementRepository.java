@@ -1,12 +1,15 @@
 package dev.TrueFood.repositories;
 
 import dev.TrueFood.entity.Advertisement;
+import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
@@ -16,12 +19,23 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     """)
     Page<Advertisement> getAdvertisementsWithPagination(@Param("name") String name, PageRequest pageRequest);
 
+//    @Query("""
+//    SELECT a FROM Advertisement a
+//    WHERE (a.title LIKE CONCAT('%', :name,'%'))
+//    AND a.categoryId = :categoryId
+//    """)
+//    Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name, @Param("categoryId") Long categoryId, PageRequest pageRequest);
+//
+
     @Query("""
     SELECT a FROM Advertisement a
     WHERE (a.title LIKE CONCAT('%', :name,'%'))
-    AND a.categoryId = :categoryId
+    AND (a.category = :category OR a.categoryId IN :childrenCategory)
     """)
-    Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name, @Param("categoryId") Long categoryId, PageRequest pageRequest);
+    Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name,
+                                                    @Param("category") Category category,
+                                                    @Param("childrenCategory") List<Long> childrenCategory,
+                                                    PageRequest pageRequest); //todo
 
     @Query("""
     SELECT o FROM Order o

@@ -43,12 +43,7 @@ public class Initializer {
         );
         imageRepository.save(image1);
 
-        Category readyFood = new Category(
-                null,
-                null,
-                "Готовые блюда"
-        );
-        categoryRepository.save(readyFood);
+
 
         Password password1 = new Password(
                 null,
@@ -84,83 +79,56 @@ public class Initializer {
         );
         userRepository.save(user2);
 
-        Category pelmeni = new Category(
-                null,
-                readyFood,
-                "Пельмени"
-        );
+        Category all = new Category(null, "Все");
+        categoryRepository.save(all);
+
+        Category readyFood = new Category(all, "Готовые блюда");
+        categoryRepository.save(readyFood);
+
+        Category pelmeni = new Category(readyFood, "Пельмени");
         categoryRepository.save(pelmeni);
 
-        Category vareniki = new Category(
-                null,
-                readyFood,
-                "Вареники"
-        );
+        Category vareniki = new Category(readyFood, "Вареники");
         categoryRepository.save(vareniki);
 
-        Category golubci = new Category(
-                null,
-                readyFood,
-                "Голубцы"
-        );
+        Category golubci = new Category(readyFood, "Голубцы");
         categoryRepository.save(golubci);
 
-        Category drinks = new Category(
-                null,
-                null,
-                "Напитки"
-        );
+        Category drinks = new Category(all, "Напитки");
         categoryRepository.save(drinks);
 
-        Category voda = new Category(
-                null,
-                drinks,
-                "Вода"
-        );
+        Category voda = new Category(drinks, "Вода");
         categoryRepository.save(voda);
 
-        Category pivo = new Category(
-                null,
-                drinks,
-                "Пиво"
-        );
+        Category pivo = new Category(drinks, "Пиво");
         categoryRepository.save(pivo);
 
-        Category juices = new Category(
-                null,
-                drinks,
-                "Соки"
-        );
+        Category juices = new Category(drinks, "Соки");
         categoryRepository.save(juices);
 
-        Category meat = new Category(
-                null,
-                null,
-                "Мясные блюда"
-        );
+        Category meat = new Category(all, "Мясные блюда");
         categoryRepository.save(meat);
 
-        Category beef = new Category(
-                null,
-                meat,
-                "Говядина"
-        );
+        Category beef = new Category(meat, "Говядина");
         categoryRepository.save(beef);
 
-        Category pig = new Category(
-                null,
-                meat,
-                "Свинина"
-        );
+        Category pig = new Category(meat, "Свинина");
         categoryRepository.save(pig);
 
-        Category sheep = new Category(
-                null,
-                meat,
-                "Баранина"
-        );
+        Category sheep = new Category(meat, "Баранина");
         categoryRepository.save(sheep);
 
+        all.setChildrenId(List.of(readyFood.getId(), pelmeni.getId(), vareniki.getId(), golubci.getId(), drinks.getId(), meat.getId(), beef.getId(), pig.getId(), sheep.getId()));
+        categoryRepository.save(all);
+
+        readyFood.setChildrenId(List.of(pelmeni.getId(), vareniki.getId(), golubci.getId()));
+        categoryRepository.save(readyFood);
+
+        drinks.setChildrenId(List.of(voda.getId(), pivo.getId(), juices.getId()));
+        categoryRepository.save(drinks);
+
+        meat.setChildrenId(List.of(beef.getId(), pig.getId(), sheep.getId()));
+        categoryRepository.save(meat);
 
         Order advertisement1 = new Order(
                 null,
