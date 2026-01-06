@@ -15,8 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @NoArgsConstructor
 public class Password {
 
-    static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

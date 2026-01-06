@@ -1,10 +1,10 @@
 package dev.TrueFood.services;
 
-import dev.TrueFood.entity.Image;
 import dev.TrueFood.repositories.ImageRepository;
 import io.minio.*;
 import io.minio.http.Method;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Service
 public class MinioService {
 
@@ -22,11 +23,6 @@ public class MinioService {
     @Value("${minio.bucket-name}")
     private String bucketName;
 
-
-    public MinioService(MinioClient minioClient, ImageRepository imageRepository) {
-        this.minioClient = minioClient;
-        this.imageRepository = imageRepository;
-    }
 
     @PostConstruct
     public void init() throws Exception {
