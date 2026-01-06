@@ -1,5 +1,7 @@
 package dev.TrueFood.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Image;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
@@ -28,7 +30,8 @@ public class UserDto {
 
     private int rating;
 
-    private List<Order> favourites;
+    @JsonIgnore
+    private List<Advertisement> favourites;
 
     private List<Review> reviews;
 

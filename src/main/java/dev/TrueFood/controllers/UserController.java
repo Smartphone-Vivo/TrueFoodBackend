@@ -16,6 +16,8 @@ import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -65,6 +67,7 @@ public class UserController {
             @PathVariable(name = "advId") Long advId
     ){
         Long id = authentication.getUserId();
+
         userService.addToFavourites(id, advId); //todo перетащить в AdvertisementService
     }
 

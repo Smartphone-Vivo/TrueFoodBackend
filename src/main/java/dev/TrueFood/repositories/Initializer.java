@@ -31,19 +31,15 @@ public class Initializer {
 
     public void initial() {
 
-
-
-        imageUrls.add("http://127.0.0.1:9000/images/5b909523-b4ab-4930-83fa-90c2adf5.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9377cc55da28d60d472a3f033911bf37cf8f949b107930c08124cef343d4ade6");
-        imageUrls.add("http://127.0.0.1:9000/images/02cc6c40-1081-4444-99ae-dcbb2e6d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=903a54d54be28b0aea666545a7b84b52f6eb79408b8839bd263d9a66157d9b43");
-        imageUrls.add("http://127.0.0.1:9000/images/33867e5e-e0e9-4075-85ea-71a4853c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251229%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251229T205751Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2816e7a3b1c1d77935cdcc52c4a6c7d29e13c0049df03560a648fb260b805b70");
+        imageUrls.add("http://localhost:9000/images/c21eab68-33e6-414d-a47b-35d34b9f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260105T223404Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=86c24ba4e09795d6e0a8c3dce75f5b9c8652e8360ec0adefba65bfbaacfe558b");
+        imageUrls.add("http://localhost:9000/images/ee4cf0c1-cfc7-4f62-8abc-521198a4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260105T223404Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0d4e98971518cc1f4bc6463e53ebefdd2049ae73007d0b8c6b967fb9068e87ae");
+        imageUrls.add("http://localhost:9000/images/b5ab84ef-a4bf-448f-96d1-5dfd8b48.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260105T223404Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=42c6f87a852ccc2a5282ee47c746fe4394070ffe021634e416d49d8cb82f4041");
 
         Image image1 = new Image(
                 null,
                 imageUrls
         );
         imageRepository.save(image1);
-
-
 
         Password password1 = new Password(
                 null,
@@ -472,7 +468,7 @@ public class Initializer {
                 OrderType.ADVERTISEMENT,
                 true
         );
-        orderRepository.save(task2);
+        taskRepository.save(task2);
 
         Task task3 = new Task(
                 null,
@@ -487,7 +483,7 @@ public class Initializer {
                 OrderType.ADVERTISEMENT,
                 true
         );
-        orderRepository.save(task3);
+        taskRepository.save(task3);
 
         }
 

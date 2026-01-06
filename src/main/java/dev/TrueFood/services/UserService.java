@@ -4,6 +4,7 @@ import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.dto.UserDto;
 import dev.TrueFood.dto.mapping.AdvertisementMapping;
 import dev.TrueFood.dto.mapping.UserMapping;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.users.User;
@@ -15,8 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 
@@ -35,11 +34,9 @@ public class UserService {
     }
 
     public UserDto getProfile(Long id){
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        User user = userRepository.findByUserId(id);
 
-        UserDto userDto = userMapping.toDto(user);
-
-        return userDto;
+        return userMapping.toDto(user);
     }
 
     public Page<AdvertisementDto> getAdvertisementsByUser(Long id, PageRequest pageRequest){
@@ -48,15 +45,15 @@ public class UserService {
 
     public void addToFavourites(Long id, Long advId){
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
-        Order order = orderRepository.findById(advId).orElseThrow(() -> new RuntimeException("advertisement not found"));
+        Advertisement advertisement = advertisementRepository.findById(advId).orElseThrow(() -> new RuntimeException("advertisement not found"));
 
-        List<Order> userFavourites = user.getFavourites();
+        List<Advertisement> userFavourites = user.getFavourites();
 
-        if(userFavourites.contains(order)){
+        if(userFavourites.contains(advertisement)){
             throw new RuntimeException("advertisement is already in favourite");
         }
         else{
-            userFavourites.add(order);
+            userFavourites.add(advertisement);
 
             user.setFavourites(userFavourites);
 

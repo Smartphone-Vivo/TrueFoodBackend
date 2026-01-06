@@ -24,12 +24,10 @@ public class TaskService {
 
     public Page<TaskDto> getTasks(String name, Long categoryId, PageRequest pageRequest) {
 
-        if(categoryId == null) {
-            return taskRepository.getTasksWithPagination(name, pageRequest).map(taskMapping::toDto);
-        }
-        else{
-            return taskRepository.getTasksByCategory(name, categoryId,  pageRequest).map(taskMapping::toDto);
-        }
+        Category category = categoryRepository.findById(categoryId).orElse(null);
+        List<Long> children = category.getChildrenId();
+
+        return taskRepository.getTasksByCategory(name, categoryId, children,  pageRequest).map(taskMapping::toDto);
     }
 
     public void addTask(TaskDto taskDto, Long id) {
@@ -39,7 +37,7 @@ public class TaskService {
 
         taskDto.setCategoryId(category.getId());
 
-        taskDto.setCategory(category);
+//        taskDto.setCategory(category);
 
         Image image = new Image(null, imageUrls);
 

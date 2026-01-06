@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,14 +25,11 @@ public class AdvertisementService {
 
     public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
 
-        if(categoryId == null) {
-            return advertisementRepository.getAdvertisementsWithPagination(name, pageRequest).map(advertisementMapping::toDto);
-        }
-        else{
-            Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new RuntimeException("category not found"));
-            List<Long> children = category.getChildrenId();
-            return advertisementRepository.getAdvertisementsByCategory(name, category, children, pageRequest).map(advertisementMapping::toDto);
-        }
+
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new RuntimeException("category not found"));
+        List<Long> children = category.getChildrenId();
+        return advertisementRepository.getAdvertisementsByCategory(name, category, children, pageRequest).map(advertisementMapping::toDto);
+
     }
 
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
@@ -54,7 +52,9 @@ public class AdvertisementService {
     }
 
     public AdvertisementDto getAdvertisementById(Long id){
-        return advertisementRepository.findById(id).map(advertisementMapping::toDto).orElseThrow(() -> new RuntimeException("advertisement not found"));
+        AdvertisementDto advertisement = advertisementRepository.findById(id).map(advertisementMapping::toDto).orElse(null);
+
+        return advertisement;
     }
 
 }

@@ -10,25 +10,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
     @Query("""
     SELECT a FROM Advertisement a
-    WHERE (a.title LIKE CONCAT('%', :name,'%'))
+    JOIN FETCH a.imagesId
+    WHERE a.id = :id
     """)
-    Page<Advertisement> getAdvertisementsWithPagination(@Param("name") String name, PageRequest pageRequest);
-
-//    @Query("""
-//    SELECT a FROM Advertisement a
-//    WHERE (a.title LIKE CONCAT('%', :name,'%'))
-//    AND a.categoryId = :categoryId
-//    """)
-//    Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name, @Param("categoryId") Long categoryId, PageRequest pageRequest);
-//
+    Optional<Advertisement> findById(@Param("id") Long id);
 
     @Query("""
     SELECT a FROM Advertisement a
+    JOIN FETCH a.imagesId
     WHERE (a.title LIKE CONCAT('%', :name,'%'))
     AND (a.category = :category OR a.categoryId IN :childrenCategory)
     """)
@@ -39,6 +34,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
 
     @Query("""
     SELECT a FROM Advertisement a
+    JOIN FETCH a.imagesId
     WHERE (a.authorId = :id)
     """)
     Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
@@ -51,6 +47,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
         @Query("""
         SELECT a FROM User u
         JOIN u.favourites a
+        JOIN FETCH a.imagesId
         WHERE u.id = :id
         """)
     Page<Advertisement> getFavouritesAdvertisements(@Param("id") Long id, PageRequest pageRequest);

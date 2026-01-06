@@ -1,5 +1,7 @@
 package dev.TrueFood.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.TrueFood.entity.users.OrderType;
 import dev.TrueFood.entity.users.User;
 import jakarta.persistence.*;
@@ -27,8 +29,9 @@ public class Order {
 
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false, updatable = false, insertable = false)
+    @JsonIgnoreProperties({"parent", "advertisements"})
     private Category category;
 
     @Column(name = "category_id", nullable = false)
@@ -37,16 +40,17 @@ public class Order {
     private int price;
 
     //todo на @OneToOne поменять
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "images_id")
     private Image imagesId;
 
     //todo
     private String location;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
-    private User Author;
+    @JsonIgnore
+    private User author;
 
     @Column(name="users_id")
     private Long authorId;

@@ -19,8 +19,6 @@ public class AdvertisementDto {
 
     private String description;
 
-    private Category category;
-
     private Long categoryId;
 
     private int price;
@@ -28,8 +26,6 @@ public class AdvertisementDto {
     private Image imagesId;
 
     private String location;
-
-    private UserDto Author;
 
     private Long authorId;
 

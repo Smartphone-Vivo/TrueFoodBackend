@@ -7,20 +7,22 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     @Query("""
     SELECT t FROM Task t
+    JOIN FETCH t.imagesId
+    LEFT JOIN FETCH t.workers
     WHERE (t.title LIKE CONCAT('%', :name,'%'))
+    AND (t.categoryId = :categoryId OR t.categoryId IN :childrenCategory )
     """)
-    Page<Task> getTasksWithPagination(@Param("name") String name, PageRequest pageRequest);
-
-    @Query("""
-    SELECT t FROM Task t
-    WHERE (t.title LIKE CONCAT('%', :name,'%'))
-    AND t.categoryId = :categoryId
-    """)
-    Page<Task> getTasksByCategory(@Param("name") String name, @Param("categoryId") Long categoryId, PageRequest pageRequest);
+    Page<Task> getTasksByCategory(
+            @Param("name") String name,
+            @Param("categoryId") Long categoryId,
+            @Param("childrenCategory") List<Long> childrenCategory,
+            PageRequest pageRequest);
 
 
 }

@@ -28,7 +28,7 @@ public class BaseUser{
     @Enumerated(EnumType.STRING)//todo про это почитать
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "password_id", nullable = false)
     @JsonIgnore
     private Password password;

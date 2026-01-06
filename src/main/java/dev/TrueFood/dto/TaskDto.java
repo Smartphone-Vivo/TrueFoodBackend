@@ -21,8 +21,6 @@ public class TaskDto {
 
     private String description;
 
-    private Category category;
-
     private Long categoryId;
 
     private int price;
@@ -30,8 +28,6 @@ public class TaskDto {
     private Image imagesId;
 
     private String location;
-
-    private User Author;
 
     private Long authorId;
 

@@ -2,6 +2,7 @@ package dev.TrueFood.services;
 
 import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.dto.mapping.AdvertisementMapping;
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.users.User;
 import dev.TrueFood.repositories.*;
@@ -32,7 +33,7 @@ public class OrderService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         Order order = orderRepository.findById(advId).orElse(null);
 
-        List<Order> userFavourites = user.getFavourites();
+        List<Advertisement> userFavourites = user.getFavourites();
 
         if(user.getFavourites().contains(order)){
             userFavourites.remove(order);
