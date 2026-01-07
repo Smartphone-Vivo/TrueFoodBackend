@@ -57,9 +57,22 @@ public class TaskService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found"));
 
-        task.getWorkers().add(user);
+        if(task.getWorkers().contains(user)) {
+            throw new RuntimeException("user already has worker");
+        }
+        else{
+            task.getWorkers().add(user);
 
-        taskRepository.save(task);
+            taskRepository.save(task);
+        }
+    }
+
+    public Page<TaskDto> getMyTasks(Long id, PageRequest pageRequest) {
+        return taskRepository.getMyTask(id, pageRequest).map(taskMapping::toDto);
+    }
+
+    public Page<TaskDto> getMyResponses(Long id, PageRequest pageRequest) {
+        return taskRepository.getMyResponses(id, pageRequest).map(taskMapping::toDto);
     }
 
 }

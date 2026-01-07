@@ -52,9 +52,8 @@ public class AdvertisementService {
     }
 
     public AdvertisementDto getAdvertisementById(Long id){
-        AdvertisementDto advertisement = advertisementRepository.findById(id).map(advertisementMapping::toDto).orElse(null);
 
-        return advertisement;
+        return advertisementRepository.findById(id).map(advertisementMapping::toDto).orElse(null);
     }
 
 }

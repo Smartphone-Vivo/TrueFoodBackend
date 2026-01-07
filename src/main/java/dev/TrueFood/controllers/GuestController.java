@@ -60,10 +60,22 @@ public class GuestController {
 
     @GetMapping("advertisement/{id}")
     public AdvertisementDto getAdvertisementById(
-            @PathVariable(name = "id") int id)
+            @PathVariable(name = "id") Long id) //todo тут был int
     {
-        return advertisementService.getAdvertisementById((long) id);
+        return advertisementService.getAdvertisementById(id); //todo тут убрал (long)
     }
+
+    @GetMapping("advertisements-by-user/{id}/{page}/{size}")
+    public Page<AdvertisementDto> getAdvertisementsByUser(
+            @PathVariable(name = "id") Long id,
+            @PathVariable(name = "page") int page,
+            @PathVariable(name = "size")int size
+    ){
+        PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
+
+        return userService.getAdvertisementsByUser(id, pageRequest);
+    }
+
 
     @GetMapping("profile/{id}")
     public UserDto getProfile(@PathVariable Long id) {
@@ -74,5 +86,7 @@ public class GuestController {
     public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
+
+
 
 }

@@ -30,18 +30,6 @@ public class UserController {
     private final OrderService orderService;
     private final AdvertisementService advertisementService;
     private final TaskService taskService;
-    private final AdvertisementMapping advertisementMapping;
-
-    @GetMapping("advertisements-by-user/{id}/{page}/{size}")
-    public Page<AdvertisementDto> getAdvertisementsByUser(
-            @PathVariable(name = "id") Long id,
-            @PathVariable(name = "page") int page,
-            @PathVariable(name = "size")int size
-    ){
-        PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
-
-        return userService.getAdvertisementsByUser(id, pageRequest);
-    }
 
     @GetMapping("my-profile")
     public UserDto getMyProfile(JwtAuthentication authentication) {
@@ -111,7 +99,31 @@ public class UserController {
         Long id = authentication.getUserId();
 
         taskService.addTaskResponse(id, taskId);
+    }
 
+    @GetMapping("tasks-by-user/{id}/{page}/{size}") //todo уаааааа в юзер контроллер перенести жесть
+    public Page<TaskDto> getTasksByUser(
+            @PathVariable(name = "id") Long id, //todo сделать id через jwt
+            @PathVariable(name = "page") int page,
+            @PathVariable(name = "size")int size
+    )
+    {
+        PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
+
+        return taskService.getMyTasks(id, pageRequest);
+    }
+
+    @GetMapping("responses-by-user/{page}/{size}")
+    public Page<TaskDto> getResponsesByUser(
+            JwtAuthentication authentication,
+            @PathVariable(name = "page") int page,
+            @PathVariable(name = "size")int size
+    ){
+        PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
+
+        Long id = authentication.getUserId();
+
+        return taskService.getMyResponses(id, pageRequest);
     }
 
 

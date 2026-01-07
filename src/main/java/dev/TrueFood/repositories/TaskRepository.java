@@ -14,7 +14,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     @Query("""
     SELECT t FROM Task t
     JOIN FETCH t.imagesId
-    LEFT JOIN FETCH t.workers
+    LEFT JOIN FETCH t.workers w
+    LEFT JOIN FETCH w.avatar a
+    
     WHERE (t.title LIKE CONCAT('%', :name,'%'))
     AND (t.categoryId = :categoryId OR t.categoryId IN :childrenCategory )
     """)
@@ -24,5 +26,24 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             @Param("childrenCategory") List<Long> childrenCategory,
             PageRequest pageRequest);
 
+    @Query("""
+    SELECT t FROM Task t
+    JOIN FETCH t.imagesId
+    LEFT JOIN FETCH t.workers w
+    LEFT JOIN FETCH w.avatar
+    WHERE t.author.id = :id
+    """)
+    Page<Task> getMyTask(
+            @Param("id") Long id,
+            PageRequest pageRequest);
+
+    @Query("""
+    SELECT t FROM Task t
+    JOIN FETCH t.imagesId
+    LEFT JOIN FETCH t.workers w
+    LEFT JOIN FETCH w.avatar
+    WHERE w.id = :id
+""")
+    Page<Task> getMyResponses(@Param("id") Long id, PageRequest pageRequest);
 
 }

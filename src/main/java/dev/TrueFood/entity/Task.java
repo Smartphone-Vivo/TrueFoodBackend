@@ -17,13 +17,16 @@ import java.util.List;
 
 public class Task extends Order {
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "task-workers",
             joinColumns = @JoinColumn(name = "tasks_id"),
             inverseJoinColumns = @JoinColumn(name = "users_id")
     )
     private List<User> workers;
+
+    @OneToOne
+    private User acceptedWorker;
 
     public Task(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, boolean enable) {
         super(id, title, authorId, description, categoryId, price, location, imagesId, orderType, enable);

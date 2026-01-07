@@ -1,5 +1,6 @@
 package dev.TrueFood.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
 import dev.TrueFood.entity.users.OrderType;
@@ -37,6 +38,6 @@ public class TaskDto {
 
     private boolean enable;
 
-    private List<User> workers = new ArrayList<>();
+    private List<User> workers;
 
 }

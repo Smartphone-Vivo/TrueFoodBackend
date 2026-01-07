@@ -31,7 +31,7 @@ public class JwtProvider {
 
  public String generateAccessToken(@NonNull BaseUser baseUser) {
      final LocalDateTime now = LocalDateTime.now();
-     final Instant accessExpirationInstant = now.plusMinutes(60).atZone(ZoneId.systemDefault()).toInstant();
+     final Instant accessExpirationInstant = now.plusMinutes(512).atZone(ZoneId.systemDefault()).toInstant();
      final Date accessExpiration = Date.from(accessExpirationInstant);
      return Jwts.builder()
              .setSubject(baseUser.getEmail())
