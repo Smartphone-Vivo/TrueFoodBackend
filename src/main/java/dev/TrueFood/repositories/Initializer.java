@@ -41,22 +41,12 @@ public class Initializer {
         );
         imageRepository.save(image1);
 
-        Password password1 = new Password(
-                null,
-                "1"
-        );
-
-        Password password2 = new Password(
-                null,
-                "2"
-        );
-
         User user1 = new User(
                 null,
                 "1",
                 image1,
                 Role.USER,
-                password1,
+                new Password(null, "1"),
                 true,
                 "Людмила",
                 5
@@ -68,12 +58,36 @@ public class Initializer {
                 "2",
                 image1,
                 Role.USER,
-                password2,
+                new Password(null, "2"),
                 true,
                 "Игорь Гофман",
                 5
         );
         userRepository.save(user2);
+
+        User user3 = new User(
+                null,
+                "3",
+                image1,
+                Role.USER,
+                new Password(null, "3"),
+                true,
+                "Саня",
+                5
+        );
+        userRepository.save(user3);
+
+        User user4 = new User(
+                null,
+                "4",
+                image1,
+                Role.USER,
+                new Password(null, "4"),
+                true,
+                "Владимир",
+                5
+        );
+        userRepository.save(user4);
 
         Category all = new Category(null, "Все");
         categoryRepository.save(all);
@@ -442,7 +456,7 @@ public class Initializer {
 
         Task task1 = new Task(
                 null,
-                "Торт на детский праздник",
+                "Торт на детский праздник 1",
                 "приготовить торт на день рождения, высота 2 метра, цвет: синий",
                 2L,
                 3L,
@@ -456,7 +470,7 @@ public class Initializer {
 
         Task task2 = new Task(
                 null,
-                "Торт на детский праздник",
+                "Торт на детский праздник 2",
                 "приготовить торт на день рождения, высота 2 метра, цвет: синий",
                 2L,
                 3L,
@@ -470,7 +484,7 @@ public class Initializer {
 
         Task task3 = new Task(
                 null,
-                "Торт на детский праздник",
+                "Торт на детский праздник 3",
                 "приготовить торт на день рождения, цвет: синий, вкус: сладкий",
                 2L,
                 3L,

@@ -16,14 +16,15 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     JOIN FETCH t.imagesId
     LEFT JOIN FETCH t.workers w
     LEFT JOIN FETCH w.avatar a
-    
+    LEFT JOIN FETCH t.acceptedWorker aw
+    LEFT JOIN FETCH aw.avatar
     WHERE (t.title LIKE CONCAT('%', :name,'%'))
     AND (t.categoryId = :categoryId OR t.categoryId IN :childrenCategory )
     """)
     Page<Task> getTasksByCategory(
             @Param("name") String name,
             @Param("categoryId") Long categoryId,
-            @Param("childrenCategory") List<Long> childrenCategory,
+            @Param("childrenCategory") List<Long> childrenCategory, //todo выпилить
             PageRequest pageRequest);
 
     @Query("""
@@ -31,7 +32,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     JOIN FETCH t.imagesId
     LEFT JOIN FETCH t.workers w
     LEFT JOIN FETCH w.avatar
-    WHERE t.author.id = :id
+    LEFT JOIN FETCH t.acceptedWorker aw
+    LEFT JOIN FETCH aw.avatar
+    WHERE (t.author.id = :id)
     """)
     Page<Task> getMyTask(
             @Param("id") Long id,
@@ -42,7 +45,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     JOIN FETCH t.imagesId
     LEFT JOIN FETCH t.workers w
     LEFT JOIN FETCH w.avatar
-    WHERE w.id = :id
+    LEFT JOIN FETCH t.acceptedWorker aw
+    LEFT JOIN FETCH aw.avatar
+    WHERE (w.id = :id  OR aw.id = :id)
 """)
     Page<Task> getMyResponses(@Param("id") Long id, PageRequest pageRequest);
 

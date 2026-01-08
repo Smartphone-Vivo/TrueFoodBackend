@@ -1,6 +1,5 @@
 package dev.TrueFood.entity;
 
-import dev.TrueFood.dto.TaskResponse;
 import dev.TrueFood.entity.users.OrderType;
 import dev.TrueFood.entity.users.User;
 import jakarta.persistence.*;
@@ -25,7 +24,7 @@ public class Task extends Order {
     )
     private List<User> workers;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY) //todo wtf
     private User acceptedWorker;
 
     public Task(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, boolean enable) {

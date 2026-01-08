@@ -126,5 +126,26 @@ public class UserController {
         return taskService.getMyResponses(id, pageRequest);
     }
 
+    @DeleteMapping("remove-response/{taskId}/{workerId}")
+    public void removeResponse(
+            JwtAuthentication jwtAuthentication,
+            @PathVariable(name = "workerId") Long workerId,
+            @PathVariable(name = "taskId") Long taskId
+    ){
+        Long id = jwtAuthentication.getUserId();
+        taskService.removeResponse(id, taskId, workerId);
+    }
+
+    @GetMapping("confirm-worker/{taskId}/{workerId}")
+    public void confirmWorker(
+            JwtAuthentication jwtAuthentication,
+            @PathVariable Long taskId,
+            @PathVariable Long workerId
+    ){
+        Long id = jwtAuthentication.getUserId();
+        taskService.confirmWorker(id, taskId, workerId);
+    }
+
+
 
 }

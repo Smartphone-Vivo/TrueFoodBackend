@@ -38,6 +38,8 @@ public class TaskDto {
 
     private boolean enable;
 
+    private User acceptedWorker;
+
     private List<User> workers;
 
 }
