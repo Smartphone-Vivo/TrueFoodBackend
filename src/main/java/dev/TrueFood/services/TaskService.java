@@ -57,6 +57,10 @@ public class TaskService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found"));
 
+        if(task.getAuthorId().equals(user.getId())) {
+            throw new RuntimeException("самолайк отклонен");
+        }
+
         if(task.getWorkers().contains(user)) {
             throw new RuntimeException("user already has worker");
         }
