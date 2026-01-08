@@ -67,6 +67,22 @@ public class UserService {
         }
         else{
             User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
+
+            int rating = 0;
+
+            for(Review rev : user.getReviews()){
+                rating += rev.getRating();
+            }
+
+            rating += review.getRating();
+
+            if(user.getReviews().isEmpty()){
+                user.setRating(review.getRating());
+            }
+            else{
+                user.setRating(rating / (user.getReviews().size() + 1));
+            }
+
             reviewRepository.save(review);
             List<Review> userReviews = user.getReviews();
             userReviews.add(review);

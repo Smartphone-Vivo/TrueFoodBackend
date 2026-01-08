@@ -46,6 +46,9 @@ public class User extends BaseUser {
      @JoinColumn(name = "reviews_id")
      private List<Review> reviews;
 
+     @JsonIgnore
+     private String contacts;
+
     public User(Long id, String email, Image avatar, Role role, Password password, boolean enable, String fio, int rating) {
         super(id, email, role, password, enable);
         this.fio = fio;

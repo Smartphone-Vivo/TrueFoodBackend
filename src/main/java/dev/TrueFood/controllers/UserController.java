@@ -1,23 +1,15 @@
 package dev.TrueFood.controllers;
 
 import dev.TrueFood.dto.*;
-import dev.TrueFood.dto.mapping.AdvertisementMapping;
-import dev.TrueFood.entity.Advertisement;
-import dev.TrueFood.entity.Order;
 import dev.TrueFood.entity.Review;
-import dev.TrueFood.entity.Task;
-import dev.TrueFood.entity.users.User;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.AdvertisementService;
-import dev.TrueFood.services.OrderService;
 import dev.TrueFood.services.TaskService;
 import dev.TrueFood.services.UserService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -27,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-    private final OrderService orderService;
     private final AdvertisementService advertisementService;
     private final TaskService taskService;
 
@@ -65,7 +56,7 @@ public class UserController {
             @PathVariable(name = "advId") Long advId
     ){
         Long id = authentication.getUserId();
-        orderService.deleteFavoiriteAdvertisement(id, advId);
+        advertisementService.deleteFavouriteAdvertisement(id, advId);
     }
 
     @GetMapping("get-favourite-advertisements/{page}/{size}")
@@ -78,7 +69,7 @@ public class UserController {
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
-        return orderService.getFavouriteAdvertisements(id, pageRequest); //todo перенести в advertisementService
+        return advertisementService.getFavouriteAdvertisements(id, pageRequest); //todo перенести в advertisementService
     }
 
     @PostMapping("add-review/{userId}")

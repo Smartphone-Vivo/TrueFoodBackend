@@ -21,7 +21,7 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final JwtProvider jwtProvider;
 
-    public JwtResponse login(@NonNull SignInRequest signInRequest) {
+    public JwtResponse login(SignInRequest signInRequest) {
         final BaseUser baseUser = baseUserService.getByEmail(signInRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

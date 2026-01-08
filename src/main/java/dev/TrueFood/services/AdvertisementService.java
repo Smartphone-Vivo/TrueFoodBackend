@@ -5,6 +5,7 @@ import dev.TrueFood.dto.mapping.AdvertisementMapping;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
+import dev.TrueFood.entity.users.User;
 import dev.TrueFood.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,7 @@ public class AdvertisementService {
     private final ImageRepository imageRepository;
     private final CategoryRepository categoryRepository;
     private final AdvertisementMapping advertisementMapping;
+    private final UserRepository userRepository;
 
     public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
 
@@ -54,6 +56,26 @@ public class AdvertisementService {
     public AdvertisementDto getAdvertisementById(Long id){
 
         return advertisementRepository.findById(id).map(advertisementMapping::toDto).orElse(null);
+    }
+
+    public Page<AdvertisementDto> getFavouriteAdvertisements(Long id, PageRequest pageRequest) {
+
+        return advertisementRepository.getFavouritesAdvertisements(id, pageRequest).map(advertisementMapping::toDto);
+    }
+
+    public void deleteFavouriteAdvertisement(Long id, Long advId) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        Advertisement advertisement = advertisementRepository.findById(advId).orElse(null);
+
+        List<Advertisement> userFavourites = user.getFavourites();
+
+        if(user.getFavourites().contains(advertisement)){
+            userFavourites.remove(advertisement);
+
+            user.setFavourites(userFavourites);
+
+            userRepository.save(user);
+        }
     }
 
 }
