@@ -5,6 +5,7 @@ import dev.TrueFood.dto.UploadResponse;
 import dev.TrueFood.repositories.ImageRepository;
 import dev.TrueFood.services.MinioService;
 import io.minio.MinioClient;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,21 +17,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api/files")
 @CrossOrigin
-
+@RequiredArgsConstructor
 public class ImageController {
 
-
-    private final MinioClient minioClient;
     private final MinioService minioService;
-    private final ImageRepository imageRepository;
-
-
-    public ImageController(MinioClient minioClient, MinioService minioService, ImageRepository imageRepository) {
-        this.minioClient = minioClient;
-        this.minioService = minioService;
-        this.imageRepository = imageRepository;
-    }
-
 
     @PostMapping("/upload")
     public ResponseEntity<List<UploadResponse>> uploadFile(

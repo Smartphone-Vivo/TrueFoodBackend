@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/user")
 @RequiredArgsConstructor
-public class UserController {
+public class UserController1 {
 
     private final UserService userService;
     private final AdvertisementService advertisementService;
@@ -26,19 +26,19 @@ public class UserController {
     public UserDto getMyProfile(JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         return userService.getMyProfile(id);
-    }
+    } //userController
 
     @PostMapping("advertisement") //todo исправить
     public void addAdvertisement(@RequestBody AdvertisementDto advertisementDto, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         advertisementService.addAdvertisement(advertisementDto, id);
-    }
+    } //advController
 
     @PostMapping("task")
     public void addTask(@RequestBody TaskDto taskDto, JwtAuthentication authentication){
         Long id = authentication.getUserId();
         taskService.addTask(taskDto, id);
-    }
+    } //taskController
 
     @GetMapping("add-to-favourites/{advId}")
     public void addToFavourites(
@@ -47,8 +47,8 @@ public class UserController {
     ){
         Long id = authentication.getUserId();
 
-        userService.addToFavourites(id, advId); //todo перетащить в AdvertisementService
-    }
+        advertisementService.addToFavourites(id, advId); //todo перетащить в AdvertisementService
+    }//FavouritesController
 
     @DeleteMapping("delete-favourite-advertisement/{advId}")
     public void deleteFavouriteAdvertisement(
@@ -57,7 +57,7 @@ public class UserController {
     ){
         Long id = authentication.getUserId();
         advertisementService.deleteFavouriteAdvertisement(id, advId);
-    }
+    }//FavouritesController
 
     @GetMapping("get-favourite-advertisements/{page}/{size}")
     public Page<AdvertisementDto> getFavouriteAdvertisements(
@@ -70,16 +70,16 @@ public class UserController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
         return advertisementService.getFavouriteAdvertisements(id, pageRequest); //todo перенести в advertisementService
-    }
+    }//FavouritesController
 
     @PostMapping("add-review/{userId}")
     public void addReview(
             @PathVariable(name = "userId") Long userId,
             @RequestBody Review review,
-            JwtAuthentication authentication){
+            JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         userService.addReview(review, id, userId);
-    }
+    }//ReviewController
 
     @GetMapping("add-task-response/{task-id}")
     public void addTaskResponse(
@@ -90,7 +90,7 @@ public class UserController {
         Long id = authentication.getUserId();
 
         taskService.addTaskResponse(id, taskId);
-    }
+    } //taskController
 
     @GetMapping("tasks-by-user/{id}/{page}/{size}") //todo уаааааа в юзер контроллер перенести жесть
     public Page<TaskDto> getTasksByUser(
@@ -102,7 +102,7 @@ public class UserController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
         return taskService.getMyTasks(id, pageRequest);
-    }
+    } //taskController
 
     @GetMapping("responses-by-user/{page}/{size}")
     public Page<TaskDto> getResponsesByUser(
@@ -115,7 +115,7 @@ public class UserController {
         Long id = authentication.getUserId();
 
         return taskService.getMyResponses(id, pageRequest);
-    }
+    } //taskController
 
     @DeleteMapping("remove-response/{taskId}/{workerId}")
     public void removeWorker(
@@ -125,7 +125,7 @@ public class UserController {
     ){
         Long id = jwtAuthentication.getUserId();
         taskService.removeWorker(id, taskId, workerId);
-    }
+    }//taskController
 
     @GetMapping("confirm-worker/{taskId}/{workerId}")
     public void confirmWorker(
@@ -135,7 +135,7 @@ public class UserController {
     ){
         Long id = jwtAuthentication.getUserId();
         taskService.confirmWorker(id, taskId, workerId);
-    }
+    }//taskController
 
 
 

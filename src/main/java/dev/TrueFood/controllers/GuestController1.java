@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/guest")
 @RequiredArgsConstructor
-public class GuestController {
+public class GuestController1 {
 
     private final UserService userService;
     private final CategoryService categoryService;
@@ -36,7 +36,7 @@ public class GuestController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
 
         return advertisementService.getAdvertisements(name ,categoryId, pageRequest);
-    }
+    } //advController
 
     @GetMapping("tasks/{page}/{size}")
     public Page<TaskDto> getTasks(
@@ -50,14 +50,14 @@ public class GuestController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
 
         return taskService.getTasks(name, categoryId, pageRequest);
-    }
+    } //taskController
 
     @GetMapping("advertisement/{id}")
     public AdvertisementDto getAdvertisementById(
             @PathVariable(name = "id") Long id) //todo тут был int
     {
         return advertisementService.getAdvertisementById(id); //todo тут убрал (long)
-    }
+    } //advController
 
     @GetMapping("advertisements-by-user/{id}/{page}/{size}")
     public Page<AdvertisementDto> getAdvertisementsByUser(
@@ -67,19 +67,20 @@ public class GuestController {
     ){
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
-        return userService.getAdvertisementsByUser(id, pageRequest);
-    }
+        return advertisementService.getAdvertisementsByUser(id, pageRequest);
+    } //advController
 
 
     @GetMapping("profile/{id}")
     public UserDto getProfile(@PathVariable Long id) {
         return userService.getProfile(id);
-    }
+    }//profileController
 
     @GetMapping("categories")
     public List<CategoryDto> getAllCategories() {
+
         return categoryService.getAllCategories();
-    }
+    }//CategoryController
 
 
 

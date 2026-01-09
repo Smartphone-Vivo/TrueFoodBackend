@@ -20,7 +20,7 @@ public class JwtAuthentication implements Authentication {
     private Long userId;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() { return null; } //todo null заглушка
+    public Collection<? extends GrantedAuthority> getAuthorities() { return roles; } //todo null заглушка
 
     @Override
     public Object getCredentials() { return null; }
