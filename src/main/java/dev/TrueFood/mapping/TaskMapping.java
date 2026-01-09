@@ -1,4 +1,4 @@
-package dev.TrueFood.dto.mapping;
+package dev.TrueFood.mapping;
 
 import dev.TrueFood.dto.TaskDto;
 import dev.TrueFood.entity.Task;

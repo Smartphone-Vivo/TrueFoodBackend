@@ -1,6 +1,6 @@
 package dev.TrueFood.services;
 
-import dev.TrueFood.entity.users.BaseUser;
+import dev.TrueFood.entity.BaseUser;
 import dev.TrueFood.repositories.BaseUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

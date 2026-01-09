@@ -1,7 +1,6 @@
 package dev.TrueFood.dto;
-import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
-import dev.TrueFood.entity.users.OrderType;
+import dev.TrueFood.enums.OrderType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -7,14 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "favourites")
+@Table(name = "passwords")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Favourites {
+@NoArgsConstructor
+public class Password {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String password;
 }

@@ -1,4 +1,4 @@
-package dev.TrueFood.dto.mapping;
+package dev.TrueFood.mapping;
 
 import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.entity.Advertisement;

@@ -1,6 +1,6 @@
 package dev.TrueFood.jwt;
 
-import dev.TrueFood.entity.users.Role;
+import dev.TrueFood.enums.Role;
 import io.jsonwebtoken.Claims;
 
 import java.util.Set;

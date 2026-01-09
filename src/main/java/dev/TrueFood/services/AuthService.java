@@ -1,10 +1,10 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.dto.SignInRequest;
-import dev.TrueFood.entity.users.BaseUser;
+import dev.TrueFood.entity.BaseUser;
+import dev.TrueFood.exceptions.NotFoundException;
 import dev.TrueFood.jwt.JwtProvider;
 import dev.TrueFood.jwt.JwtResponse;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +23,7 @@ public class AuthService {
 
     public JwtResponse login(SignInRequest signInRequest) {
         final BaseUser baseUser = baseUserService.getByEmail(signInRequest.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("user not found"));
 
         String encodedPassword = baseUser.getPassword().getPassword();
 
@@ -33,7 +33,7 @@ public class AuthService {
             final String token = jwtProvider.generateAccessToken(baseUser);
             return new JwtResponse(token);
         }else{
-            throw new RuntimeException("Wrong password");
+            throw new NotFoundException("wrong password");
         }
 
     }

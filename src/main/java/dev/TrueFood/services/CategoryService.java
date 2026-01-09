@@ -1,8 +1,7 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.dto.CategoryDto;
-import dev.TrueFood.dto.mapping.CategoryMapping;
-import dev.TrueFood.entity.Category;
+import dev.TrueFood.mapping.CategoryMapping;
 import dev.TrueFood.repositories.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

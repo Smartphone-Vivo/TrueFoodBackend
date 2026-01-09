@@ -1,6 +1,6 @@
 package dev.TrueFood.jwt;
 
-import dev.TrueFood.entity.users.BaseUser;
+import dev.TrueFood.entity.BaseUser;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.security.Key;
-import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

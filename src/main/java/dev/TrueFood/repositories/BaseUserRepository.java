@@ -1,6 +1,6 @@
 package dev.TrueFood.repositories;
 
-import dev.TrueFood.entity.users.BaseUser;
+import dev.TrueFood.entity.BaseUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

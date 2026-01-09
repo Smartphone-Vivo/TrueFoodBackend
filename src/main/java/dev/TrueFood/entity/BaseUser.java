@@ -1,14 +1,12 @@
-package dev.TrueFood.entity.users;
+package dev.TrueFood.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.TrueFood.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "base_users")

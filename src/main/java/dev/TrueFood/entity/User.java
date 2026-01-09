@@ -1,11 +1,8 @@
-package dev.TrueFood.entity.users;
+package dev.TrueFood.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import dev.TrueFood.entity.Advertisement;
-import dev.TrueFood.entity.Image;
-import dev.TrueFood.entity.Order;
-import dev.TrueFood.entity.Review;
+import dev.TrueFood.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 

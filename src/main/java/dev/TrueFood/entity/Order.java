@@ -2,8 +2,7 @@ package dev.TrueFood.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import dev.TrueFood.entity.users.OrderType;
-import dev.TrueFood.entity.users.User;
+import dev.TrueFood.enums.OrderType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

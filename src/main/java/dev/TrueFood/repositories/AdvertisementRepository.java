@@ -39,11 +39,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     """)
     Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
 
-//    @Query("""
-//    SELECT u.favourites FROM User u
-//    WHERE (u.id = :id)
-//    """)
-
         @Query("""
         SELECT a FROM User u
         JOIN u.favourites a

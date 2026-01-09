@@ -1,7 +1,6 @@
 package dev.TrueFood.entity;
 
-import dev.TrueFood.entity.users.OrderType;
-import dev.TrueFood.entity.users.User;
+import dev.TrueFood.enums.OrderType;
 import jakarta.persistence.*;
 import lombok.*;
 

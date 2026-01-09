@@ -1,10 +1,10 @@
 package dev.TrueFood.repositories;
 
 import dev.TrueFood.entity.*;
-import dev.TrueFood.entity.users.OrderType;
-import dev.TrueFood.entity.users.Password;
-import dev.TrueFood.entity.users.Role;
-import dev.TrueFood.entity.users.User;
+import dev.TrueFood.enums.OrderType;
+import dev.TrueFood.entity.Password;
+import dev.TrueFood.enums.Role;
+import dev.TrueFood.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,8 +26,6 @@ public class Initializer {
     private TaskRepository taskRepository;
 
     List<String> imageUrls = new ArrayList<>();
-    @Autowired
-    private OrderRepository orderRepository;
 
     public void initial() {
 
@@ -139,21 +137,7 @@ public class Initializer {
 
         meat.setChildrenId(List.of(beef.getId(), pig.getId(), sheep.getId()));
         categoryRepository.save(meat);
-
-        Order advertisement1 = new Order(
-                null,
-                "Жареный суп",
-                1L,
-                "опасно",
-                3L,
-                123,
-                "location1",
-                image1,
-                OrderType.ADVERTISEMENT,
-                true
-        );
-        orderRepository.save(advertisement1);
-
+        
         // 1. Пицца
         Advertisement advertisement1123 = new Advertisement(
                 null,

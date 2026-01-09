@@ -1,7 +1,7 @@
-package dev.TrueFood.dto.mapping;
+package dev.TrueFood.mapping;
 
 import dev.TrueFood.dto.UserDto;
-import dev.TrueFood.entity.users.User;
+import dev.TrueFood.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

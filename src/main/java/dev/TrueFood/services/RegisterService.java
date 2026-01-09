@@ -1,11 +1,10 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.dto.SignUpRequest;
-import dev.TrueFood.dto.mapping.UserMapping;
 import dev.TrueFood.entity.Image;
-import dev.TrueFood.entity.users.Password;
-import dev.TrueFood.entity.users.Role;
-import dev.TrueFood.entity.users.User;
+import dev.TrueFood.entity.Password;
+import dev.TrueFood.enums.Role;
+import dev.TrueFood.entity.User;
 import dev.TrueFood.repositories.ImageRepository;
 import dev.TrueFood.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

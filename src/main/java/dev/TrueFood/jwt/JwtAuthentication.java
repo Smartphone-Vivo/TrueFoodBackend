@@ -1,6 +1,6 @@
 package dev.TrueFood.jwt;
 
-import dev.TrueFood.entity.users.Role;
+import dev.TrueFood.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.Authentication;

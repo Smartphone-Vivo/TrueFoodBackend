@@ -1,4 +1,4 @@
-package dev.TrueFood.dto.mapping;
+package dev.TrueFood.mapping;
 
 import dev.TrueFood.dto.CategoryDto;
 import dev.TrueFood.entity.Category;

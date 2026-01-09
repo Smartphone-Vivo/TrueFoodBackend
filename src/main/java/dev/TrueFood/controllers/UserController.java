@@ -118,13 +118,13 @@ public class UserController {
     }
 
     @DeleteMapping("remove-response/{taskId}/{workerId}")
-    public void removeResponse(
+    public void removeWorker(
             JwtAuthentication jwtAuthentication,
             @PathVariable(name = "workerId") Long workerId,
             @PathVariable(name = "taskId") Long taskId
     ){
         Long id = jwtAuthentication.getUserId();
-        taskService.removeResponse(id, taskId, workerId);
+        taskService.removeWorker(id, taskId, workerId);
     }
 
     @GetMapping("confirm-worker/{taskId}/{workerId}")

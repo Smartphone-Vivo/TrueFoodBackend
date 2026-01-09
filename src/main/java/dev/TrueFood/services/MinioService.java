@@ -36,23 +36,20 @@ public class MinioService {
         }
     }
 
-    public String uploadFile(MultipartFile file) throws IOException {
+    public String uploadFile(MultipartFile file) throws IOException { //todo с exception разгрести
         try{
         String fileName = generateFileName(file.getOriginalFilename());
-        String objectName = fileName;
 
-        minioClient.putObject(
+            minioClient.putObject(
                 PutObjectArgs.builder()
                         .bucket(bucketName)
-                        .object(objectName)
+                        .object(fileName)
                         .stream(file.getInputStream(), file.getSize(), -1)
                         .contentType(file.getContentType())
                         .build()
         );
 
-        String fileUrl = getFileUrl(objectName);
-
-        return fileUrl;
+            return getFileUrl(fileName);
         }catch (Exception e){
             throw new IOException(e.getMessage());
         }
@@ -78,7 +75,7 @@ public class MinioService {
                             .build()
             );
         } catch (Exception e){
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); //todo с exception разгрести
         }
     }
 

@@ -1,14 +1,10 @@
 package dev.TrueFood.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
-import dev.TrueFood.entity.users.OrderType;
-import dev.TrueFood.entity.users.User;
+import dev.TrueFood.enums.OrderType;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,8 +34,8 @@ public class TaskDto {
 
     private boolean enable;
 
-    private User acceptedWorker;
+    private UserDto acceptedWorker;
 
-    private List<User> workers;
+    private List<UserDto> workers;
 
 }

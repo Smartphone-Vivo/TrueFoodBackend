@@ -1,4 +1,4 @@
-package dev.TrueFood.entity.users;
+package dev.TrueFood.enums;
 
 import lombok.RequiredArgsConstructor;
 

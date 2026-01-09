@@ -33,13 +33,6 @@ public class Category {
     @JsonIgnore
     List<Long> childrenId = new ArrayList<>();
 
-    public Category(Long id, Category parent, String name) {
-        this.id = id;
-        this.parent = parent;
-        this.name = name;
-        this.childrenId = new ArrayList<>();
-    }
-
     public Category(Category parent, String name) {
 
         this.parent = parent;
