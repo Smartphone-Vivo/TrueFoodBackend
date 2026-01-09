@@ -12,6 +12,7 @@ public class SignUpRequest {
     private String email;
     private String password;
     private String fio;
+    private String contacts;
 
     //todo location
 

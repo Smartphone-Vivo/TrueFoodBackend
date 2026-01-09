@@ -42,7 +42,8 @@ public class RegisterService {
                 password,
                 true,
                 signUpRequest.getFio(),
-                5
+                5,
+                signUpRequest.getContacts()
         );
 
         userRepository.save(user);

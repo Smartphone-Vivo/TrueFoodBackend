@@ -58,7 +58,8 @@ public class Initializer {
                 new Password(null, "1"),
                 true,
                 "Людмила",
-                0
+                0,
+                "tg: @Anton123"
                 );
         userRepository.save(user1);
 
@@ -70,7 +71,8 @@ public class Initializer {
                 new Password(null, "2"),
                 true,
                 "Игорь Гофман",
-                0
+                0,
+                "tg: @Anton123"
         );
         userRepository.save(user2);
 
@@ -82,7 +84,8 @@ public class Initializer {
                 new Password(null, "3"),
                 true,
                 "Саня",
-                0
+                0,
+                "tg: @Anton123"
         );
         userRepository.save(user3);
 
@@ -94,7 +97,8 @@ public class Initializer {
                 new Password(null, "4"),
                 true,
                 "Владимир",
-                0
+                0,
+                "tg: @Anton123"
         );
         userRepository.save(user4);
 

@@ -46,11 +46,12 @@ public class User extends BaseUser {
      @JsonIgnore
      private String contacts;
 
-    public User(Long id, String email, Image avatar, Role role, Password password, boolean enable, String fio, int rating) {
+    public User(Long id, String email, Image avatar, Role role, Password password, boolean enable, String fio, int rating, String contacts) {
         super(id, email, role, password, enable);
         this.fio = fio;
         this.avatar = avatar;
         this.rating = rating;
+        this.contacts = contacts;
     }
 
     //todo location

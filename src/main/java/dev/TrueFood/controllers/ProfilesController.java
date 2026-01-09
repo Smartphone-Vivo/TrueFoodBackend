@@ -1,5 +1,6 @@
 package dev.TrueFood.controllers;
 
+import dev.TrueFood.dto.ContactsDto;
 import dev.TrueFood.dto.UserDto;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.UserService;
@@ -25,5 +26,11 @@ public class ProfilesController {
     public UserDto getMyProfile(JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         return userService.getMyProfile(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("user-contacts/{id}")
+    public ContactsDto getUserContacts(@PathVariable Long id) {
+        return userService.getUserContacts(id);
     }
 }

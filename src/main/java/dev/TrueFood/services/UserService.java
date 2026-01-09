@@ -1,6 +1,7 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.dto.AdvertisementDto;
+import dev.TrueFood.dto.ContactsDto;
 import dev.TrueFood.dto.UserDto;
 import dev.TrueFood.exceptions.NotFoundException;
 import dev.TrueFood.mapping.AdvertisementMapping;
@@ -65,5 +66,10 @@ public class UserService {
             user.setReviews(userReviews);
             userRepository.save(user);
         }
+    }
+
+    public ContactsDto getUserContacts(Long id){
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+        return new ContactsDto(user.getContacts());
     }
 }
