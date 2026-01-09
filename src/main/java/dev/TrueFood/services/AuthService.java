@@ -17,8 +17,6 @@ import java.util.Objects;
 public class AuthService {
 
     private final BaseUserService baseUserService;
-    private final UserDetailsPasswordService userDetailsPasswordService;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final JwtProvider jwtProvider;
 
     public JwtResponse login(SignInRequest signInRequest) {

@@ -5,6 +5,10 @@ import dev.TrueFood.enums.OrderType;
 import dev.TrueFood.entity.Password;
 import dev.TrueFood.enums.Role;
 import dev.TrueFood.entity.User;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,19 +29,26 @@ public class Initializer {
     @Autowired
     private TaskRepository taskRepository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     List<String> imageUrls = new ArrayList<>();
 
+    @Transactional
     public void initial() {
 
         imageUrls.add("http://localhost:9000/images/c21eab68-33e6-414d-a47b-35d34b9f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260105T223404Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=86c24ba4e09795d6e0a8c3dce75f5b9c8652e8360ec0adefba65bfbaacfe558b");
         imageUrls.add("http://localhost:9000/images/ee4cf0c1-cfc7-4f62-8abc-521198a4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260105T223404Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0d4e98971518cc1f4bc6463e53ebefdd2049ae73007d0b8c6b967fb9068e87ae");
         imageUrls.add("http://localhost:9000/images/b5ab84ef-a4bf-448f-96d1-5dfd8b48.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260105T223404Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=42c6f87a852ccc2a5282ee47c746fe4394070ffe021634e416d49d8cb82f4041");
 
-        Image image1 = new Image(
+        Image image2 = new Image(
                 null,
                 imageUrls
         );
-        imageRepository.save(image1);
+        imageRepository.save(image2);
+
+
+        Image image1 = entityManager.merge(image2);
 
         User user1 = new User(
                 null,

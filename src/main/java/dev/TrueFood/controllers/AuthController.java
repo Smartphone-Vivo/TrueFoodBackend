@@ -22,7 +22,7 @@ public class AuthController {
     public ResponseEntity<JwtResponse> login(@RequestBody SignInRequest signInRequest){
         final JwtResponse token = authService.login(signInRequest);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(token); //todo мб также сделать
     }
 
     @PostMapping("register")

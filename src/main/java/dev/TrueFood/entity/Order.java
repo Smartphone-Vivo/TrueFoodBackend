@@ -39,7 +39,7 @@ public class Order {
     private int price;
 
     //todo на @OneToOne поменять
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "images_id")
     private Image imagesId;
 

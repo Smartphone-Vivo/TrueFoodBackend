@@ -25,10 +25,10 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     SELECT a FROM Advertisement a
     JOIN FETCH a.imagesId
     WHERE (a.title LIKE CONCAT('%', :name,'%'))
-    AND (a.category = :category OR a.categoryId IN :childrenCategory)
+    AND (a.categoryId = :categoryId OR a.categoryId IN :childrenCategory)
     """)
     Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name,
-                                                    @Param("category") Category category,
+                                                    @Param("categoryId") Long categoryId,
                                                     @Param("childrenCategory") List<Long> childrenCategory,
                                                     PageRequest pageRequest); //todo
 
