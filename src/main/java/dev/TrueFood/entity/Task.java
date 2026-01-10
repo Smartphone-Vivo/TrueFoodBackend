@@ -31,7 +31,7 @@ public class Task extends Order {
     )
     private List<User> workers;
 
-    @ManyToOne(fetch = FetchType.LAZY) //todo wtf
+    @ManyToOne(fetch = FetchType.LAZY)
     private User acceptedWorker;
 
     public Task(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, boolean enable) {

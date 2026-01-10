@@ -43,11 +43,11 @@ public class TaskService {
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found"));
 
         if(task.getAuthorId().equals(user.getId())) {
-            throw new RuntimeException("самолайк отклонен"); //todo сделать кастомное
+            throw new RuntimeException("самолайк отклонен");
         }
 
         if(task.getWorkers().contains(user)) {
-            throw new RuntimeException("user already has worker"); //todo сделать кастомное
+            throw new RuntimeException("user already has worker");
         }
         else{
             task.getWorkers().add(user);
@@ -71,7 +71,7 @@ public class TaskService {
             List<User> workers = task.getWorkers();
             workers.remove(removeUser);
             task.setWorkers(workers);
-            taskRepository.save(task); //todo переписать по человечески
+            taskRepository.save(task);
         }
 
     }

@@ -10,9 +10,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "base_users")
-@Inheritance(strategy = InheritanceType.JOINED) //todo почитать
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
-@Setter //todo data заменяет ли это
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseUser{
@@ -23,7 +23,7 @@ public class BaseUser{
 
     private String email;
 
-    @Enumerated(EnumType.STRING)//todo про это почитать
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

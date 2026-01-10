@@ -35,7 +35,7 @@ public class MinioService {
         }
     }
 
-    public String uploadFile(MultipartFile file) throws IOException { //todo с exception разгрести
+    public String uploadFile(MultipartFile file) throws IOException {
         try{
         String fileName = generateFileName(file.getOriginalFilename());
 
@@ -74,7 +74,7 @@ public class MinioService {
                             .build()
             );
         } catch (Exception e){
-            throw new RuntimeException(e); //todo с exception разгрести
+            throw new RuntimeException(e);
         }
     }
 

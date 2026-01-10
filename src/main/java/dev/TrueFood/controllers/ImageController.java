@@ -27,8 +27,6 @@ public class ImageController {
     @PostMapping("/upload")
     public ResponseEntity<List<UploadResponse>> uploadFile(
 
-            //todo логику из контроллера убрать
-
             @RequestParam("file") MultipartFile[] files){
         if(files.length == 0){
             return ResponseEntity.badRequest().build();

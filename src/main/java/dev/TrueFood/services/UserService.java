@@ -40,7 +40,7 @@ public class UserService {
 
     public void addReview(Review review, Long id, Long userId){
         if(Objects.equals(id, userId)){
-            throw new RuntimeException("самолайк отклонен("); //todo сделать кастомное
+            throw new RuntimeException("самолайк отклонен(");
         }
         else{
             User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("user not found"));

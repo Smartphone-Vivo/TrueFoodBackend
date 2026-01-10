@@ -35,7 +35,7 @@ public class AdvertisementService {
     }
 
     public Page<AdvertisementDto> getAdvertisementsByUser(Long id, PageRequest pageRequest){
-        return advertisementRepository.getAdverticementByUser(id, pageRequest).map(advertisementMapping::toDto); //todo перетащить в AdvertisementService
+        return advertisementRepository.getAdverticementByUser(id, pageRequest).map(advertisementMapping::toDto);
     }
 
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {

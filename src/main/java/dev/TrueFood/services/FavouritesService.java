@@ -44,7 +44,7 @@ public class FavouritesService {
         List<Advertisement> userFavourites = user.getFavourites();
 
         if(userFavourites.contains(advertisement)){
-            throw new RuntimeException("advertisement is already in favourite"); //todo сделать кастомное
+            throw new RuntimeException("advertisement is already in favourite");
         }
         else{
             userFavourites.add(advertisement);

@@ -18,10 +18,6 @@ public class User extends BaseUser {
 
     private String fio;
 
-    // todo ??? хз сомнительные движухи
-    //todo сделать @OneToOne
-    //todo eager убрать
-    //todo почитать почему так
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "images_id")
     private Image avatar;

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder //todo че делает
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class JwtResponse {

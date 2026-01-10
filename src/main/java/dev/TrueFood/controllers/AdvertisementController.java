@@ -52,7 +52,7 @@ public class AdvertisementController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("new-advertisement") //todo исправить
+    @PostMapping("new-advertisement")
     public void addAdvertisement(@RequestBody AdvertisementDto advertisementDto, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         advertisementService.addAdvertisement(advertisementDto, id);

@@ -21,7 +21,7 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
 
-    @Bean //todo повторить
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .httpBasic(AbstractHttpConfigurer::disable)

@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.io.Serializable;
 
 @RequiredArgsConstructor
-public enum Role implements GrantedAuthority { //todo serializable хз
+public enum Role implements GrantedAuthority {
     USER("ROLE_USER"),
     ADMIN("ROLE_ADMIN");
 

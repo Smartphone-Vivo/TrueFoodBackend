@@ -53,7 +53,7 @@ public class TaskController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("tasks-by-user/{id}/{page}/{size}")
     public Page<TaskDto> getTasksByUser(
-            @PathVariable(name = "id") Long id, //todo сделать id через jwt
+            @PathVariable(name = "id") Long id,
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size
     )

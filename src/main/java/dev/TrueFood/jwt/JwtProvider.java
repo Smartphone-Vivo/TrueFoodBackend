@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-@Slf4j //todo почитать че это
-@Component //todo почитать че это
+@Slf4j
+@Component
 public class JwtProvider {
 
     private final SecretKey jwtAccessSecret;

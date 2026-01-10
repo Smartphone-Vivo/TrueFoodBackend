@@ -30,7 +30,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     Page<Task> getTasksByCategory(
             @Param("name") String name,
             @Param("categoryId") Long categoryId,
-            @Param("childrenCategory") List<Long> childrenCategory, //todo выпилить
+            @Param("childrenCategory") List<Long> childrenCategory,
             PageRequest pageRequest);
 
     @EntityGraph(attributePaths = {

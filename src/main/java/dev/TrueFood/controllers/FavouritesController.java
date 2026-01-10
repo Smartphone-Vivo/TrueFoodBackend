@@ -33,7 +33,7 @@ public class FavouritesController {
         Long id = authentication.getUserId();
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
-        return favouritesService.getFavouriteAdvertisements(id, pageRequest); //todo перенести в advertisementService
+        return favouritesService.getFavouriteAdvertisements(id, pageRequest);
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -43,7 +43,7 @@ public class FavouritesController {
             @PathVariable(name = "advId") Long advId
     ){
         Long id = authentication.getUserId();
-        favouritesService.addToFavourites(id, advId); //todo перетащить в AdvertisementService
+        favouritesService.addToFavourites(id, advId);
     }
 
     @PreAuthorize("isAuthenticated()")
