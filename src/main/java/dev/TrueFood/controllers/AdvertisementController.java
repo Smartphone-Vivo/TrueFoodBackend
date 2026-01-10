@@ -2,17 +2,13 @@ package dev.TrueFood.controllers;
 
 
 import dev.TrueFood.dto.AdvertisementDto;
-import dev.TrueFood.enums.Role;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.AdvertisementService;
-import dev.TrueFood.services.UserService;
 import dev.TrueFood.utils.PageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -35,7 +31,6 @@ public class AdvertisementController {
             @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
 
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
-
         return advertisementService.getAdvertisements(name ,categoryId, pageRequest);
     }
 
@@ -53,19 +48,13 @@ public class AdvertisementController {
             @PathVariable(name = "size")int size
     ){
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
-
         return advertisementService.getAdvertisementsByUser(id, pageRequest);
     }
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("new-advertisement") //todo исправить
-    public void addAdvertisement(@RequestBody AdvertisementDto advertisementDto, Principal principal, JwtAuthentication authentication) {
+    public void addAdvertisement(@RequestBody AdvertisementDto advertisementDto, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
-
-        String principalId = principal.getName();
-
-        SecurityContext context = SecurityContextHolder.getContext();
-
         advertisementService.addAdvertisement(advertisementDto, id);
     }
 

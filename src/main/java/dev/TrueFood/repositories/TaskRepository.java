@@ -52,6 +52,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
 
     @EntityGraph(attributePaths = {
+            "imagesId",
+            "author",
+            "category.parent",
             "workers",
             "workers.avatar",
             "acceptedWorker",
@@ -61,7 +64,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     SELECT DISTINCT t FROM Task t
     LEFT JOIN t.workers w
     LEFT JOIN t.acceptedWorker aw
-    WHERE (w.id = :id  OR aw.id = :id)
+    WHERE (w.id = :id  OR t.acceptedWorker.id = :id)
 """)
     Page<Task> getMyResponses(@Param("id") Long id, PageRequest pageRequest);
 

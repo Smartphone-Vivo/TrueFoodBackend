@@ -77,7 +77,7 @@ public class TaskController {
         return taskService.getMyResponses(id, pageRequest);
     }
 
-    @DeleteMapping("remove-response/{taskId}/{workerId}")
+    @DeleteMapping("remove-worker/{taskId}/{workerId}")
     public void removeWorker(
             JwtAuthentication jwtAuthentication,
             @PathVariable(name = "workerId") Long workerId,

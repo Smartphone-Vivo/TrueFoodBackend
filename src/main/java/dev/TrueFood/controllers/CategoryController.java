@@ -19,10 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
 
-    private final UserService userService;
     private final CategoryService categoryService;
-    private final AdvertisementService advertisementService;
-    private final TaskService taskService;
 
     @GetMapping("")
     public List<CategoryDto> getAllCategories() {

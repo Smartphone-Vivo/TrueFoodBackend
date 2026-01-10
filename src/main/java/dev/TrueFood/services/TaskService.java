@@ -66,8 +66,11 @@ public class TaskService {
     public void removeWorker(Long id, Long taskId, Long workerId) {
         User removeUser = userRepository.findById(workerId).orElseThrow(() -> new NotFoundException("user not found"));
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("task not found"));
+
         if(id.equals(task.getAuthorId())){
-            task.getWorkers().remove(removeUser);
+            List<User> workers = task.getWorkers();
+            workers.remove(removeUser);
+            task.setWorkers(workers);
             taskRepository.save(task); //todo переписать по человечески
         }
 

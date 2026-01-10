@@ -69,11 +69,9 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderType orderType;
 
-    //todo Date
     private Date createdAt;
 
     private boolean enable;
-
 
     public Order(Long id, String title, Long authorId, String description, Long categoryId,  int price,  String location, Image imagesId, OrderType orderType, boolean enable) {
         this.id = id;
