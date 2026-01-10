@@ -18,6 +18,18 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedEntityGraph(
+        name = "order-graph",
+        attributeNodes = {
+                @NamedAttributeNode(value = "category", subgraph = "category.parent"),
+                @NamedAttributeNode("imagesId"),
+                @NamedAttributeNode("author")
+        },
+        subgraphs = {
+                @NamedSubgraph(name="category.parent",
+                attributeNodes = @NamedAttributeNode("parent"))
+        }
+)
 public class Order {
 
     @Id

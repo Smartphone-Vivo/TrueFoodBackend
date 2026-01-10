@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-//todo RequiredArgsConstructor можно впихнуть
+
 public class Advertisement extends Order {
 
     public Advertisement(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, boolean enable) {
