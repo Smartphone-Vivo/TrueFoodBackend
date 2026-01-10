@@ -18,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskService {
 
-    private final ImageRepository imageRepository;
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
     private final TaskMapping taskMapping;
@@ -26,31 +25,15 @@ public class TaskService {
 
     public Page<TaskDto> getTasks(String name, Long categoryId, PageRequest pageRequest) {
 
-        Category category = categoryRepository.findById(categoryId).orElse(null);
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
         List<Long> children = category.getChildrenId();
 
         return taskRepository.getTasksByCategory(name, categoryId, children,  pageRequest).map(taskMapping::toDto);
     }
 
     public void addTask(TaskDto taskDto, Long id) {
-        List<String> imageUrls = taskDto.getImagesId().getImageUrls();
-
-        Category category = categoryRepository.findById(taskDto.getCategoryId()).orElse(null);
-
-        taskDto.setCategoryId(category.getId());
-
-//        taskDto.setCategory(category);
-
-        Image image = new Image(null, imageUrls);
-
-        imageRepository.save(image);
-
-        taskDto.setImagesId(image);
-
-        taskDto.setAuthorId(id);
-
-        Task task = taskMapping.toEntity(taskDto);
-
+        Task  task = taskMapping.toEntity(taskDto);
+        task.setAuthorId(id);
         taskRepository.save(task);
     }
 
@@ -68,7 +51,6 @@ public class TaskService {
         }
         else{
             task.getWorkers().add(user);
-
             taskRepository.save(task);
         }
     }
@@ -95,12 +77,9 @@ public class TaskService {
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("task not found"));
 
         if (task.getAuthorId().equals(id)) {
-            task.setWorkers(new ArrayList<User>());
-
+            task.getWorkers().clear();
             User user = userRepository.findById(workerId).orElseThrow(() -> new NotFoundException("user not found"));
-
             task.setAcceptedWorker(user);
-
             taskRepository.save(task);
         }
     }

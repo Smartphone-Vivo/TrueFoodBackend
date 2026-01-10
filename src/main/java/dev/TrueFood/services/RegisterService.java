@@ -18,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RegisterService {
 
-//    private final UserMapping userMapping;
     private final UserRepository userRepository;
     private final ImageRepository imageRepository;
 

@@ -14,9 +14,11 @@ import java.util.Optional;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
+    //1запрос
     @Query("""
     SELECT a FROM Advertisement a
     JOIN FETCH a.imagesId
+    JOIN FETCH a.category
     WHERE a.id = :id
     """)
     Optional<Advertisement> findById(@Param("id") Long id);
@@ -24,6 +26,9 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     @Query("""
     SELECT a FROM Advertisement a
     JOIN FETCH a.imagesId
+    JOIN FETCH a.category c
+    JOIN FETCH c.parent
+    JOIN FETCH a.author
     WHERE (a.title LIKE CONCAT('%', :name,'%'))
     AND (a.categoryId = :categoryId OR a.categoryId IN :childrenCategory)
     """)
@@ -31,7 +36,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
                                                     @Param("categoryId") Long categoryId,
                                                     @Param("childrenCategory") List<Long> childrenCategory,
                                                     PageRequest pageRequest); //todo
-
+    //1 запрос
     @Query("""
     SELECT a FROM Advertisement a
     JOIN FETCH a.imagesId

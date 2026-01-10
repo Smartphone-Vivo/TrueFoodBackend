@@ -16,7 +16,6 @@ import java.util.UUID;
 @Service
 public class MinioService {
 
-
     private final MinioClient minioClient;
     private final ImageRepository imageRepository;
 

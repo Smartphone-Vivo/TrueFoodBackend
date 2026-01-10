@@ -17,7 +17,7 @@ public class UserDto {
 
     private String email;
 
-    private Image avatar;
+    private ImageDto avatar;
 
     private Role role;
 
