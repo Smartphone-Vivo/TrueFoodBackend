@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 public interface TaskMapping {
 
     @Mapping(target = "categoryId", expression = "java(task.getCategory().getId())")
+    @Mapping(target = "authorId", expression = "java(task.getAuthor().getId())")
     TaskDto toDto(Task task);
 
     Task toEntity(TaskDto taskDto);

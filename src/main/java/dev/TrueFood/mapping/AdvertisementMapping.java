@@ -9,7 +9,9 @@ import org.mapstruct.Mapping;
 public interface AdvertisementMapping {
 
     @Mapping(target = "categoryId", expression = "java(advertisement.getCategory().getId())")
+    @Mapping(target = "authorId", expression = "java(advertisement.getAuthor().getId())")
     AdvertisementDto toDto(Advertisement advertisement);
+
 
     Advertisement toEntity(AdvertisementDto advertisementDto);
 

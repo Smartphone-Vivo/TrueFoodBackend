@@ -16,9 +16,10 @@ import java.util.List;
 
 @Component
 public class Initializer {
+
+
     @Autowired
     private AdvertisementRepository advertisementRepository;
-
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
@@ -49,7 +50,7 @@ public class Initializer {
 
         Image image1 = entityManager.merge(image2);
 
-        User user1 = new User(
+        User ludmila = new User(
                 null,
                 "1",
                 image1,
@@ -60,9 +61,9 @@ public class Initializer {
                 0,
                 "tg: @Anton123"
                 );
-        userRepository.save(user1);
+        userRepository.save(ludmila);
 
-        User user2 = new User(
+        User igor = new User(
                 null,
                 "2",
                 image1,
@@ -73,9 +74,9 @@ public class Initializer {
                 0,
                 "tg: @Anton123"
         );
-        userRepository.save(user2);
+        userRepository.save(igor);
 
-        User user3 = new User(
+        User aleksandr = new User(
                 null,
                 "3",
                 image1,
@@ -86,9 +87,9 @@ public class Initializer {
                 0,
                 "tg: @Anton123"
         );
-        userRepository.save(user3);
+        userRepository.save(aleksandr);
 
-        User user4 = new User(
+        User vladimir = new User(
                 null,
                 "4",
                 image1,
@@ -99,7 +100,7 @@ public class Initializer {
                 0,
                 "tg: @Anton123"
         );
-        userRepository.save(user4);
+        userRepository.save(vladimir);
 
         Category all = new Category(null, "Все");
         categoryRepository.save(all);
@@ -157,7 +158,7 @@ public class Initializer {
                 null,
                 "Пицца Маргарита",
                 "Свежая домашняя пицца с томатным соусом, сыром моцарелла и базиликом. Приготовлена сегодня.",
-                1L,
+                ludmila,
                 pelmeni,
                 1,
                 "ул. Пушкина, 10",
@@ -171,7 +172,7 @@ public class Initializer {
                 null,
                 "Суши сет 'Сакура'",
                 "20 штук: филадельфия, калифорния, спайси тунец. Свежие морепродукты.",
-                1L,
+                ludmila,
                 pelmeni,
                 1,
                 "пр. Ленина, 25",
@@ -185,7 +186,7 @@ public class Initializer {
                 null,
                 "Чизбургер с картошкой",
                 "Двойная говяжья котлета, сыр чеддер, свежие овощи. Подается с картофелем фри.",
-                1L,
+                ludmila,
                 pelmeni,
                 1,
                 "ул. Гагарина, 15",
@@ -199,7 +200,7 @@ public class Initializer {
                 null,
                 "Салат Цезарь с курицей",
                 "Хрустящий салат с куриной грудкой, пармезаном, сухариками и соусом цезарь.",
-                1L,
+                ludmila,
                 pelmeni,
                 1,
                 "ул. Садовая, 8",
@@ -213,7 +214,7 @@ public class Initializer {
                 null,
                 "Паста Карбонара",
                 "Спагетти с беконом, сливочным соусом, яйцом и пармезаном.",
-                1L,
+                ludmila,
                 pelmeni,
                 1,
                 "пр. Мира, 33",
@@ -227,7 +228,7 @@ public class Initializer {
                 null,
                 "Шашлык из свинины",
                 "Нежный шашлык на углях с овощами гриль. Порция 500г.",
-                1L,
+                igor,
                 pelmeni,
                 1,
                 "ул. Грильмастеров, 5",
@@ -241,7 +242,7 @@ public class Initializer {
                 null,
                 "Борщ украинский",
                 "Наваристый борщ со сметаной и чесночными пампушками.",
-                1L,
+                igor,
                 pelmeni,
                 1,
                 "ул. Украинская, 12",
@@ -255,7 +256,7 @@ public class Initializer {
                 null,
                 "Запеченные роллы с лососем",
                 "8 штук, запеченные под сырным соусом с лососем и сливочным сыром.",
-                1L,
+                igor,
                 pelmeni,
                 1,
                 "ул. Рыбацкая, 18",
@@ -269,7 +270,7 @@ public class Initializer {
                 null,
                 "Стейк Рибай",
                 "Говяжий стейк 300г, средней прожарки, с овощами гриль и соусом.",
-                1L,
+                igor,
                 pelmeni,
                 1,
                 "ул. Мясная, 22",
@@ -283,7 +284,7 @@ public class Initializer {
                 null,
                 "Тирамису классический",
                 "Итальянский десерт с кофейной пропиткой и сыром маскарпоне.",
-                1L,
+                igor,
                 pelmeni,
                 1,
                 "ул. Сладкая, 7",
@@ -297,7 +298,7 @@ public class Initializer {
                 null,
                 "Лапша WOK с курицей",
                 "Лапша с курицей, овощами и соевым соусом на воке.",
-                1L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Азиатская, 14",
@@ -311,7 +312,7 @@ public class Initializer {
                 null,
                 "Пельмени домашние",
                 "Домашние пельмени с говядиной и свининой, порция 20 штук.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Домашняя, 9",
@@ -325,7 +326,7 @@ public class Initializer {
                 null,
                 "Клаб-сэндвич",
                 "Трехслойный сэндвич с курицей, беконом, сыром и овощами.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Бутербродная, 3",
@@ -339,7 +340,7 @@ public class Initializer {
                 null,
                 "Дорадо на гриле",
                 "Свежая дорадо с лимоном и травами, подается с рисом.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Морская, 11",
@@ -353,7 +354,7 @@ public class Initializer {
                 null,
                 "Английский завтрак",
                 "Яичница с беконом, сосисками, грибами, помидорами и тостами.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Утренняя, 6",
@@ -367,7 +368,7 @@ public class Initializer {
                 null,
                 "Креветки в чесночном соусе",
                 "Крупные тигровые креветки в сливочно-чесночном соусе.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Креветочная, 4",
@@ -381,7 +382,7 @@ public class Initializer {
                 null,
                 "Омлет с ветчиной и сыром",
                 "Пышный омлет с ветчиной, сыром и зеленью.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Яичная, 2",
@@ -395,7 +396,7 @@ public class Initializer {
                 null,
                 "Курица терияки",
                 "Куриное филе в соусе терияки с кунжутом и рисом.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Восточная, 17",
@@ -409,7 +410,7 @@ public class Initializer {
                 null,
                 "Тако с говядиной",
                 "3 тако с мексиканской говядиной, сальсой и гуакамоле.",
-                2L,
+                aleksandr,
                 pelmeni,
                 1,
                 "ул. Мексиканская, 13",
@@ -423,7 +424,7 @@ public class Initializer {
                     null,
                     "Чизкейк Нью-Йорк",
                     "Классический чизкейк с ягодным соусом.",
-                    2L,
+                aleksandr,
                 pelmeni,
                     1,
                     "ул. Десертная, 8",
@@ -436,7 +437,7 @@ public class Initializer {
                 null,
                 "Торт на детский праздник 1",
                 "приготовить торт на день рождения, высота 2 метра, цвет: синий",
-                2L,
+                igor,
                 pelmeni,
                 2000,
                 "ул. Десертная, 8",
@@ -449,7 +450,7 @@ public class Initializer {
                 null,
                 "Торт на детский праздник 2",
                 "приготовить торт на день рождения, высота 2 метра, цвет: синий",
-                2L,
+                igor,
                 pelmeni,
                 2000,
                 "ул. Десертная, 8",
@@ -462,7 +463,7 @@ public class Initializer {
                 null,
                 "Торт на детский праздник 3",
                 "приготовить торт на день рождения, цвет: синий, вкус: сладкий",
-                2L,
+                ludmila,
                 pelmeni,
                 2000,
                 "ул. Десертная, 8",

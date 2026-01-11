@@ -24,11 +24,13 @@ public class AdvertisementService {
     private final AdvertisementRepository advertisementRepository;
     private final CategoryRepository categoryRepository;
     private final AdvertisementMapping advertisementMapping;
+    private final UserRepository userRepository;
 
 
     public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
         List<Long> children = category.getChildrenId();
+
         return advertisementRepository.getAdvertisementsByCategory(name, categoryId, children, pageRequest).map(advertisementMapping::toDto);
     }
 
@@ -42,10 +44,17 @@ public class AdvertisementService {
 
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
         if(Objects.equals(advertisementDto.getAuthorId(), id)){
+
+            Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
+
             Long categoryId = advertisementDto.getCategoryId();
             Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
-            Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
             advertisement.setCategory(category);
+
+            Long authorId = advertisementDto.getAuthorId();
+            User author = userRepository.findById(authorId).orElseThrow(() -> new NotFoundException("user not found"));
+            advertisement.setAuthor(author);
+
             advertisementRepository.save(advertisement);
         }
 

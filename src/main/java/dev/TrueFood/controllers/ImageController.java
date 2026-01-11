@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("api/files")
 @CrossOrigin
 @RequiredArgsConstructor
-@PreAuthorize("isAuthenticated()")
 public class ImageController {
 
     private final MinioService minioService;

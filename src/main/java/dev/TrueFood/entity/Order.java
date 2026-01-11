@@ -52,19 +52,16 @@ public class Order {
 
     private String location;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id", nullable = false, updatable = false, insertable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_id")
     @JsonIgnore
     private User author;
-
-    @Column(name="users_id")
-    private Long authorId;
 
     private Date createdAt;
 
     private boolean enable;
 
-    public Order(Long id, String title, Long authorId, String description, Category category,  int price,  String location, Image imagesId, boolean enable) {
+    public Order(Long id, String title, User author, String description, Category category,  int price,  String location, Image imagesId, boolean enable) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -72,7 +69,7 @@ public class Order {
         this.price = price;
         this.imagesId = imagesId;
         this.location = location;
-        this.authorId = authorId;
+        this.author = author;
         this.createdAt = new Date();
         this.enable = enable;
     }

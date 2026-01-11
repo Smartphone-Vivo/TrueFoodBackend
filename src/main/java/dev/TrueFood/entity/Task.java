@@ -33,8 +33,8 @@ public class Task extends Order {
     @ManyToOne(fetch = FetchType.LAZY)
     private User acceptedWorker;
 
-    public Task(Long id, String title, String description, Long authorId, Category category, int price, String location, Image imagesId, boolean enable) {
-        super(id, title, authorId, description, category, price, location, imagesId, enable);
+    public Task(Long id, String title, String description, User author, Category category, int price, String location, Image imagesId, boolean enable) {
+        super(id, title, author, description, category, price, location, imagesId, enable);
     }
 
 

@@ -31,6 +31,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(
+                                "/api/files/**",
                                 "/api/auth/**",
                                 "/api/advertisements/**",
                                 "/api/tasks/**",
@@ -38,7 +39,7 @@ public class SecurityConfig {
                                 "/api/profile/**"
                                 )
                         .permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

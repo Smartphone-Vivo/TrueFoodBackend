@@ -11,7 +11,7 @@ import lombok.*;
 
 public class Advertisement extends Order {
 
-    public Advertisement(Long id, String title, String description, Long authorId, Category category, int price, String location, Image imagesId, boolean enable) {
-        super(id, title, authorId, description, category, price, location, imagesId, enable);
+    public Advertisement(Long id, String title, String description, User author, Category category, int price, String location, Image imagesId, boolean enable) {
+        super(id, title, author, description, category, price, location, imagesId, enable);
     }
 }

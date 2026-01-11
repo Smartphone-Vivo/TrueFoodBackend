@@ -33,7 +33,15 @@ public class TaskService {
 
     public void addTask(TaskDto taskDto, Long id) {
         Task  task = taskMapping.toEntity(taskDto);
-        task.setAuthorId(id);
+
+        Long taskId = taskDto.getCategoryId();
+        Category category = categoryRepository.findById(taskId).orElseThrow(() -> new NotFoundException("category not found"));
+        task.setCategory(category);
+
+        Long authorId = taskDto.getAuthorId();
+        User author = userRepository.findById(authorId).orElseThrow(() -> new NotFoundException("user not found"));
+        task.setAuthor(author);
+
         taskRepository.save(task);
     }
 
@@ -42,7 +50,7 @@ public class TaskService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found"));
 
-        if(task.getAuthorId().equals(user.getId())) {
+        if(task.getAuthor().equals(user)) {
             throw new RuntimeException("самолайк отклонен");
         }
 
@@ -67,7 +75,7 @@ public class TaskService {
         User removeUser = userRepository.findById(workerId).orElseThrow(() -> new NotFoundException("user not found"));
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("task not found"));
 
-        if(id.equals(task.getAuthorId())){
+        if(id.equals(task.getAuthor().getId())) {
             List<User> workers = task.getWorkers();
             workers.remove(removeUser);
             task.setWorkers(workers);
@@ -79,7 +87,7 @@ public class TaskService {
     public void confirmWorker(Long id, Long taskId, Long workerId) {
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("task not found"));
 
-        if (task.getAuthorId().equals(id)) {
+        if (task.getAuthor().getId().equals(id)) {
             task.getWorkers().clear();
             User user = userRepository.findById(workerId).orElseThrow(() -> new NotFoundException("user not found"));
             task.setAcceptedWorker(user);

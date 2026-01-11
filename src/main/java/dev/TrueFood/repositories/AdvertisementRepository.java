@@ -29,7 +29,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     @EntityGraph(value = "order-graph", type = EntityGraph.EntityGraphType.FETCH)
     @Query("""
     SELECT a FROM Advertisement a
-    WHERE (a.authorId = :id)
+    WHERE (a.author.id = :id)
     """)
     Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
 
