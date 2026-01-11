@@ -58,6 +58,4 @@ public class AdvertisementController {
         advertisementService.addAdvertisement(advertisementDto, id);
     }
 
-
-
 }
