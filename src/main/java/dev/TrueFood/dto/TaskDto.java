@@ -20,7 +20,7 @@ public class TaskDto {
 
     private int price;
 
-    private ImageDto imagesId;
+    private ImageDto images;
 
     private String location;
 

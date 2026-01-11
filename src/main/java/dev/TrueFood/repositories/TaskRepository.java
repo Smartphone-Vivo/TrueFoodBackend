@@ -14,7 +14,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
 
     @EntityGraph(attributePaths = {
-            "imagesId",
+            "images",
             "author",
             "category.parent",
             "workers",
@@ -34,7 +34,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             PageRequest pageRequest);
 
     @EntityGraph(attributePaths = {
-            "imagesId",
+            "images",
             "author",
             "category.parent",
             "workers",
@@ -52,7 +52,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
 
     @EntityGraph(attributePaths = {
-            "imagesId",
+            "images",
             "author",
             "category.parent",
             "workers",

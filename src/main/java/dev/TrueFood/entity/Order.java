@@ -21,7 +21,7 @@ import java.util.Date;
         name = "order-graph",
         attributeNodes = {
                 @NamedAttributeNode(value = "category", subgraph = "category.parent"),
-                @NamedAttributeNode("imagesId"),
+                @NamedAttributeNode("images"),
                 @NamedAttributeNode("author")
         },
         subgraphs = {
@@ -48,7 +48,7 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "images_id")
-    private Image imagesId; //todo поменять название
+    private Image images; //todo поменять название
 
     private String location;
 
@@ -61,13 +61,13 @@ public class Order {
 
     private boolean enable;
 
-    public Order(Long id, String title, User author, String description, Category category,  int price,  String location, Image imagesId, boolean enable) {
+    public Order(Long id, String title, User author, String description, Category category,  int price,  String location, Image images, boolean enable) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.category = category;
         this.price = price;
-        this.imagesId = imagesId;
+        this.images = images;
         this.location = location;
         this.author = author;
         this.createdAt = new Date();
