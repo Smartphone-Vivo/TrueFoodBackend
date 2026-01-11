@@ -1,7 +1,6 @@
 package dev.TrueFood.repositories;
 
 import dev.TrueFood.entity.*;
-import dev.TrueFood.enums.OrderType;
 import dev.TrueFood.entity.Password;
 import dev.TrueFood.enums.Role;
 import dev.TrueFood.entity.User;
@@ -159,11 +158,10 @@ public class Initializer {
                 "Пицца Маргарита",
                 "Свежая домашняя пицца с томатным соусом, сыром моцарелла и базиликом. Приготовлена сегодня.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Пушкина, 10",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement1123);
@@ -174,11 +172,10 @@ public class Initializer {
                 "Суши сет 'Сакура'",
                 "20 штук: филадельфия, калифорния, спайси тунец. Свежие морепродукты.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "пр. Ленина, 25",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement2234234);
@@ -189,11 +186,10 @@ public class Initializer {
                 "Чизбургер с картошкой",
                 "Двойная говяжья котлета, сыр чеддер, свежие овощи. Подается с картофелем фри.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Гагарина, 15",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement23423424);
@@ -204,11 +200,10 @@ public class Initializer {
                 "Салат Цезарь с курицей",
                 "Хрустящий салат с куриной грудкой, пармезаном, сухариками и соусом цезарь.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Садовая, 8",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement4);
@@ -219,11 +214,10 @@ public class Initializer {
                 "Паста Карбонара",
                 "Спагетти с беконом, сливочным соусом, яйцом и пармезаном.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "пр. Мира, 33",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement5);
@@ -234,11 +228,10 @@ public class Initializer {
                 "Шашлык из свинины",
                 "Нежный шашлык на углях с овощами гриль. Порция 500г.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Грильмастеров, 5",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement6);
@@ -249,11 +242,10 @@ public class Initializer {
                 "Борщ украинский",
                 "Наваристый борщ со сметаной и чесночными пампушками.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Украинская, 12",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement7);
@@ -264,11 +256,10 @@ public class Initializer {
                 "Запеченные роллы с лососем",
                 "8 штук, запеченные под сырным соусом с лососем и сливочным сыром.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Рыбацкая, 18",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement8);
@@ -279,11 +270,10 @@ public class Initializer {
                 "Стейк Рибай",
                 "Говяжий стейк 300г, средней прожарки, с овощами гриль и соусом.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Мясная, 22",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement9);
@@ -294,11 +284,10 @@ public class Initializer {
                 "Тирамису классический",
                 "Итальянский десерт с кофейной пропиткой и сыром маскарпоне.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Сладкая, 7",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement10);
@@ -309,11 +298,10 @@ public class Initializer {
                 "Лапша WOK с курицей",
                 "Лапша с курицей, овощами и соевым соусом на воке.",
                 1L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Азиатская, 14",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement11);
@@ -324,11 +312,10 @@ public class Initializer {
                 "Пельмени домашние",
                 "Домашние пельмени с говядиной и свининой, порция 20 штук.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Домашняя, 9",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement12);
@@ -339,11 +326,10 @@ public class Initializer {
                 "Клаб-сэндвич",
                 "Трехслойный сэндвич с курицей, беконом, сыром и овощами.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Бутербродная, 3",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement13);
@@ -354,11 +340,10 @@ public class Initializer {
                 "Дорадо на гриле",
                 "Свежая дорадо с лимоном и травами, подается с рисом.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Морская, 11",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement14);
@@ -369,11 +354,10 @@ public class Initializer {
                 "Английский завтрак",
                 "Яичница с беконом, сосисками, грибами, помидорами и тостами.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Утренняя, 6",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement15);
@@ -384,11 +368,10 @@ public class Initializer {
                 "Креветки в чесночном соусе",
                 "Крупные тигровые креветки в сливочно-чесночном соусе.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Креветочная, 4",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement16);
@@ -399,11 +382,10 @@ public class Initializer {
                 "Омлет с ветчиной и сыром",
                 "Пышный омлет с ветчиной, сыром и зеленью.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Яичная, 2",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement17);
@@ -414,11 +396,10 @@ public class Initializer {
                 "Курица терияки",
                 "Куриное филе в соусе терияки с кунжутом и рисом.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Восточная, 17",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement18);
@@ -429,11 +410,10 @@ public class Initializer {
                 "Тако с говядиной",
                 "3 тако с мексиканской говядиной, сальсой и гуакамоле.",
                 2L,
-                3L,
+                pelmeni,
                 1,
                 "ул. Мексиканская, 13",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         advertisementRepository.save(advertisement19);
@@ -444,11 +424,10 @@ public class Initializer {
                     "Чизкейк Нью-Йорк",
                     "Классический чизкейк с ягодным соусом.",
                     2L,
-                    3L,
+                pelmeni,
                     1,
                     "ул. Десертная, 8",
                     image1,
-                    OrderType.ADVERTISEMENT,
                     true
             );
         advertisementRepository.save(advertisement20);
@@ -458,11 +437,10 @@ public class Initializer {
                 "Торт на детский праздник 1",
                 "приготовить торт на день рождения, высота 2 метра, цвет: синий",
                 2L,
-                3L,
+                pelmeni,
                 2000,
                 "ул. Десертная, 8",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         taskRepository.save(task1);
@@ -472,11 +450,10 @@ public class Initializer {
                 "Торт на детский праздник 2",
                 "приготовить торт на день рождения, высота 2 метра, цвет: синий",
                 2L,
-                3L,
+                pelmeni,
                 2000,
                 "ул. Десертная, 8",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         taskRepository.save(task2);
@@ -486,11 +463,10 @@ public class Initializer {
                 "Торт на детский праздник 3",
                 "приготовить торт на день рождения, цвет: синий, вкус: сладкий",
                 2L,
-                3L,
+                pelmeni,
                 2000,
                 "ул. Десертная, 8",
                 image1,
-                OrderType.ADVERTISEMENT,
                 true
         );
         taskRepository.save(task3);

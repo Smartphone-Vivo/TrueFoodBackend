@@ -1,7 +1,5 @@
 package dev.TrueFood.dto;
 
-import dev.TrueFood.entity.Image;
-import dev.TrueFood.enums.OrderType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,8 +25,6 @@ public class TaskDto {
     private String location;
 
     private Long authorId;
-
-    private OrderType orderType;
 
     private Date createdAt;
 

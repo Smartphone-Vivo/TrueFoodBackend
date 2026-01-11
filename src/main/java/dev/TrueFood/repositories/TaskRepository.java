@@ -25,7 +25,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     @Query("""
     SELECT t FROM Task t
     WHERE (t.title LIKE CONCAT('%', :name,'%'))
-    AND (t.categoryId = :categoryId OR t.categoryId IN :childrenCategory )
+    AND (t.category.id = :categoryId OR t.category.id IN :childrenCategory )
     """)
     Page<Task> getTasksByCategory(
             @Param("name") String name,

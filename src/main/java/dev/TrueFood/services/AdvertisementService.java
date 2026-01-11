@@ -14,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,10 +41,17 @@ public class AdvertisementService {
     }
 
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
-        Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
-        advertisement.setAuthorId(id);
-        advertisementRepository.save(advertisement);
+        if(Objects.equals(advertisementDto.getAuthorId(), id)){
+            Long categoryId = advertisementDto.getCategoryId();
+            Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
+            Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
+            advertisement.setCategory(category);
+            advertisementRepository.save(advertisement);
+        }
+
     }
+
+
 
 
 }

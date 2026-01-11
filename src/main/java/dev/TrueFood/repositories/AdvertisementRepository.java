@@ -15,16 +15,11 @@ import java.util.Optional;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
-    //1запрос
-    @Override
-    @EntityGraph(value = "order-graph", type = EntityGraph.EntityGraphType.FETCH)
-    Optional<Advertisement> findById(@Param("id") Long id);
-
     @EntityGraph(value = "order-graph", type = EntityGraph.EntityGraphType.FETCH)
     @Query("""
     SELECT a FROM Advertisement a
     WHERE (a.title LIKE CONCAT('%', :name,'%'))
-    AND (a.categoryId = :categoryId OR a.categoryId IN :childrenCategory)
+    AND (a.category.id = :categoryId OR a.category.id IN :childrenCategory)
     """)
     Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name,
                                                     @Param("categoryId") Long categoryId,

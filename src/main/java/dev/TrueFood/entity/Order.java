@@ -2,7 +2,6 @@ package dev.TrueFood.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import dev.TrueFood.enums.OrderType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,18 +40,15 @@ public class Order {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false, updatable = false, insertable = false)
+    @JoinColumn(name = "category_id") //todo nullable
     @JsonIgnoreProperties({"parent", "advertisements"})
     private Category category;
-
-    @Column(name = "category_id", nullable = false)
-    private Long categoryId;
 
     private int price;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "images_id")
-    private Image imagesId;
+    private Image imagesId; //todo поменять название
 
     private String location;
 
@@ -64,23 +60,19 @@ public class Order {
     @Column(name="users_id")
     private Long authorId;
 
-    @Enumerated(EnumType.STRING)
-    private OrderType orderType;
-
     private Date createdAt;
 
     private boolean enable;
 
-    public Order(Long id, String title, Long authorId, String description, Long categoryId,  int price,  String location, Image imagesId, OrderType orderType, boolean enable) {
+    public Order(Long id, String title, Long authorId, String description, Category category,  int price,  String location, Image imagesId, boolean enable) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.categoryId = categoryId;
+        this.category = category;
         this.price = price;
         this.imagesId = imagesId;
         this.location = location;
         this.authorId = authorId;
-        this.orderType = orderType;
         this.createdAt = new Date();
         this.enable = enable;
     }

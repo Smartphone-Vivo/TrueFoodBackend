@@ -1,6 +1,5 @@
 package dev.TrueFood.entity;
 
-import dev.TrueFood.enums.OrderType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +11,7 @@ import lombok.*;
 
 public class Advertisement extends Order {
 
-    public Advertisement(Long id, String title, String description, Long authorId, Long categoryId, int price, String location, Image imagesId, OrderType orderType, boolean enable) {
-        super(id, title, authorId, description, categoryId, price, location, imagesId, orderType, enable);
+    public Advertisement(Long id, String title, String description, Long authorId, Category category, int price, String location, Image imagesId, boolean enable) {
+        super(id, title, authorId, description, category, price, location, imagesId, enable);
     }
 }
