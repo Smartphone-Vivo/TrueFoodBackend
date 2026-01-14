@@ -46,6 +46,9 @@ public class FavouritesService {
         if(userFavourites.contains(advertisement)){
             throw new RuntimeException("advertisement is already in favourite");
         }
+        else if(advertisement.getAuthor().getId().equals(id)) {
+         throw new RuntimeException("самолайк(");
+        }
         else{
             userFavourites.add(advertisement);
 

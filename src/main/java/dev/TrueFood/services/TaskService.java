@@ -2,6 +2,7 @@ package dev.TrueFood.services;
 
 import dev.TrueFood.dto.TaskDto;
 import dev.TrueFood.exceptions.NotFoundException;
+import dev.TrueFood.mapping.ImageMapping;
 import dev.TrueFood.mapping.TaskMapping;
 import dev.TrueFood.entity.*;
 import dev.TrueFood.entity.User;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +24,8 @@ public class TaskService {
     private final UserRepository userRepository;
     private final TaskMapping taskMapping;
     private final CategoryRepository categoryRepository;
+    private final ImageMapping imageMapping;
+    private final ImageRepository imageRepository;
 
     public Page<TaskDto> getTasks(String name, Long categoryId, PageRequest pageRequest) {
 
@@ -32,7 +36,14 @@ public class TaskService {
     }
 
     public void addTask(TaskDto taskDto, Long id) {
+
+        Image image = imageMapping.toEntity(taskDto.getImages());
+
+        imageRepository.save(image);
+
         Task  task = taskMapping.toEntity(taskDto);
+
+        task.setImages(image);
 
         Long taskId = taskDto.getCategoryId();
         Category category = categoryRepository.findById(taskId).orElseThrow(() -> new NotFoundException("category not found"));
@@ -40,7 +51,7 @@ public class TaskService {
 
         Long authorId = taskDto.getAuthorId();
         User author = userRepository.findById(authorId).orElseThrow(() -> new NotFoundException("user not found"));
-        task.setAuthor(author);
+        task.setAuthor(author); //todo вот это возможно можно удалить
 
         taskRepository.save(task);
     }
@@ -94,4 +105,33 @@ public class TaskService {
             taskRepository.save(task);
         }
     }
+
+    public TaskDto getTaskById(Long id) {
+        return taskRepository.findById(id).map(taskMapping::toDto).orElseThrow(() -> new NotFoundException("task not found"));
+    }
+
+    public void editTask(Long id, TaskDto taskDto) {
+
+        if(Objects.equals(taskDto.getAuthorId(), id)) {
+
+            Task changingTask = taskRepository.findById(taskDto.getId()).orElseThrow(() -> new NotFoundException("task not found"));
+
+            Task changedTask = taskMapping.updateTask(taskDto, changingTask);
+
+            taskRepository.save(changedTask);
+
+        }
+    }
+
+    public void deleteTask(Long id, Long taskId) {
+
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("task not found"));
+
+        if(task.getAuthor().getId().equals(id)) {
+            taskRepository.delete(task);
+        }
+    }
+
+
+
 }

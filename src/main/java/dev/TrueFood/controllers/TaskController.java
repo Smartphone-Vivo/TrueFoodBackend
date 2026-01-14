@@ -39,15 +39,9 @@ public class TaskController {
         taskService.addTask(taskDto, id);
     }
 
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("add-task-response/{task-id}")
-    public void addTaskResponse(
-            JwtAuthentication authentication,
-            @PathVariable(name = "task-id") Long taskId
-
-    ){
-        Long id = authentication.getUserId();
-        taskService.addTaskResponse(id, taskId);
+    @GetMapping("{id}")
+    public TaskDto getTaskById(@PathVariable(name = "id") Long id){
+        return taskService.getTaskById(id);
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -61,6 +55,17 @@ public class TaskController {
         PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
 
         return taskService.getMyTasks(id, pageRequest);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("add-task-response/{task-id}")
+    public void addTaskResponse(
+            JwtAuthentication authentication,
+            @PathVariable(name = "task-id") Long taskId
+
+    ){
+        Long id = authentication.getUserId();
+        taskService.addTaskResponse(id, taskId);
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -97,5 +102,23 @@ public class TaskController {
         taskService.confirmWorker(id, taskId, workerId);
     }
 
+    @PutMapping("edit-task")
+    public void editTask(
+            JwtAuthentication authentication,
+            @RequestBody TaskDto taskDto)
+    {
+        Long id = authentication.getUserId();
+
+        taskService.editTask(id, taskDto);
+    }
+
+    @DeleteMapping("delete-task/{taskId}")
+    public void deleteTask(
+            JwtAuthentication authentication,
+            @PathVariable Long taskId
+    ){
+        Long id = authentication.getUserId();
+        taskService.deleteTask(id, taskId);
+    }
 
 }

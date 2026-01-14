@@ -7,6 +7,7 @@ import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Image;
 import dev.TrueFood.entity.User;
+import dev.TrueFood.mapping.ImageMapping;
 import dev.TrueFood.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,8 @@ public class AdvertisementService {
     private final CategoryRepository categoryRepository;
     private final AdvertisementMapping advertisementMapping;
     private final UserRepository userRepository;
+    private final ImageMapping imageMapping;
+    private final ImageRepository imageRepository;
 
 
     public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
@@ -45,7 +48,13 @@ public class AdvertisementService {
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
         if(Objects.equals(advertisementDto.getAuthorId(), id)){
 
+            Image image = imageMapping.toEntity(advertisementDto.getImages());
+
+            imageRepository.save(image);
+
             Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
+
+            advertisement.setImages(image);
 
             Long categoryId = advertisementDto.getCategoryId();
             Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
@@ -58,6 +67,28 @@ public class AdvertisementService {
             advertisementRepository.save(advertisement);
         }
 
+    }
+
+    public void editAdvertisement(Long id, AdvertisementDto advertisementDto) {
+
+        if(Objects.equals(advertisementDto.getAuthorId(), id)){
+            Advertisement changingAdvertisement = advertisementRepository.findById(advertisementDto.getId()).orElseThrow(() -> new NotFoundException("advertisement not found"));
+
+            Advertisement changedAdvertisement = advertisementMapping.updateAdvertisement(advertisementDto, changingAdvertisement);
+
+            advertisementRepository.save(changedAdvertisement);
+
+        }
+
+    }
+
+    public void deleteAdvertisement(Long id, Long advertisementId) {
+
+        Advertisement advertisement = advertisementRepository.findById(advertisementId).orElseThrow(() -> new NotFoundException("advertisement not found"));
+
+        if(advertisement.getAuthor().getId().equals(id)){
+            advertisementRepository.delete(advertisement);
+        }
     }
 
 

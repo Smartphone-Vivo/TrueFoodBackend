@@ -5,6 +5,7 @@ import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.AdvertisementService;
 import dev.TrueFood.utils.PageUtils;
+import io.minio.credentials.Jwt;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,6 +57,27 @@ public class AdvertisementController {
     public void addAdvertisement(@RequestBody AdvertisementDto advertisementDto, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         advertisementService.addAdvertisement(advertisementDto, id);
+    }
+
+    @PutMapping("edit-advertisement")
+    public void editAdvertisement(
+            JwtAuthentication authentication,
+            @RequestBody AdvertisementDto advertisementDto) {
+
+        Long id = authentication.getUserId();
+
+        advertisementService.editAdvertisement(id, advertisementDto);
+    }
+
+    @DeleteMapping("delete-advertisement/{advertisementId}")
+    public void deleteAdvertisement(
+            JwtAuthentication authentication,
+            @PathVariable(name = "advertisementId") Long advertisementId
+    ){
+        Long id = authentication.getUserId();
+
+        advertisementService.deleteAdvertisement(id, advertisementId);
+
     }
 
 }

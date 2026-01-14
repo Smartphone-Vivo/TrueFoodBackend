@@ -4,6 +4,7 @@ import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.entity.Advertisement;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface AdvertisementMapping {
@@ -14,5 +15,8 @@ public interface AdvertisementMapping {
 
 
     Advertisement toEntity(AdvertisementDto advertisementDto);
+
+    @Mapping(target = "createdAt", ignore = true)
+    Advertisement updateAdvertisement(AdvertisementDto advertisementDto, @MappingTarget Advertisement advertisement);
 
 }
