@@ -50,4 +50,10 @@ public class ProfilesController {
 
         return userService.getAllUsers(name, pageRequest);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("ban-user/{id}")
+    public void banControlUser(@PathVariable Long id) {
+        userService.banControlUser(id);
+    }
 }

@@ -76,4 +76,12 @@ public class UserService {
     public Page<UserDto> getAllUsers(String name, PageRequest pageRequest){
         return userRepository.getAllUsers(name, pageRequest).map(userMapping::toDto);
     }
+
+    public void banControlUser(Long id){
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+
+        user.setEnable(!(user.isEnable()));
+
+        userRepository.save(user);
+    }
 }

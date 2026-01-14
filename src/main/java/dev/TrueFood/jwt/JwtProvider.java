@@ -21,10 +21,14 @@ import java.util.Date;
 public class JwtProvider {
 
     private final SecretKey jwtAccessSecret;
+    private final SecretKey jwtRefreshSecret;
 
-    public JwtProvider(@Value("${jwt.secret.access}") String jwtAccessSecret)
+    public JwtProvider(
+            @Value("${jwt.secret.access}") String jwtAccessSecret,
+            @Value("${jwt.secret.refresh}") String jwtRefreshSecret)
     {
         this.jwtAccessSecret = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtAccessSecret));
+        this.jwtRefreshSecret = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtRefreshSecret));
     }
 
 
@@ -41,8 +45,23 @@ public class JwtProvider {
              .compact();
  }
 
+    public String generateRefreshToken(@NonNull BaseUser baseUser) {
+        final LocalDateTime now = LocalDateTime.now();
+        final Instant refreshExpirationInstant = now.plusDays(30).atZone(ZoneId.systemDefault()).toInstant();
+        final Date refreshExpiration = Date.from(refreshExpirationInstant);
+        return Jwts.builder()
+                .setSubject(baseUser.getEmail())
+                .setExpiration(refreshExpiration)
+                .signWith(jwtRefreshSecret)
+                .compact();
+    }
+
  public boolean validateAccessToken(@NonNull String accessToken) {
         return validateToken(accessToken, jwtAccessSecret);
+ }
+
+ public boolean validateRefreshToken(@NonNull String refreshToken) {
+        return validateToken(refreshToken, jwtRefreshSecret);
  }
 
  private boolean validateToken(@NonNull String token, @NonNull Key secret) {
@@ -69,6 +88,10 @@ public class JwtProvider {
  public Claims getAccessClaims(@NonNull String token) {
         return getClaims(token, jwtAccessSecret);
  }
+
+ public Claims getRefreshClaims(@NonNull String token) {
+        return getClaims(token, jwtRefreshSecret);
+    }
 
  private Claims getClaims(String token, Key secret) {
         return Jwts.parser()
