@@ -1,7 +1,9 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.dto.AdvertisementDto;
+import dev.TrueFood.enums.Role;
 import dev.TrueFood.exceptions.NotFoundException;
+import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.mapping.AdvertisementMapping;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
@@ -69,9 +71,11 @@ public class AdvertisementService {
 
     }
 
-    public void editAdvertisement(Long id, AdvertisementDto advertisementDto) {
+    public void editAdvertisement(Long id, JwtAuthentication authentication, AdvertisementDto advertisementDto) {
 
-        if(Objects.equals(advertisementDto.getAuthorId(), id)){
+        boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
+
+        if(Objects.equals(advertisementDto.getAuthorId(), id) || isAdmin){
             Advertisement changingAdvertisement = advertisementRepository.findById(advertisementDto.getId()).orElseThrow(() -> new NotFoundException("advertisement not found"));
 
             Advertisement changedAdvertisement = advertisementMapping.updateAdvertisement(advertisementDto, changingAdvertisement);
@@ -82,11 +86,13 @@ public class AdvertisementService {
 
     }
 
-    public void deleteAdvertisement(Long id, Long advertisementId) {
+    public void deleteAdvertisement(Long id, JwtAuthentication authentication, Long advertisementId) {
 
         Advertisement advertisement = advertisementRepository.findById(advertisementId).orElseThrow(() -> new NotFoundException("advertisement not found"));
 
-        if(advertisement.getAuthor().getId().equals(id)){
+        boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
+
+        if(advertisement.getAuthor().getId().equals(id) || isAdmin){
             advertisementRepository.delete(advertisement);
         }
     }

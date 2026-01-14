@@ -1,7 +1,9 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.dto.TaskDto;
+import dev.TrueFood.enums.Role;
 import dev.TrueFood.exceptions.NotFoundException;
+import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.mapping.ImageMapping;
 import dev.TrueFood.mapping.TaskMapping;
 import dev.TrueFood.entity.*;
@@ -110,9 +112,11 @@ public class TaskService {
         return taskRepository.findById(id).map(taskMapping::toDto).orElseThrow(() -> new NotFoundException("task not found"));
     }
 
-    public void editTask(Long id, TaskDto taskDto) {
+    public void editTask(Long id, JwtAuthentication authentication, TaskDto taskDto) {
 
-        if(Objects.equals(taskDto.getAuthorId(), id)) {
+        boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
+
+        if(Objects.equals(taskDto.getAuthorId(), id) || isAdmin) {
 
             Task changingTask = taskRepository.findById(taskDto.getId()).orElseThrow(() -> new NotFoundException("task not found"));
 
@@ -123,11 +127,13 @@ public class TaskService {
         }
     }
 
-    public void deleteTask(Long id, Long taskId) {
+    public void deleteTask(Long id, JwtAuthentication authentication, Long taskId) {
+
+        boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
 
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("task not found"));
 
-        if(task.getAuthor().getId().equals(id)) {
+        if(task.getAuthor().getId().equals(id) || isAdmin) {
             taskRepository.delete(task);
         }
     }

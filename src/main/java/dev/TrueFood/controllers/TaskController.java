@@ -109,7 +109,7 @@ public class TaskController {
     {
         Long id = authentication.getUserId();
 
-        taskService.editTask(id, taskDto);
+        taskService.editTask(id, authentication, taskDto);
     }
 
     @DeleteMapping("delete-task/{taskId}")
@@ -118,7 +118,7 @@ public class TaskController {
             @PathVariable Long taskId
     ){
         Long id = authentication.getUserId();
-        taskService.deleteTask(id, taskId);
+        taskService.deleteTask(id, authentication, taskId);
     }
 
 }

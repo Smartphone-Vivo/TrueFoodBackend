@@ -9,13 +9,13 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 import java.util.Set;
 
+
 @Getter
 @Setter
 public class JwtAuthentication implements Authentication {
 
     private boolean authenticated;
-    private String username;
-    private String firstName;
+
     private Set<Role> roles;
     private Long userId;
 
@@ -40,5 +40,7 @@ public class JwtAuthentication implements Authentication {
     }
 
     @Override
-    public String getName() { return username; }
+    public String getName() { return null; }
+
+
 }

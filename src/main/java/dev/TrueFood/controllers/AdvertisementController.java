@@ -27,7 +27,7 @@ public class AdvertisementController {
             @PathVariable(name = "page") int page,
             @PathVariable(name = "size")int size,
 
-            @RequestParam(required = false, defaultValue = "") Long categoryId,
+            @RequestParam(required = false, defaultValue = "1") Long categoryId,
             @RequestParam(required = false, defaultValue = "") String name,
             @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
 
@@ -59,6 +59,7 @@ public class AdvertisementController {
         advertisementService.addAdvertisement(advertisementDto, id);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("edit-advertisement")
     public void editAdvertisement(
             JwtAuthentication authentication,
@@ -66,9 +67,10 @@ public class AdvertisementController {
 
         Long id = authentication.getUserId();
 
-        advertisementService.editAdvertisement(id, advertisementDto);
+        advertisementService.editAdvertisement(id, authentication, advertisementDto);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("delete-advertisement/{advertisementId}")
     public void deleteAdvertisement(
             JwtAuthentication authentication,
@@ -76,7 +78,7 @@ public class AdvertisementController {
     ){
         Long id = authentication.getUserId();
 
-        advertisementService.deleteAdvertisement(id, advertisementId);
+        advertisementService.deleteAdvertisement(id, authentication, advertisementId);
 
     }
 
