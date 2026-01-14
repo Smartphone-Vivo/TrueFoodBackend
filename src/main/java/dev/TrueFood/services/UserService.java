@@ -72,4 +72,8 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
         return new ContactsDto(user.getContacts());
     }
+
+    public Page<UserDto> getAllUsers(String name, PageRequest pageRequest){
+        return userRepository.getAllUsers(name, pageRequest).map(userMapping::toDto);
+    }
 }

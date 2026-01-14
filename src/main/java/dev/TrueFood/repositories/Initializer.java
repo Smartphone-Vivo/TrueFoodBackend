@@ -27,6 +27,8 @@ public class Initializer {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
     private TaskRepository taskRepository;
 
     @PersistenceContext
@@ -49,6 +51,15 @@ public class Initializer {
 
 
         Image image1 = entityManager.merge(image2);
+
+        Admin admin = new Admin(
+                null,
+                "admin",
+                Role.ADMIN,
+                new Password(null, "admin"),
+                true
+        );
+        adminRepository.save(admin);
 
         User ludmila = new User(
                 null,
