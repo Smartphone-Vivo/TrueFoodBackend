@@ -40,7 +40,9 @@ public class AdvertisementService {
     }
 
     public AdvertisementDto getAdvertisementById(Long id){
-        return advertisementRepository.findById(id).map(advertisementMapping::toDto).orElseThrow(() -> new NotFoundException("advertisement not found"));
+        //todo hibernate n+1
+        return advertisementRepository.findById(id).map(advertisementMapping::toDto)
+                .orElseThrow(() -> new NotFoundException("advertisement not found"));
     }
 
     public Page<AdvertisementDto> getAdvertisementsByUser(Long id, PageRequest pageRequest){
@@ -50,8 +52,8 @@ public class AdvertisementService {
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
         if(Objects.equals(advertisementDto.getAuthorId(), id)){
 
+            //todo
             Image image = imageMapping.toEntity(advertisementDto.getImages());
-
             imageRepository.save(image);
 
             Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
@@ -59,10 +61,12 @@ public class AdvertisementService {
             advertisement.setImages(image);
 
             Long categoryId = advertisementDto.getCategoryId();
+            //todo remove
             Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
             advertisement.setCategory(category);
 
             Long authorId = advertisementDto.getAuthorId();
+            //todo remove
             User author = userRepository.findById(authorId).orElseThrow(() -> new NotFoundException("user not found"));
             advertisement.setAuthor(author);
 

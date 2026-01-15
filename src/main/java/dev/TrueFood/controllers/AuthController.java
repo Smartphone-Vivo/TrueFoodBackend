@@ -19,6 +19,7 @@ public class AuthController {
     private final AuthService authService;
     private final RegisterService registerService;
 
+    //todo responseentity
     @PostMapping("login")
     public ResponseEntity<JwtResponse> login(@RequestBody SignInRequest signInRequest){
         final JwtResponse token = authService.login(signInRequest);

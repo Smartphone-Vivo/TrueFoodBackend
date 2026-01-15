@@ -31,8 +31,10 @@ public class AdvertisementController {
             @RequestParam(required = false, defaultValue = "") String name,
             @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
 
-        PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
-        return advertisementService.getAdvertisements(name ,categoryId, pageRequest);
+        return advertisementService.getAdvertisements(name ,
+                categoryId,
+                PageUtils.createPageRequest(page, size, sort)
+        );
     }
 
     @GetMapping("{id}")

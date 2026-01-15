@@ -47,6 +47,8 @@ public class UserService {
 
             int rating = 0;
 
+            //todo native sql update rating
+            //todo look at n+1
             for(Review rev : user.getReviews()){
                 rating += rev.getRating();
             }
@@ -61,6 +63,7 @@ public class UserService {
             }
 
             reviewRepository.save(review);
+
             List<Review> userReviews = user.getReviews();
             userReviews.add(review);
             user.setReviews(userReviews);

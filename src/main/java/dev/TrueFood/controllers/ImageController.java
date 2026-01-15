@@ -25,13 +25,13 @@ public class ImageController {
 
     @PostMapping("/upload")
     public ResponseEntity<List<UploadResponse>> uploadFile(
-
-            @RequestParam("file") MultipartFile[] files){
+            @RequestParam("file") MultipartFile[] files
+    ){
         if(files.length == 0){
             return ResponseEntity.badRequest().build();
         }
 
-        List<String> fileUrls = new ArrayList<>();
+        //List<String> fileUrls = new ArrayList<>();
         List<UploadResponse> responses = new ArrayList<>();
 
         try{
@@ -46,12 +46,14 @@ public class ImageController {
                             file.getContentType()
                     );
                     responses.add(uploadResponse);
-                    fileUrls.add(fileUrl);
+                   // fileUrls.add(fileUrl);
                 }
             }
             return ResponseEntity.ok(responses);
 
-        }catch (Exception e){
+        }
+        catch (Exception e){
+            //todo controller advice
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 

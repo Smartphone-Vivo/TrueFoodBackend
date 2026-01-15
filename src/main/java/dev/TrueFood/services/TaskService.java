@@ -48,10 +48,13 @@ public class TaskService {
         task.setImages(image);
 
         Long taskId = taskDto.getCategoryId();
+
+        //todo ???
         Category category = categoryRepository.findById(taskId).orElseThrow(() -> new NotFoundException("category not found"));
         task.setCategory(category);
 
         Long authorId = taskDto.getAuthorId();
+        //todo ???
         User author = userRepository.findById(authorId).orElseThrow(() -> new NotFoundException("user not found"));
         task.setAuthor(author); //todo вот это возможно можно удалить
 

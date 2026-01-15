@@ -31,8 +31,15 @@ public class Category {
 
     String name;
 
-    @JsonIgnore
-    List<Long> childrenId = new ArrayList<>();
+//    //todo ???
+//    @JsonIgnore
+//    List<Long> childrenId = new ArrayList<>();
+
+    //todo где хранится(мое)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn("category_id")
+    List<Category> childrenId;
+
 
     public Category(Category parent, String name) {
 

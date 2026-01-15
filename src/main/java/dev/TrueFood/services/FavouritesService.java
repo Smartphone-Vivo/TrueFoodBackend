@@ -29,8 +29,10 @@ public class FavouritesService {
     public void deleteFavouriteAdvertisement(Long id, Long advId) {
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
         Advertisement advertisement = advertisementRepository.findById(advId).orElseThrow(() -> new NotFoundException("advertisement not found"));
+
+        //todo n+1 ??
         List<Advertisement> userFavourites = user.getFavourites();
-        if(user.getFavourites().contains(advertisement)){
+        if(userFavourites.contains(advertisement)){
             userFavourites.remove(advertisement);
             user.setFavourites(userFavourites);
             userRepository.save(user);
@@ -38,8 +40,10 @@ public class FavouritesService {
     }
 
     public void addToFavourites(Long id, Long advId){
+        //todo n+1 ???
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
-        Advertisement advertisement = advertisementRepository.findById(advId).orElseThrow(() -> new NotFoundException("advertisement not found"));
+        Advertisement advertisement = advertisementRepository.findById(advId)
+                .orElseThrow(() -> new NotFoundException("advertisement not found"));
 
         List<Advertisement> userFavourites = user.getFavourites();
 

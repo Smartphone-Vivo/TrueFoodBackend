@@ -41,6 +41,8 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id") //todo nullable
+
+    //todo ???
     @JsonIgnoreProperties({"parent", "advertisements"})
     private Category category;
 
