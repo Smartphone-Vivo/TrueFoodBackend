@@ -33,3 +33,21 @@ services:
       retries: 5
     volumes:
       - ./db_data:/var/lib/postgresql/data
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - SPRING_PROFILES_ACTIVE=docker
+    container_name: truefood-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/postgres"
+
+      JAVA_OPTS: '-Xmx512m'
