@@ -21,7 +21,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"reviews", "favourites", "password"})
+    @JsonIgnoreProperties({"reviews", "favourites", "password"}) //todo jsonIgnore повыпиливать
     User user;
 
     private Long authorId;

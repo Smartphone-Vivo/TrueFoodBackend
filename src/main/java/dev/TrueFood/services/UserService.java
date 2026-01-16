@@ -2,9 +2,11 @@ package dev.TrueFood.services;
 
 import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.dto.ContactsDto;
+import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.dto.UserDto;
 import dev.TrueFood.exceptions.NotFoundException;
 import dev.TrueFood.mapping.AdvertisementMapping;
+import dev.TrueFood.mapping.ReviewMapping;
 import dev.TrueFood.mapping.UserMapping;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Review;
@@ -23,10 +25,9 @@ import java.util.Objects;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final AdvertisementRepository advertisementRepository;
     private final ReviewRepository reviewRepository;
-    private final AdvertisementMapping advertisementMapping;
     private final UserMapping userMapping;
+    private final ReviewMapping reviewMapping;
 
     public UserDto getMyProfile(Long id){
         return userRepository.findById(id).map(userMapping::toDto).orElse(null);
@@ -38,7 +39,7 @@ public class UserService {
         return userMapping.toDto(user);
     }
 
-    public void addReview(Review review, Long id, Long userId){
+    public void addReview(ReviewDto reviewDto, Long id, Long userId){
         if(Objects.equals(id, userId)){
             throw new RuntimeException("самолайк отклонен(");
         }
@@ -53,14 +54,16 @@ public class UserService {
                 rating += rev.getRating();
             }
 
-            rating += review.getRating();
+            rating += reviewDto.getRating();
 
             if(user.getReviews().isEmpty()){
-                user.setRating(review.getRating());
+                user.setRating(reviewDto.getRating());
             }
             else{
                 user.setRating(rating / (user.getReviews().size() + 1));
             }
+
+            Review review = reviewMapping.toEntity(reviewDto);
 
             reviewRepository.save(review);
 

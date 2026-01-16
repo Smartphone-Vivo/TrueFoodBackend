@@ -1,5 +1,6 @@
 package dev.TrueFood.controllers;
 
+import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.UserService;
@@ -19,10 +20,10 @@ public class ReviewController {
     @PostMapping("add-review/{userId}")
     public void addReview(
             @PathVariable(name = "userId") Long userId,
-            @RequestBody Review review, //todo entity - dto
+            @RequestBody ReviewDto reviewDto, //todo entity - dto
             JwtAuthentication authentication){
         Long id = authentication.getUserId();
-        userService.addReview(review, id, userId);
+        userService.addReview(reviewDto, id, userId);
     }
 
 }
