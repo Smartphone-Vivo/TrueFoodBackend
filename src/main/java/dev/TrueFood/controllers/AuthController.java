@@ -19,12 +19,10 @@ public class AuthController {
     private final AuthService authService;
     private final RegisterService registerService;
 
-    //todo responseentity
+    //todo [готово] responseentity
     @PostMapping("login")
-    public ResponseEntity<JwtResponse> login(@RequestBody SignInRequest signInRequest){
-        final JwtResponse token = authService.login(signInRequest);
-
-        return ResponseEntity.ok(token);
+    public JwtResponse login(@RequestBody SignInRequest signInRequest){
+        return authService.login(signInRequest);
     }
 
     @PostMapping("register")
@@ -34,15 +32,13 @@ public class AuthController {
     }
 
     @PostMapping("token")
-    public ResponseEntity<JwtResponse> getNewAccessToken(@RequestBody RefreshJwtRequest request) {
-        final JwtResponse token = authService.getAccessToken(request.getRefreshToken());
-        return ResponseEntity.ok(token);
+    public JwtResponse getNewAccessToken(@RequestBody RefreshJwtRequest request) {
+        return authService.getAccessToken(request.getRefreshToken());
     }
 
     @PostMapping("refresh")
-    public ResponseEntity<JwtResponse> getNewRefreshToken(@RequestBody RefreshJwtRequest request) {
-        final JwtResponse token = authService.refresh(request.getRefreshToken());
-        return ResponseEntity.ok(token);
+    public JwtResponse getNewRefreshToken(@RequestBody RefreshJwtRequest request) {
+        return authService.refresh(request.getRefreshToken());
     }
 
 

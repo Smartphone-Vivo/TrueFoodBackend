@@ -33,11 +33,18 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     """)
     Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
 
-        @EntityGraph(value = "order-graph", type = EntityGraph.EntityGraphType.FETCH)
-        @Query("""
-        SELECT a FROM User u
-        JOIN u.favourites a
-        WHERE u.id = :id
-        """)
+    @EntityGraph(value = "order-graph", type = EntityGraph.EntityGraphType.FETCH)
+    @Query("""
+    SELECT a FROM User u
+    JOIN u.favourites a
+    WHERE u.id = :id
+    """)
     Page<Advertisement> getFavouritesAdvertisements(@Param("id") Long id, PageRequest pageRequest);
+
+    @EntityGraph(value = "order-graph", type = EntityGraph.EntityGraphType.FETCH)
+    @Query("""
+    SELECT a FROM Advertisement a
+    WHERE a.id = :id
+    """)
+    Advertisement findAdvertisementById(@Param("id") Long id);
 }

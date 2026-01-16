@@ -48,7 +48,7 @@ public class Order {
 
     private int price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "images_id")
     private Image images; //todo поменять название
 

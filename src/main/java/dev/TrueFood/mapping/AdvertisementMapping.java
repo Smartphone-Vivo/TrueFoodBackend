@@ -9,8 +9,9 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface AdvertisementMapping {
 
-    @Mapping(target = "categoryId", expression = "java(advertisement.getCategory().getId())")
-    @Mapping(target = "authorId", expression = "java(advertisement.getAuthor().getId())")
+    //todo(мое) n+1
+//    @Mapping(target = "categoryId", expression = "java(advertisement.getCategory().getId())")
+//    @Mapping(target = "authorId", expression = "java(advertisement.getAuthor().getId())")
     AdvertisementDto toDto(Advertisement advertisement);
 
 

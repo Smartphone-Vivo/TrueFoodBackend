@@ -11,6 +11,7 @@ import dev.TrueFood.entity.Image;
 import dev.TrueFood.entity.User;
 import dev.TrueFood.mapping.ImageMapping;
 import dev.TrueFood.repositories.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,39 +41,30 @@ public class AdvertisementService {
     }
 
     public AdvertisementDto getAdvertisementById(Long id){
-        //todo hibernate n+1
-        return advertisementRepository.findById(id).map(advertisementMapping::toDto)
-                .orElseThrow(() -> new NotFoundException("advertisement not found"));
+        //todo [готово] hibernate n+1
+
+        return advertisementMapping.toDto(advertisementRepository.findAdvertisementById(id));
+
     }
 
     public Page<AdvertisementDto> getAdvertisementsByUser(Long id, PageRequest pageRequest){
         return advertisementRepository.getAdverticementByUser(id, pageRequest).map(advertisementMapping::toDto);
     }
 
+    @Transactional
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
-        if(Objects.equals(advertisementDto.getAuthorId(), id)){
-
-            //todo
-            Image image = imageMapping.toEntity(advertisementDto.getImages());
-            imageRepository.save(image);
+        if(Objects.equals(advertisementDto.getAuthorId(), id)){ //проверка на авторство, просто поверь ткт нет дыры в безопасности
 
             Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
 
-            advertisement.setImages(image);
+            advertisement.setAuthor(userRepository.getReferenceById(advertisementDto.getAuthorId()));
 
-            Long categoryId = advertisementDto.getCategoryId();
-            //todo remove
-            Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
-            advertisement.setCategory(category);
-
-            Long authorId = advertisementDto.getAuthorId();
-            //todo remove
-            User author = userRepository.findById(authorId).orElseThrow(() -> new NotFoundException("user not found"));
-            advertisement.setAuthor(author);
+            advertisement.setCategory(categoryRepository.getReferenceById(advertisementDto.getCategoryId()));
 
             advertisementRepository.save(advertisement);
         }
 
+        //todo(мое) exception
     }
 
     public void editAdvertisement(Long id, JwtAuthentication authentication, AdvertisementDto advertisementDto) {

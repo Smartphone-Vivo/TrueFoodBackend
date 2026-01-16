@@ -39,26 +39,18 @@ public class TaskService {
 
     public void addTask(TaskDto taskDto, Long id) {
 
-        Image image = imageMapping.toEntity(taskDto.getImages());
+        if (Objects.equals(taskDto.getAuthorId(), id)) {
 
-        imageRepository.save(image);
+            Task  task = taskMapping.toEntity(taskDto);
 
-        Task  task = taskMapping.toEntity(taskDto);
+            task.setAuthor(userRepository.getReferenceById(taskDto.getAuthorId()));
 
-        task.setImages(image);
+            task.setCategory(categoryRepository.getReferenceById(taskDto.getCategoryId()));
 
-        Long taskId = taskDto.getCategoryId();
+            taskRepository.save(task);
+        }
 
-        //todo ???
-        Category category = categoryRepository.findById(taskId).orElseThrow(() -> new NotFoundException("category not found"));
-        task.setCategory(category);
 
-        Long authorId = taskDto.getAuthorId();
-        //todo ???
-        User author = userRepository.findById(authorId).orElseThrow(() -> new NotFoundException("user not found"));
-        task.setAuthor(author); //todo вот это возможно можно удалить
-
-        taskRepository.save(task);
     }
 
 
@@ -97,7 +89,6 @@ public class TaskService {
             task.setWorkers(workers);
             taskRepository.save(task);
         }
-
     }
 
     public void confirmWorker(Long id, Long taskId, Long workerId) {
