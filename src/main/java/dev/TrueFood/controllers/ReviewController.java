@@ -20,7 +20,7 @@ public class ReviewController {
     @PostMapping("add-review/{userId}")
     public void addReview(
             @PathVariable(name = "userId") Long userId,
-            @RequestBody ReviewDto reviewDto, //todo entity - dto
+            @RequestBody ReviewDto reviewDto, //todo [готово] entity - dto
             JwtAuthentication authentication){
         Long id = authentication.getUserId();
         userService.addReview(reviewDto, id, userId);

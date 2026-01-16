@@ -25,21 +25,17 @@ public class User extends BaseUser {
     private int rating;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
     @JoinTable(
             name = "user_favourites",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "Orders_id")
     )
-    @JsonIgnoreProperties({"author", "favourites"})
     private List<Advertisement> favourites;
 
      @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-     @JsonIgnore
      @JoinColumn(name = "reviews_id")
      private List<Review> reviews;
 
-     @JsonIgnore
      private String contacts;
 
     public User(Long id, String email, Image avatar, Role role, Password password, boolean enable, String fio, int rating, String contacts) {

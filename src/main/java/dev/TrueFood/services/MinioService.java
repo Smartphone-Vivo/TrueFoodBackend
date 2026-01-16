@@ -1,5 +1,6 @@
 package dev.TrueFood.services;
 
+import dev.TrueFood.exceptions.NotFoundException;
 import dev.TrueFood.repositories.ImageRepository;
 import io.minio.*;
 import io.minio.http.Method;
@@ -35,7 +36,7 @@ public class MinioService {
         }
     }
 
-    public String uploadFile(MultipartFile file) throws IOException {
+    public String uploadFile(MultipartFile file) {
         try{
         String fileName = generateFileName(file.getOriginalFilename());
 
@@ -50,7 +51,7 @@ public class MinioService {
 
             return getFileUrl(fileName);
         }catch (Exception e){
-            throw new IOException(e.getMessage());
+            throw new NotFoundException("Failed to upload file: " + e.getMessage());
         }
     }
 
@@ -74,7 +75,7 @@ public class MinioService {
                             .build()
             );
         } catch (Exception e){
-            throw new RuntimeException(e);
+            throw new NotFoundException("Failed to get file url: " + e.getMessage());
         }
     }
 

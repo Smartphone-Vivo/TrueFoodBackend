@@ -31,8 +31,7 @@ public class Category {
 
     String name;
 
-    //todo ???
-    @JsonIgnore
+    //todo ??? (хз пока)
     List<Long> childrenId = new ArrayList<>();
 
 //    //todo где хранится(мое)

@@ -43,7 +43,6 @@ public class Order {
     @JoinColumn(name = "category_id") //todo nullable
 
     //todo ???
-    @JsonIgnoreProperties({"parent", "advertisements"})
     private Category category;
 
     private int price;
@@ -56,7 +55,6 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
-    @JsonIgnore
     private User author;
 
     private Date createdAt;

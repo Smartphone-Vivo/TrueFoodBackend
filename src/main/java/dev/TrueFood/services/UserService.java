@@ -5,10 +5,8 @@ import dev.TrueFood.dto.ContactsDto;
 import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.dto.UserDto;
 import dev.TrueFood.exceptions.NotFoundException;
-import dev.TrueFood.mapping.AdvertisementMapping;
 import dev.TrueFood.mapping.ReviewMapping;
 import dev.TrueFood.mapping.UserMapping;
-import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.User;
 import dev.TrueFood.repositories.*;
@@ -21,7 +19,6 @@ import java.util.List;
 import java.util.Objects;
 @Service
 @RequiredArgsConstructor
-
 public class UserService {
 
     private final UserRepository userRepository;

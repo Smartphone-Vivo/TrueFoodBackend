@@ -29,8 +29,6 @@ public class AdvertisementService {
     private final CategoryRepository categoryRepository;
     private final AdvertisementMapping advertisementMapping;
     private final UserRepository userRepository;
-    private final ImageMapping imageMapping;
-    private final ImageRepository imageRepository;
 
 
     public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {

@@ -28,7 +28,6 @@ public class BaseUser{
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "password_id", nullable = false)
-    @JsonIgnore
     private Password password;
 
     private boolean enable;
