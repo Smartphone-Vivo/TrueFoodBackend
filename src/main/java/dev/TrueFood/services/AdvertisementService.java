@@ -41,10 +41,17 @@ public class AdvertisementService {
     }
 
     public AdvertisementDto getAdvertisementById(Long id){
-        //todo [готово] hibernate n+1
+        //todo (вот по этой теме спросить) [готово] hibernate n+1
+        //todo спросить, в репозитории оно же подгружает и автора и категорию одним запросом то есть то что я в маппере делаю по идее n+1 не вызывает
+        Advertisement advertisement = advertisementRepository.findAdvertisementById(id);
 
-        return advertisementMapping.toDto(advertisementRepository.findAdvertisementById(id));
+        AdvertisementDto advertisementDto = advertisementMapping.toDto(advertisement);
 
+        advertisementDto.setAuthorId(advertisement.getAuthor().getId());
+
+        advertisementDto.setCategoryId(advertisement.getCategory().getId());
+
+        return advertisementDto;
     }
 
     public Page<AdvertisementDto> getAdvertisementsByUser(Long id, PageRequest pageRequest){
@@ -53,7 +60,7 @@ public class AdvertisementService {
 
     @Transactional
     public void addAdvertisement(AdvertisementDto advertisementDto, Long id) {
-        if(Objects.equals(advertisementDto.getAuthorId(), id)){ //проверка на авторство, просто поверь ткт нет дыры в безопасности
+        if(Objects.equals(advertisementDto.getAuthorId(), id)){
 
             Advertisement advertisement = advertisementMapping.toEntity(advertisementDto);
 
