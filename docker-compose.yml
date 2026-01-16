@@ -1,53 +1,34 @@
 services:
   minio:
     image: quay.io/minio/aistor/minio:RELEASE.2025-12-20T04-58-37Z
-    container_name: minio
     ports:
       - "9000:9000"
       - "9001:9001"
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
-      MINIO_LICENSE: |
-        eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCJ9.eyJhaWQiOjAsImNhcCI6MCwiaWF0IjoxLjc2NjkzOTU2OTgzODE3MTk1MmU5LCJpc3MiOiJzdWJuZXRAbWluLmlvIiwibGlkIjoiZDE4YjE2MmUtMGRlZC00Y2Y0LWEzZWQtZTBjNTQzOGE4NGVlIiwib3JnIjoiIiwicGxhbiI6IkZSRUUiLCJzdWIiOiJhbGVrc2VqcG9wb3YyNjhAZ21haWwuY29tIiwidHJpYWwiOmZhbHNlfQ.crPZIRBsmI-pdSP4LZRIw3jvVqxm4ln-bkreffbkGM4lTDDPo8eOJJHngRPD3SzIEiIcw-aZSwaXxWQ8RQv6e6MNGFs3yhBaNHU3sh-l-yQyw4XXz1m6ynwItxoy-hJv
-      MINIO_CORS_ALLOWED_ORIGINS: "http://localhost:4200,https://example.com"
-      MINIO_CORS_ALLOWED_METHODS: "GET,POST,PUT,DELETE"
-      MINIO_CORS_ALLOWED_HEADERS: "*"
-      MINIO_CORS_EXPOSE_HEADERS: "ETag"
-      MINIO_CORS_MAX_AGE: "3000"
     volumes:
       - ./minio-data:/data
     command: server /data --console-address ":9001"
+
   db:
     image: postgres:17
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: postgres123
       POSTGRES_USER: postgres
-      POSTGRES_DB: TrueFood
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      POSTGRES_DB: postgres
     volumes:
       - ./db_data:/var/lib/postgresql/data
+
   app:
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - SPRING_PROFILES_ACTIVE=docker
-    container_name: truefood-app
+    build: .
     ports:
       - "8080:8080"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+      - minio
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/postgres"
-
       JAVA_OPTS: '-Xmx512m'
