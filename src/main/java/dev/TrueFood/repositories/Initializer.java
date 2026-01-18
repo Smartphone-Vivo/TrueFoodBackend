@@ -39,10 +39,13 @@ public class Initializer {
     @Transactional
     public void initial() {
 
-        imageUrls.add("http://localhost:9000/images/d7a87ed4-f8f1-4c00-94fd-e1fb47bd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260114T223610Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0c6c54375c962a02f6bb6bed144e722c44c3e2e36493857c0bd0635eae6c0510");
-        imageUrls.add("http://localhost:9000/images/16305699-f3c3-4597-aa66-36affafd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260114T223610Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=89d2dfba71218a94973ba4dbe608cd0c0fe3584380bdf7ecf488152e96550055");
-        imageUrls.add("http://localhost:9000/images/fa4b5798-6d89-433e-aaf4-a689d2a7.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260114T223610Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8deffebcb3914127bb6d290366590ab3056b890376d7f603f27031d20b7dd426");
+//        imageUrls.add("http://localhost:9000/images/d7a87ed4-f8f1-4c00-94fd-e1fb47bd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260114T223610Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0c6c54375c962a02f6bb6bed144e722c44c3e2e36493857c0bd0635eae6c0510");
+//        imageUrls.add("http://localhost:9000/images/16305699-f3c3-4597-aa66-36affafd.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260114T223610Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=89d2dfba71218a94973ba4dbe608cd0c0fe3584380bdf7ecf488152e96550055");
+//        imageUrls.add("http://localhost:9000/images/fa4b5798-6d89-433e-aaf4-a689d2a7.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260114T223610Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8deffebcb3914127bb6d290366590ab3056b890376d7f603f27031d20b7dd426");
 
+        imageUrls.add("http://localhost:9000/images/ae5bac41-15de-480f-8696-9e9b1937.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260113T203109Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8bc66fe15c976081c71bdc252044e6a6b531949b0845cf6b2e61a5ce2eaab33b");
+        imageUrls.add("http://localhost:9000/images/4616dfb4-44ca-4de9-ad0d-a15bac1b.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260113T203109Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=65b553d21840cd524b405413b7ce56a81be7b7d014e4901ba771224a65aba88c");
+        imageUrls.add("http://localhost:9000/images/650190fe-33b1-40ec-940f-d45b1d45.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260113T203109Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=a6550a955146e854ab983371543f6e323333ea50822b696f989e7e554e5394a3");
 
         Image image2 = new Image(
                 null,

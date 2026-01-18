@@ -4,6 +4,7 @@ import dev.TrueFood.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -26,5 +27,30 @@ public interface UserRepository extends JpaRepository<User, Long> {
     """)
     Page<User> getAllUsers (String name,
                             PageRequest pageRequest);
+
+    @Query("""
+    SELECT COUNT(f) > 0 FROM User u
+    JOIN u.favourites f WHERE u.id = :userId
+    AND f.id = :advId
+""")
+    boolean isAdvertisementIdFavourites(
+            @Param("userId") Long userId,
+            @Param("advId") Long advId);
+
+    @Modifying
+    @Query(value = "INSERT INTO user_favourites (users_id, orders_id)" +
+                    "VALUES(:userId, :advId)", nativeQuery = true)
+    void addToFavouritesNative(
+            @Param("userId") Long userId,
+            @Param("advId") Long advId
+    );
+
+    @Modifying
+    @Query(value = "DELETE FROM user_favourites " +
+            "WHERE users_id = :userId AND orders_id = :advId", nativeQuery = true)
+    void removeFromFavouritesNative(
+            @Param("userId") Long userId,
+            @Param("advId") Long advId
+    );
 
 }

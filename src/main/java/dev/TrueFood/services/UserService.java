@@ -36,6 +36,7 @@ public class UserService {
         return userMapping.toDto(user);
     }
 
+
     public void addReview(ReviewDto reviewDto, Long id, Long userId){
         if(Objects.equals(id, userId)){
             throw new RuntimeException("самолайк отклонен(");
@@ -70,6 +71,41 @@ public class UserService {
             userRepository.save(user);
         }
     }
+
+//    public void addReview(ReviewDto reviewDto, Long id, Long userId){
+//        if(Objects.equals(id, userId)){
+//            throw new RuntimeException("самолайк отклонен(");
+//        }
+//        else{
+//            User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("user not found"));
+//
+//            int rating = 0;
+//
+//            //todo native sql update rating
+//            //todo look at n+1
+//            for(Review rev : user.getReviews()){
+//                rating += rev.getRating();
+//            }
+//
+//            rating += reviewDto.getRating();
+//
+//            if(user.getReviews().isEmpty()){
+//                user.setRating(reviewDto.getRating());
+//            }
+//            else{
+//                user.setRating(rating / (user.getReviews().size() + 1));
+//            }
+//
+//            Review review = reviewMapping.toEntity(reviewDto);
+//
+//            reviewRepository.save(review);
+//
+//            List<Review> userReviews = user.getReviews();
+//            userReviews.add(review);
+//            user.setReviews(userReviews);
+//            userRepository.save(user);
+//        }
+//    }
 
     public ContactsDto getUserContacts(Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));

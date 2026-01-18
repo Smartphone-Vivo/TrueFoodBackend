@@ -46,14 +46,14 @@ public class FavouritesController {
         favouritesService.addToFavourites(id, advId);
     }
 
-    @PreAuthorize("isAuthenticated()")
-    @DeleteMapping("delete-favourite-advertisement/{advId}")
-    public void deleteFavouriteAdvertisement(
-            JwtAuthentication authentication,
-            @PathVariable(name = "advId") Long advId
-    ){
-        Long id = authentication.getUserId();
-        favouritesService.deleteFavouriteAdvertisement(id, advId);
-    }
+//    @PreAuthorize("isAuthenticated()")
+//    @DeleteMapping("delete-favourite-advertisement/{advId}")
+//    public void deleteFavouriteAdvertisement(
+//            JwtAuthentication authentication,
+//            @PathVariable(name = "advId") Long advId
+//    ){
+//        Long id = authentication.getUserId();
+//        favouritesService.deleteFavouriteAdvertisement(id, advId);
+//    }
 
 }
