@@ -31,10 +31,9 @@ public class Category {
 
     String name;
 
-    //todo ??? (хз пока)
+    //todo ???
     List<Long> childrenId = new ArrayList<>();
 
-//    //todo где хранится(мое)
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn("category_id")
 //    List<Category> childrenId;

@@ -1,6 +1,5 @@
 package dev.TrueFood.services;
 
-import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.dto.ContactsDto;
 import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.dto.UserDto;
@@ -16,7 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 @Service
 @RequiredArgsConstructor
@@ -44,7 +42,6 @@ public class UserService {
         }
 
 
-        //todo native sql update rating
         //todo look at n+1
 
 

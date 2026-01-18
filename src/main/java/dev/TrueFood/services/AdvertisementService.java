@@ -39,8 +39,6 @@ public class AdvertisementService {
     }
 
     public AdvertisementDto getAdvertisementById(Long id){
-        //todo (вот по этой теме спросить) [готово] hibernate n+1
-        //todo спросить, в репозитории оно же подгружает и автора и категорию одним запросом то есть то что я в маппере делаю по идее n+1 не вызывает
         Advertisement advertisement = advertisementRepository.findAdvertisementById(id);
 
         AdvertisementDto advertisementDto = advertisementMapping.toDto(advertisement);
@@ -69,7 +67,6 @@ public class AdvertisementService {
             advertisementRepository.save(advertisement);
         }
 
-        //todo(мое) exception
     }
 
     public void editAdvertisement(Long id, JwtAuthentication authentication, AdvertisementDto advertisementDto) {

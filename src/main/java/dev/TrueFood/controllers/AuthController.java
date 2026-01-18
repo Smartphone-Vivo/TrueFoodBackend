@@ -19,7 +19,6 @@ public class AuthController {
     private final AuthService authService;
     private final RegisterService registerService;
 
-    //todo [готово] responseentity
     @PostMapping("login")
     public JwtResponse login(@RequestBody SignInRequest signInRequest){
         return authService.login(signInRequest);
