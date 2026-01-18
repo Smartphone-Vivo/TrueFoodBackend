@@ -22,7 +22,7 @@ public class User extends BaseUser {
     @JoinColumn(name = "images_id")
     private Image avatar;
 
-    private int rating;
+    private int rating = 0;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

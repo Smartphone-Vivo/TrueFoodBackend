@@ -1,5 +1,6 @@
 package dev.TrueFood.repositories;
 
+import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,5 +53,18 @@ public interface UserRepository extends JpaRepository<User, Long> {
             @Param("userId") Long userId,
             @Param("advId") Long advId
     );
+
+
+    @Modifying
+    @Query(value = """
+    UPDATE users u
+    SET rating = ROUND((
+        SELECT AVG(r.rating)
+        FROM reviews r
+        WHERE r.user_id = :userId
+    ))
+    WHERE u.id = :userId
+""", nativeQuery = true)
+    void updateUserRating(@Param("userId") Long userId);
 
 }

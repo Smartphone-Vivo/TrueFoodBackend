@@ -9,8 +9,6 @@ public class ReviewDto {
 
     private Long id;
 
-    private UserDto user;
-
     private Long authorId;
 
     private int rating;

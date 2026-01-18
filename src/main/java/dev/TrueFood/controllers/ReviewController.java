@@ -22,8 +22,8 @@ public class ReviewController {
             @PathVariable(name = "userId") Long userId,
             @RequestBody ReviewDto reviewDto, //todo [готово] entity - dto
             JwtAuthentication authentication){
-        Long id = authentication.getUserId();
-        userService.addReview(reviewDto, id, userId);
+        Long authorId = authentication.getUserId();
+        userService.addReview(reviewDto, authorId, userId);
     }
 
 }

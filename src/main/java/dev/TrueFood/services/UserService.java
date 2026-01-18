@@ -10,6 +10,7 @@ import dev.TrueFood.mapping.UserMapping;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.User;
 import dev.TrueFood.repositories.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,76 +37,47 @@ public class UserService {
         return userMapping.toDto(user);
     }
 
-
-    public void addReview(ReviewDto reviewDto, Long id, Long userId){
-        if(Objects.equals(id, userId)){
+    @Transactional
+    public void addReview(ReviewDto reviewDto, Long authorId, Long userId){
+        if(Objects.equals(authorId, userId)) {
             throw new RuntimeException("самолайк отклонен(");
         }
-        else{
-            User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("user not found"));
 
-            int rating = 0;
 
-            //todo native sql update rating
-            //todo look at n+1
-            for(Review rev : user.getReviews()){
-                rating += rev.getRating();
-            }
+        //todo native sql update rating
+        //todo look at n+1
 
-            rating += reviewDto.getRating();
 
-            if(user.getReviews().isEmpty()){
-                user.setRating(reviewDto.getRating());
-            }
-            else{
-                user.setRating(rating / (user.getReviews().size() + 1));
-            }
-
-            Review review = reviewMapping.toEntity(reviewDto);
-
-            reviewRepository.save(review);
-
-            List<Review> userReviews = user.getReviews();
-            userReviews.add(review);
-            user.setReviews(userReviews);
-            userRepository.save(user);
+        if(!userRepository.existsById(authorId)) {
+            throw new RuntimeException("Author not found");
         }
+
+        if(!userRepository.existsById(userId)) {
+            throw new RuntimeException("user not found");
+        }
+
+        if(reviewDto.getRating() < 1 || reviewDto.getRating() > 5) {
+            throw new RuntimeException("Rating must 1 > 5");
+        }
+
+        Review review = reviewMapping.toEntity(reviewDto);
+
+        User user = userRepository.findByUserId(userId);
+
+        review.setUser(user);
+
+        reviewRepository.save(review);
+
+        user.getReviews().add(review);
+
+        userRepository.updateUserRating(userId);
+
+        userRepository.save(user);
     }
 
-//    public void addReview(ReviewDto reviewDto, Long id, Long userId){
-//        if(Objects.equals(id, userId)){
-//            throw new RuntimeException("самолайк отклонен(");
-//        }
-//        else{
-//            User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("user not found"));
-//
-//            int rating = 0;
-//
-//            //todo native sql update rating
-//            //todo look at n+1
-//            for(Review rev : user.getReviews()){
-//                rating += rev.getRating();
-//            }
-//
-//            rating += reviewDto.getRating();
-//
-//            if(user.getReviews().isEmpty()){
-//                user.setRating(reviewDto.getRating());
-//            }
-//            else{
-//                user.setRating(rating / (user.getReviews().size() + 1));
-//            }
-//
-//            Review review = reviewMapping.toEntity(reviewDto);
-//
-//            reviewRepository.save(review);
-//
-//            List<Review> userReviews = user.getReviews();
-//            userReviews.add(review);
-//            user.setReviews(userReviews);
-//            userRepository.save(user);
-//        }
-//    }
+
+
+
 
     public ContactsDto getUserContacts(Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));

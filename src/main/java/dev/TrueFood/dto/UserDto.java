@@ -30,6 +30,6 @@ public class UserDto {
     @JsonIgnore
     private List<AdvertisementDto> favourites;
 
-    private List<Review> reviews;
+    private List<ReviewDto> reviews;
 
 }
