@@ -1,5 +1,6 @@
 package dev.TrueFood.services;
 
+import dev.TrueFood.exceptions.FailedUploadException;
 import dev.TrueFood.exceptions.NotFoundException;
 import dev.TrueFood.repositories.ImageRepository;
 import io.minio.*;
@@ -18,7 +19,6 @@ import java.util.UUID;
 public class MinioService {
 
     private final MinioClient minioClient;
-    private final ImageRepository imageRepository;
 
     @Value("${minio.bucket-name}")
     private String bucketName;
@@ -51,7 +51,7 @@ public class MinioService {
 
             return getFileUrl(fileName);
         }catch (Exception e){
-            throw new NotFoundException("Failed to upload file: " + e.getMessage());
+            throw new FailedUploadException("Failed to upload file: " + e.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class MinioService {
                             .build()
             );
         } catch (Exception e){
-            throw new NotFoundException("Failed to get file url: " + e.getMessage());
+            throw new FailedUploadException("Failed to get file url: " + e.getMessage());
         }
     }
 

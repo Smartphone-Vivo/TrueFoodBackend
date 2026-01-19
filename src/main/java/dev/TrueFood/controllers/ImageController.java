@@ -2,13 +2,9 @@ package dev.TrueFood.controllers;
 
 
 import dev.TrueFood.dto.UploadResponse;
-import dev.TrueFood.repositories.ImageRepository;
+import dev.TrueFood.exceptions.FailedUploadException;
 import dev.TrueFood.services.MinioService;
-import io.minio.MinioClient;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,14 +20,13 @@ public class ImageController {
     private final MinioService minioService;
 
     @PostMapping("/upload")
-    public ResponseEntity<List<UploadResponse>> uploadFile(
+    public List<UploadResponse> uploadFile(
             @RequestParam("file") MultipartFile[] files
     ){
         if(files.length == 0){
-            return ResponseEntity.badRequest().build();
+           throw new FailedUploadException("failed upload file");
         }
 
-        //List<String> fileUrls = new ArrayList<>();
         List<UploadResponse> responses = new ArrayList<>();
 
         try{
@@ -46,15 +41,13 @@ public class ImageController {
                             file.getContentType()
                     );
                     responses.add(uploadResponse);
-                   // fileUrls.add(fileUrl);
                 }
             }
-            return ResponseEntity.ok(responses);
+            return responses;
 
         }
-        catch (Exception e){
-            //todo controller advice
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        catch (FailedUploadException e){
+            throw new FailedUploadException(e.getMessage());
         }
 
     }
