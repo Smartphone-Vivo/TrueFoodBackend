@@ -5,7 +5,6 @@ import dev.TrueFood.enums.Role;
 import dev.TrueFood.exceptions.NotFoundException;
 import dev.TrueFood.exceptions.SelfLikeException;
 import dev.TrueFood.jwt.JwtAuthentication;
-import dev.TrueFood.mapping.ImageMapping;
 import dev.TrueFood.mapping.TaskMapping;
 import dev.TrueFood.entity.*;
 import dev.TrueFood.entity.User;
@@ -15,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,8 +25,6 @@ public class TaskService {
     private final UserRepository userRepository;
     private final TaskMapping taskMapping;
     private final CategoryRepository categoryRepository;
-    private final ImageMapping imageMapping;
-    private final ImageRepository imageRepository;
 
     public Page<TaskDto> getTasks(String name, Long categoryId, PageRequest pageRequest) {
 

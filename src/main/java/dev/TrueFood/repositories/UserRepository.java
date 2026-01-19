@@ -1,6 +1,5 @@
 package dev.TrueFood.repositories;
 
-import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,21 +41,25 @@ public interface UserRepository extends JpaRepository<User, Long> {
     SELECT COUNT(u) > 0
     FROM User u
     WHERE u.email = :email
-        """)
+    """)
     boolean existsByEmail(@Param("email") String email);
 
 
     @Modifying
-    @Query(value = "INSERT INTO user_favourites (users_id, orders_id)" +
-                    "VALUES(:userId, :advId)", nativeQuery = true)
+    @Query(value = """
+    INSERT INTO user_favourites (users_id, orders_id)
+    VALUES(:userId, :advId)
+    """, nativeQuery = true)
     void addToFavouritesNative(
             @Param("userId") Long userId,
             @Param("advId") Long advId
     );
 
     @Modifying
-    @Query(value = "DELETE FROM user_favourites " +
-            "WHERE users_id = :userId AND orders_id = :advId", nativeQuery = true)
+    @Query(value = """
+        DELETE FROM user_favourites
+        WHERE users_id = :userId AND orders_id = :advId
+    """, nativeQuery = true)
     void removeFromFavouritesNative(
             @Param("userId") Long userId,
             @Param("advId") Long advId

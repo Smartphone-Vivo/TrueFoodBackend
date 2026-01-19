@@ -30,10 +30,6 @@ public class RegisterService {
             throw new EmailIsAlreadyUse("Этот email уже кем то занят");
         }
 
-//        Image image = new Image(null, new ArrayList<>(List.of(signUpRequest.getImageUrl())));
-//
-//        imageRepository.save(image);
-
         User user = new User(
                 null,
                 signUpRequest.getEmail(),
