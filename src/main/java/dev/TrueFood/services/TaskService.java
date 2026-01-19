@@ -3,6 +3,7 @@ package dev.TrueFood.services;
 import dev.TrueFood.dto.TaskDto;
 import dev.TrueFood.enums.Role;
 import dev.TrueFood.exceptions.NotFoundException;
+import dev.TrueFood.exceptions.SelfLikeException;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.mapping.ImageMapping;
 import dev.TrueFood.mapping.TaskMapping;
@@ -55,11 +56,11 @@ public class TaskService {
 
 
     public void addTaskResponse(Long id, Long taskId) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
-        Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("task not found"));
 
         if(task.getAuthor().equals(user)) {
-            throw new RuntimeException("самолайк отклонен");
+            throw new SelfLikeException("самолайк отклонен(");
         }
 
         if(task.getWorkers().contains(user)) {

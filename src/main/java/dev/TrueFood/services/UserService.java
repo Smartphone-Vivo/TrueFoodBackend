@@ -4,6 +4,7 @@ import dev.TrueFood.dto.ContactsDto;
 import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.dto.UserDto;
 import dev.TrueFood.exceptions.NotFoundException;
+import dev.TrueFood.exceptions.SelfLikeException;
 import dev.TrueFood.mapping.ReviewMapping;
 import dev.TrueFood.mapping.UserMapping;
 import dev.TrueFood.entity.Review;
@@ -38,21 +39,11 @@ public class UserService {
     @Transactional
     public void addReview(ReviewDto reviewDto, Long authorId, Long userId){
         if(Objects.equals(authorId, userId)) {
-            throw new RuntimeException("самолайк отклонен(");
+            throw new SelfLikeException("самолайк отклонен(");
         }
-
 
         //todo look at n+1
-
-
-        if(!userRepository.existsById(authorId)) {
-            throw new RuntimeException("Author not found");
-        }
-
-        if(!userRepository.existsById(userId)) {
-            throw new RuntimeException("user not found");
-        }
-
+        //todo сделать по человечески
         if(reviewDto.getRating() < 1 || reviewDto.getRating() > 5) {
             throw new RuntimeException("Rating must 1 > 5");
         }
@@ -69,12 +60,7 @@ public class UserService {
 
         userRepository.updateUserRating(userId);
 
-        userRepository.save(user);
     }
-
-
-
-
 
     public ContactsDto getUserContacts(Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));

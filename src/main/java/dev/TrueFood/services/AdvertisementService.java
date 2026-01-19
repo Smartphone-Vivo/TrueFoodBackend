@@ -7,15 +7,12 @@ import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.mapping.AdvertisementMapping;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
-import dev.TrueFood.entity.Image;
-import dev.TrueFood.entity.User;
-import dev.TrueFood.mapping.ImageMapping;
 import dev.TrueFood.repositories.*;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -69,6 +66,7 @@ public class AdvertisementService {
 
     }
 
+    @Transactional
     public void editAdvertisement(Long id, JwtAuthentication authentication, AdvertisementDto advertisementDto) {
 
         boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
@@ -84,6 +82,7 @@ public class AdvertisementService {
 
     }
 
+    @Transactional
     public void deleteAdvertisement(Long id, JwtAuthentication authentication, Long advertisementId) {
 
         Advertisement advertisement = advertisementRepository.findById(advertisementId).orElseThrow(() -> new NotFoundException("advertisement not found"));

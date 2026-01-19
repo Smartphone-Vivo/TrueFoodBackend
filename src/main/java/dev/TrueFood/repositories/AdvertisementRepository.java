@@ -25,7 +25,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
                                                     @Param("categoryId") Long categoryId,
                                                     @Param("childrenCategory") List<Long> childrenCategory,
                                                     PageRequest pageRequest);
-    //1 запрос
+
     @EntityGraph(value = "order-graph", type = EntityGraph.EntityGraphType.FETCH)
     @Query("""
     SELECT a FROM Advertisement a

@@ -22,13 +22,13 @@ services:
     volumes:
       - ./db_data:/var/lib/postgresql/data
 
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-      - minio
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-      JAVA_OPTS: '-Xmx512m'
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+#      - minio
+#    environment:
+#      SPRING_PROFILES_ACTIVE: docker
+#      JAVA_OPTS: '-Xmx512m'

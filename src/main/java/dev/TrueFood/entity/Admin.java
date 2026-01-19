@@ -12,10 +12,10 @@ import lombok.*;
 @NoArgsConstructor
 public class Admin extends BaseUser {
 
-
-
     public Admin(Long id, String email, Role role, Password password, boolean enabled) {
         super(id, email, role, password, enabled);
     }
+
+
 
 }
