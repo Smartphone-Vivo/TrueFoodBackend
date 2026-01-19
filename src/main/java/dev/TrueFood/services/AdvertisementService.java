@@ -30,9 +30,9 @@ public class AdvertisementService {
 
     public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
-        List<Long> children = category.getChildrenId();
+        List<Category> children = category.getChildren();
 
-        return advertisementRepository.getAdvertisementsByCategory(name, categoryId, children, pageRequest).map(advertisementMapping::toDto);
+        return advertisementRepository.getAdvertisementsByCategory(name, category, children, pageRequest).map(advertisementMapping::toDto);
     }
 
     public AdvertisementDto getAdvertisementById(Long id){

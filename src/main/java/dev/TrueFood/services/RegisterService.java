@@ -5,11 +5,13 @@ import dev.TrueFood.entity.Image;
 import dev.TrueFood.entity.Password;
 import dev.TrueFood.enums.Role;
 import dev.TrueFood.entity.User;
+import dev.TrueFood.exceptions.EmailIsAlreadyUse;
 import dev.TrueFood.repositories.ImageRepository;
 import dev.TrueFood.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,30 +23,32 @@ public class RegisterService {
     private final UserRepository userRepository;
     private final ImageRepository imageRepository;
 
+    @Transactional
     public void register(SignUpRequest signUpRequest) {
 
-        Password password = new Password(null, signUpRequest.getPassword());
+        if(userRepository.existsByEmail(signUpRequest.getEmail())){
+            throw new EmailIsAlreadyUse("Этот email уже кем то занят");
+        }
 
-        List<String> images = new ArrayList<>();
-
-        images.add(signUpRequest.getImageUrl());
-
-        Image image = new Image(null, images);
-
-        imageRepository.save(image);
+//        Image image = new Image(null, new ArrayList<>(List.of(signUpRequest.getImageUrl())));
+//
+//        imageRepository.save(image);
 
         User user = new User(
                 null,
                 signUpRequest.getEmail(),
-                image,
+                new Image(null, new ArrayList<>(List.of(signUpRequest.getImageUrl()))),
                 Role.USER,
-                password,
+                new Password(null, signUpRequest.getPassword()),
                 true,
                 signUpRequest.getFio(),
-                5,
+                0,
                 signUpRequest.getContacts()
         );
 
         userRepository.save(user);
+
+
+
     }
 }

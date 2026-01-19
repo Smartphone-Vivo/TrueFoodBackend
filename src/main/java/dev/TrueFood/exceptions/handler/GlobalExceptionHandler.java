@@ -1,13 +1,12 @@
 package dev.TrueFood.exceptions.handler;
 
-import dev.TrueFood.exceptions.ErrorResponse;
-import dev.TrueFood.exceptions.FailedUploadException;
-import dev.TrueFood.exceptions.NotFoundException;
-import dev.TrueFood.exceptions.SelfLikeException;
+import dev.TrueFood.exceptions.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,6 +32,14 @@ public class GlobalExceptionHandler {
         return buildResponse(
                 HttpStatus.BAD_REQUEST,
                 "Failed upload file",
+                e);
+    }
+
+    @ExceptionHandler(EmailIsAlreadyUse.class)
+    public ResponseEntity<ErrorResponse> handleEmailIsAlreadyUse(EmailIsAlreadyUse e) {
+        return buildResponse(
+                HttpStatus.BAD_REQUEST,
+                "This email is already in use",
                 e);
     }
 

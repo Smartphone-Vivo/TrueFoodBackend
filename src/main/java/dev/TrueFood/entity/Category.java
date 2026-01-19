@@ -31,19 +31,15 @@ public class Category {
 
     String name;
 
-    //todo ???
-    List<Long> childrenId = new ArrayList<>();
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn("category_id")
-//    List<Category> childrenId;
+    @ManyToMany
+    List<Category> children = new ArrayList<>();
 
 
     public Category(Category parent, String name) {
 
         this.parent = parent;
         this.name = name;
-        this.childrenId = new ArrayList<>();
+        this.children = new ArrayList<>();
     }
 
 }

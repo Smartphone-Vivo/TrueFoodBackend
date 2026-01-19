@@ -152,16 +152,16 @@ public class Initializer {
         Category sheep = new Category(meat, "Баранина");
         categoryRepository.save(sheep);
 
-        all.setChildrenId(List.of(readyFood.getId(), pelmeni.getId(), vareniki.getId(), golubci.getId(), drinks.getId(), meat.getId(), beef.getId(), pig.getId(), sheep.getId()));
+        all.setChildren(new ArrayList<>(List.of(readyFood, pelmeni, vareniki, golubci, drinks, meat, beef, pig, sheep)));
         categoryRepository.save(all);
 
-        readyFood.setChildrenId(List.of(pelmeni.getId(), vareniki.getId(), golubci.getId()));
+        readyFood.setChildren(new ArrayList<>(List.of(pelmeni, vareniki, golubci)));
         categoryRepository.save(readyFood);
 
-        drinks.setChildrenId(List.of(voda.getId(), pivo.getId(), juices.getId()));
+        drinks.setChildren(new ArrayList<>(List.of(voda, pivo, juices)));
         categoryRepository.save(drinks);
 
-        meat.setChildrenId(List.of(beef.getId(), pig.getId(), sheep.getId()));
+        meat.setChildren(new ArrayList<>(List.of(beef, pig, sheep)));
         categoryRepository.save(meat);
         
         // 1. Пицца

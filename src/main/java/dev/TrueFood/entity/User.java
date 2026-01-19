@@ -18,7 +18,7 @@ public class User extends BaseUser {
 
     private String fio;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "images_id")
     private Image avatar;
 

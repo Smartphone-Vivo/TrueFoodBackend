@@ -31,7 +31,8 @@ public class AdvertisementController {
             @RequestParam(required = false, defaultValue = "") String name,
             @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
 
-        return advertisementService.getAdvertisements(name ,
+        return advertisementService.getAdvertisements(
+                name,
                 categoryId,
                 PageUtils.createPageRequest(page, size, sort)
         );

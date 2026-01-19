@@ -40,9 +40,7 @@ public class Order {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id") //todo nullable
-
-    //todo ???
+    @JoinColumn(name = "category_id", nullable = false) //todo nullable
     private Category category;
 
     private int price;

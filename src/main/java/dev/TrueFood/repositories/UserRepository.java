@@ -38,6 +38,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
             @Param("userId") Long userId,
             @Param("advId") Long advId);
 
+    @Query("""
+    SELECT COUNT(u) > 0
+    FROM User u
+    WHERE u.email = :email
+        """)
+    boolean existsByEmail(@Param("email") String email);
+
+
     @Modifying
     @Query(value = "INSERT INTO user_favourites (users_id, orders_id)" +
                     "VALUES(:userId, :advId)", nativeQuery = true)
@@ -66,5 +74,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     WHERE u.id = :userId
 """, nativeQuery = true)
     void updateUserRating(@Param("userId") Long userId);
+
+
 
 }

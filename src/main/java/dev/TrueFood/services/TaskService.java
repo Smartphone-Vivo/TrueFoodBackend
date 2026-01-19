@@ -33,9 +33,9 @@ public class TaskService {
     public Page<TaskDto> getTasks(String name, Long categoryId, PageRequest pageRequest) {
 
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
-        List<Long> children = category.getChildrenId();
+        List<Category> children = category.getChildren();
 
-        return taskRepository.getTasksByCategory(name, categoryId, children,  pageRequest).map(taskMapping::toDto);
+        return taskRepository.getTasksByCategory(name, category, children,  pageRequest).map(taskMapping::toDto);
     }
 
     public void addTask(TaskDto taskDto, Long id) {

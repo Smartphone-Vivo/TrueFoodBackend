@@ -27,9 +27,10 @@ public class TaskController {
             @RequestParam(required = false, defaultValue = "") String name,
             @RequestParam(name = "sort", defaultValue = "id,asc") String sort) {
 
-        PageRequest pageRequest = PageUtils.createPageRequest(page, size, sort);
-
-        return taskService.getTasks(name, categoryId, pageRequest);
+        return taskService.getTasks(
+                name,
+                categoryId,
+                PageUtils.createPageRequest(page, size, sort));
     }
 
     @PreAuthorize("isAuthenticated()")

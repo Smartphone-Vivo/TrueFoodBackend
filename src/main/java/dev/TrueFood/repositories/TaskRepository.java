@@ -1,5 +1,6 @@
 package dev.TrueFood.repositories;
 
+import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Task;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,12 +26,12 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     @Query("""
     SELECT t FROM Task t
     WHERE (t.title LIKE CONCAT('%', :name,'%'))
-    AND (t.category.id = :categoryId OR t.category.id IN :childrenCategory )
+    AND (t.category = :category OR t.category IN :childrenCategory )
     """)
     Page<Task> getTasksByCategory(
             @Param("name") String name,
-            @Param("categoryId") Long categoryId,
-            @Param("childrenCategory") List<Long> childrenCategory,
+            @Param("category") Category category,
+            @Param("childrenCategory") List<Category> childrenCategory,
             PageRequest pageRequest);
 
     @EntityGraph(attributePaths = {
