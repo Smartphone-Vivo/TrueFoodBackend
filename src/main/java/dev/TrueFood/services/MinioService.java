@@ -64,19 +64,24 @@ public class MinioService {
         return fileName.substring(fileName.lastIndexOf("."));
     }
 
+
     public String getFileUrl(String objectName){
-        try {
-            return minioClient.getPresignedObjectUrl(
-                    GetPresignedObjectUrlArgs.builder()
-                            .method(Method.GET)
-                            .bucket(bucketName)
-                            .object(objectName)
-                            .expiry(60*60*24*7)
-                            .build()
-            );
-        } catch (Exception e){
-            throw new FailedUploadException("Failed to get file url: " + e.getMessage());
-        }
+        return "http://localhost:9000/" + bucketName + "/" + objectName;
     }
+
+//    public String getFileUrl(String objectName){
+//        try {
+//            return minioClient.getPresignedObjectUrl(
+//                    GetPresignedObjectUrlArgs.builder()
+//                            .method(Method.GET)
+//                            .bucket(bucketName)
+//                            .object(objectName)
+//                            .expiry(60*60*24*7)
+//                            .build()
+//            );
+//        } catch (Exception e){
+//            throw new FailedUploadException("Failed to get file url: " + e.getMessage());
+//        }
+//    }
 
 }

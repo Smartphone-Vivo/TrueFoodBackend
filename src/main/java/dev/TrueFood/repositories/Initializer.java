@@ -39,9 +39,9 @@ public class Initializer {
     @Transactional
     public void initial() {
 
-        imageUrls.add("http://localhost:9000/images/ae5bac41-15de-480f-8696-9e9b1937.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260113T203109Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8bc66fe15c976081c71bdc252044e6a6b531949b0845cf6b2e61a5ce2eaab33b");
-        imageUrls.add("http://localhost:9000/images/4616dfb4-44ca-4de9-ad0d-a15bac1b.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260113T203109Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=65b553d21840cd524b405413b7ce56a81be7b7d014e4901ba771224a65aba88c");
-        imageUrls.add("http://localhost:9000/images/650190fe-33b1-40ec-940f-d45b1d45.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260113T203109Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=a6550a955146e854ab983371543f6e323333ea50822b696f989e7e554e5394a3");
+        imageUrls.add("http://localhost:9000/images/c38924fd-3a78-43db-b817-9e5bf269.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260121T145236Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c4399676b8e331212ee2a166cdb4b5c750f1e4c6fb15af25152b646e262c4765");
+        imageUrls.add("http://localhost:9000/images/c38924fd-3a78-43db-b817-9e5bf269.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260121T145236Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c4399676b8e331212ee2a166cdb4b5c750f1e4c6fb15af25152b646e262c4765");
+        imageUrls.add("http://localhost:9000/images/c38924fd-3a78-43db-b817-9e5bf269.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260121T145236Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c4399676b8e331212ee2a166cdb4b5c750f1e4c6fb15af25152b646e262c4765");
 
         Image image2 = new Image(
                 null,
