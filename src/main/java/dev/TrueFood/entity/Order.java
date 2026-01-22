@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,6 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @NamedEntityGraph(
         name = "order-graph",
         attributeNodes = {
@@ -55,7 +55,7 @@ public class Order {
     @JoinColumn(name = "users_id")
     private User author;
 
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     private boolean enable;
 
@@ -68,7 +68,7 @@ public class Order {
         this.images = images;
         this.location = location;
         this.author = author;
-        this.createdAt = new Date();
+        this.createdAt = LocalDateTime.now();
         this.enable = enable;
     }
 

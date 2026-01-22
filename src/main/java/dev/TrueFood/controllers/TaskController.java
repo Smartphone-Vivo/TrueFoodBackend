@@ -4,16 +4,21 @@ import dev.TrueFood.dto.TaskDto;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.TaskService;
 import dev.TrueFood.utils.PageUtils;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("api/tasks")
 @RequiredArgsConstructor
+@Validated
 public class TaskController {
 
     private final TaskService taskService;
@@ -48,21 +53,19 @@ public class TaskController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("tasks-by-user/{id}/{page}/{size}")
     public Page<TaskDto> getTasksByUser(
-            @PathVariable(name = "id") Long id,
-            @PathVariable(name = "page") int page,
-            @PathVariable(name = "size")int size
+            @Positive @NotNull @PathVariable(name = "id") Long id,
+            @Positive @PathVariable(name = "page") int page,
+            @Positive @PathVariable(name = "size")int size
     )
     {
-        PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
-
-        return taskService.getMyTasks(id, pageRequest);
+        return taskService.getMyTasks(id, PageUtils.createPageRequest(page, size, "id,asc"));
     }
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("add-task-response/{task-id}")
     public void addTaskResponse(
             JwtAuthentication authentication,
-            @PathVariable(name = "task-id") Long taskId
+            @Positive @NotNull @PathVariable(name = "task-id") Long taskId
 
     ){
         Long id = authentication.getUserId();
@@ -96,8 +99,8 @@ public class TaskController {
     @GetMapping("confirm-worker/{taskId}/{workerId}")
     public void confirmWorker(
             JwtAuthentication jwtAuthentication,
-            @PathVariable Long taskId,
-            @PathVariable Long workerId
+            @Positive @PathVariable Long taskId,
+            @Positive @NotNull @PathVariable Long workerId
     ){
         Long id = jwtAuthentication.getUserId();
         taskService.confirmWorker(id, taskId, workerId);
@@ -106,17 +109,17 @@ public class TaskController {
     @PutMapping("edit-task")
     public void editTask(
             JwtAuthentication authentication,
-            @RequestBody TaskDto taskDto)
+            @Valid @RequestBody TaskDto taskDto)
     {
-        Long id = authentication.getUserId();
 
-        taskService.editTask(id, authentication, taskDto);
+
+        taskService.editTask(authentication, taskDto);
     }
 
     @DeleteMapping("delete-task/{taskId}")
     public void deleteTask(
             JwtAuthentication authentication,
-            @PathVariable Long taskId
+            @Positive @NotNull @PathVariable Long taskId
     ){
         Long id = authentication.getUserId();
         taskService.deleteTask(id, authentication, taskId);

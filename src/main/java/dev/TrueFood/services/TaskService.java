@@ -4,6 +4,7 @@ import dev.TrueFood.dto.TaskDto;
 import dev.TrueFood.enums.Role;
 import dev.TrueFood.exceptions.NotFoundException;
 import dev.TrueFood.exceptions.SelfLikeException;
+import dev.TrueFood.exceptions.UserAlreadyWorkerException;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.mapping.TaskMapping;
 import dev.TrueFood.entity.*;
@@ -46,10 +47,7 @@ public class TaskService {
 
             taskRepository.save(task);
         }
-
-
     }
-
 
     public void addTaskResponse(Long id, Long taskId) {
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
@@ -60,7 +58,7 @@ public class TaskService {
         }
 
         if(task.getWorkers().contains(user)) {
-            throw new RuntimeException("user already has worker");
+            throw new UserAlreadyWorkerException("user already worker");
         }
         else{
             task.getWorkers().add(user);
@@ -103,7 +101,9 @@ public class TaskService {
         return taskRepository.findById(id).map(taskMapping::toDto).orElseThrow(() -> new NotFoundException("task not found"));
     }
 
-    public void editTask(Long id, JwtAuthentication authentication, TaskDto taskDto) {
+    public void editTask(JwtAuthentication authentication, TaskDto taskDto) {
+
+        Long id = authentication.getUserId();
 
         boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
 

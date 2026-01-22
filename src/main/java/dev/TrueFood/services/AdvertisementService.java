@@ -3,17 +3,20 @@ package dev.TrueFood.services;
 import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.enums.Role;
 import dev.TrueFood.exceptions.NotFoundException;
+import dev.TrueFood.exceptions.PermissionDeniedException;
 import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.mapping.AdvertisementMapping;
 import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.repositories.*;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -61,13 +64,20 @@ public class AdvertisementService {
 
             advertisement.setCategory(categoryRepository.getReferenceById(advertisementDto.getCategoryId()));
 
+            advertisement.setCreatedAt(LocalDateTime.now());
+
             advertisementRepository.save(advertisement);
+        }
+        else{
+            throw new PermissionDeniedException("You do not have permission to add an advertisement");
         }
 
     }
 
     @Transactional
-    public void editAdvertisement(Long id, JwtAuthentication authentication, AdvertisementDto advertisementDto) {
+    public void editAdvertisement(JwtAuthentication authentication, AdvertisementDto advertisementDto) {
+
+        Long id = authentication.getUserId();
 
         boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
 
@@ -77,7 +87,6 @@ public class AdvertisementService {
             Advertisement changedAdvertisement = advertisementMapping.updateAdvertisement(advertisementDto, changingAdvertisement);
 
             advertisementRepository.save(changedAdvertisement);
-
         }
 
     }

@@ -36,29 +36,29 @@ services:
     networks:
       - truefood-network
 
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-      - minio
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-      MINIO_ENDPOINT: http://minio:9000
-      MINIO_PUBLIC_ENDPOINT: http://minio:9000
-      JAVA_OPTS: '-Xmx512m'
-    networks:
-      - truefood-network
-
-  frontend:
-    build: C:\Users\aleks\Desktop\blin-blinskiy\!Курсач\TrueFood
-    ports:
-      - "4200:4200"
-    depends_on:
-      - app
-    networks:
-      - truefood-network
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+#      - minio
+#    environment:
+#      SPRING_PROFILES_ACTIVE: docker
+#      MINIO_ENDPOINT: http://minio:9000
+#      MINIO_PUBLIC_ENDPOINT: http://minio:9000
+#      JAVA_OPTS: '-Xmx512m'
+#    networks:
+#      - truefood-network
+#
+#  frontend:
+#    build: C:\Users\aleks\Desktop\blin-blinskiy\!Курсач\TrueFood
+#    ports:
+#      - "4200:4200"
+#    depends_on:
+#      - app
+#    networks:
+#      - truefood-network
 networks:
   truefood-network:
     driver: bridge

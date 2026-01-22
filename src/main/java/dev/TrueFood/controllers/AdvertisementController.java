@@ -6,6 +6,7 @@ import dev.TrueFood.jwt.JwtAuthentication;
 import dev.TrueFood.services.AdvertisementService;
 import dev.TrueFood.utils.PageUtils;
 import io.minio.credentials.Jwt;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -57,7 +58,7 @@ public class AdvertisementController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("new-advertisement")
-    public void addAdvertisement(@RequestBody AdvertisementDto advertisementDto, JwtAuthentication authentication) {
+    public void addAdvertisement(@RequestBody @Valid AdvertisementDto advertisementDto, JwtAuthentication authentication) {
         Long id = authentication.getUserId();
         advertisementService.addAdvertisement(advertisementDto, id);
     }
@@ -66,11 +67,9 @@ public class AdvertisementController {
     @PutMapping("edit-advertisement")
     public void editAdvertisement(
             JwtAuthentication authentication,
-            @RequestBody AdvertisementDto advertisementDto) {
+            @RequestBody @Valid AdvertisementDto advertisementDto) {
 
-        Long id = authentication.getUserId();
-
-        advertisementService.editAdvertisement(id, authentication, advertisementDto);
+        advertisementService.editAdvertisement(authentication, advertisementDto);
     }
 
     @PreAuthorize("isAuthenticated()")

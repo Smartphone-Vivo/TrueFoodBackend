@@ -46,5 +46,4 @@ public class User extends BaseUser {
         this.contacts = contacts;
     }
 
-
 }

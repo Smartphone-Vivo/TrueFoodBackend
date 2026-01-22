@@ -50,7 +50,7 @@ public class UserService {
 
         Review review = reviewMapping.toEntity(reviewDto);
 
-        User user = userRepository.findByUserId(userId);
+        User user = userRepository.getReferenceById(userId);
 
         review.setUser(user);
 
