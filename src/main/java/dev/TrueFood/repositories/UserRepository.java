@@ -72,7 +72,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     SET rating = ROUND((
         SELECT AVG(r.rating)
         FROM reviews r
-        WHERE r.user_id = :userId
+        WHERE r.target_user_id = :userId
     ))
     WHERE u.id = :userId
 """, nativeQuery = true)

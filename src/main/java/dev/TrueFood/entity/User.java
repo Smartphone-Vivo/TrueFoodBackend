@@ -32,8 +32,7 @@ public class User extends BaseUser {
     )
     private List<Advertisement> favourites;
 
-     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-     @JoinColumn(name = "reviews_id")
+     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "targetUser")
      private List<Review> reviews;
 
      private String contacts;

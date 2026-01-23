@@ -32,8 +32,7 @@ public class FavouritesController {
     ){
         Long id = authentication.getUserId();
 
-        PageRequest pageRequest = PageUtils.createPageRequest(page, size, "id,asc");
-        return favouritesService.getFavouriteAdvertisements(id, pageRequest);
+        return favouritesService.getFavouriteAdvertisements(id, PageUtils.createPageRequest(page, size, "id,asc"));
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -45,15 +44,5 @@ public class FavouritesController {
         Long id = authentication.getUserId();
         favouritesService.addToFavourites(id, advId);
     }
-
-//    @PreAuthorize("isAuthenticated()")
-//    @DeleteMapping("delete-favourite-advertisement/{advId}")
-//    public void deleteFavouriteAdvertisement(
-//            JwtAuthentication authentication,
-//            @PathVariable(name = "advId") Long advId
-//    ){
-//        Long id = authentication.getUserId();
-//        favouritesService.deleteFavouriteAdvertisement(id, advId);
-//    }
-
+    
 }

@@ -19,9 +19,8 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    User targetUser;
 
     private Long authorId;
 

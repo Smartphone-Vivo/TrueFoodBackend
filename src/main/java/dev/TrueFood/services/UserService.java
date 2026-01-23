@@ -37,28 +37,25 @@ public class UserService {
     }
 
     @Transactional
-    public void addReview(ReviewDto reviewDto, Long authorId, Long userId){
-        if(Objects.equals(authorId, userId)) {
+    public void addReview(ReviewDto reviewDto, Long authorId, Long targetUserId){
+        if(Objects.equals(authorId, targetUserId)) {
             throw new SelfLikeException("самолайк отклонен(");
         }
 
-        //todo look at n+1
-        //todo сделать по человечески
         if(reviewDto.getRating() < 1 || reviewDto.getRating() > 5) {
             throw new RuntimeException("Rating must 1 > 5");
         }
 
         Review review = reviewMapping.toEntity(reviewDto);
 
-        User user = userRepository.getReferenceById(userId);
+        User targetUser = userRepository.getReferenceById(targetUserId);
 
-        review.setUser(user);
+        review.setTargetUser(targetUser);
 
         reviewRepository.save(review);
 
-        user.getReviews().add(review);
+        userRepository.updateUserRating(targetUserId);
 
-        userRepository.updateUserRating(userId);
 
     }
 
