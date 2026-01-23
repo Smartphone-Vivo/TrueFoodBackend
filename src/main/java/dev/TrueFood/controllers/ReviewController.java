@@ -3,6 +3,7 @@ package dev.TrueFood.controllers;
 import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.jwt.JwtAuthentication;
+import dev.TrueFood.services.ReviewService;
 import dev.TrueFood.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class ReviewController {
 
-    private final UserService userService;
+    private final ReviewService reviewService;
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("add-review/{userId}")
@@ -28,7 +29,7 @@ public class ReviewController {
             @Valid @RequestBody ReviewDto reviewDto,
             JwtAuthentication authentication){
         Long authorId = authentication.getUserId();
-        userService.addReview(reviewDto, authorId, userId);
+        reviewService.addReview(reviewDto, authorId, userId);
     }
 
 }

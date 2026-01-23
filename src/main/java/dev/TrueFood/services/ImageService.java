@@ -1,22 +1,21 @@
 package dev.TrueFood.services;
 
+import dev.TrueFood.dto.UploadResponse;
 import dev.TrueFood.exceptions.FailedUploadException;
-import dev.TrueFood.exceptions.NotFoundException;
-import dev.TrueFood.repositories.ImageRepository;
 import io.minio.*;
-import io.minio.http.Method;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
-public class MinioService {
+public class ImageService {
 
     private final MinioClient minioClient;
 
@@ -33,6 +32,35 @@ public class MinioService {
             minioClient.makeBucket(MakeBucketArgs.builder()
                     .bucket(bucketName)
                     .build());
+        }
+    }
+
+    public List<UploadResponse> addFiles(MultipartFile[] files){
+        if(files.length == 0){
+            throw new FailedUploadException("failed upload file");
+        }
+
+        List<UploadResponse> responses = new ArrayList<>();
+
+        try{
+            for(MultipartFile file : files){
+                if(!file.isEmpty()){
+                    String fileUrl = uploadFile(file);
+
+                    UploadResponse uploadResponse = new UploadResponse(
+                            file.getOriginalFilename(),
+                            fileUrl,
+                            file.getSize(),
+                            file.getContentType()
+                    );
+                    responses.add(uploadResponse);
+                }
+            }
+            return responses;
+
+        }
+        catch (FailedUploadException e){
+            throw new FailedUploadException(e.getMessage());
         }
     }
 
@@ -63,7 +91,6 @@ public class MinioService {
     public String getExtention(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."));
     }
-
 
     public String getFileUrl(String objectName){
         return "http://localhost:9000/" + bucketName + "/" + objectName;

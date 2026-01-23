@@ -36,29 +36,6 @@ public class UserService {
         return userMapping.toDto(user);
     }
 
-    @Transactional
-    public void addReview(ReviewDto reviewDto, Long authorId, Long targetUserId){
-        if(Objects.equals(authorId, targetUserId)) {
-            throw new SelfLikeException("самолайк отклонен(");
-        }
-
-        if(reviewDto.getRating() < 1 || reviewDto.getRating() > 5) {
-            throw new RuntimeException("Rating must 1 > 5");
-        }
-
-        Review review = reviewMapping.toEntity(reviewDto);
-
-        User targetUser = userRepository.getReferenceById(targetUserId);
-
-        review.setTargetUser(targetUser);
-
-        reviewRepository.save(review);
-
-        userRepository.updateUserRating(targetUserId);
-
-
-    }
-
     public ContactsDto getUserContacts(Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
         return new ContactsDto(user.getContacts());

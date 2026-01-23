@@ -3,7 +3,7 @@ package dev.TrueFood.controllers;
 
 import dev.TrueFood.dto.UploadResponse;
 import dev.TrueFood.exceptions.FailedUploadException;
-import dev.TrueFood.services.MinioService;
+import dev.TrueFood.services.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,38 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ImageController {
 
-    private final MinioService minioService;
+    private final ImageService imageService;
 
     @PostMapping("/upload")
-    public List<UploadResponse> uploadFile(
+    public List<UploadResponse> addFiles(
             @RequestParam("file") MultipartFile[] files
     ){
-        if(files.length == 0){
-           throw new FailedUploadException("failed upload file");
-        }
-
-        List<UploadResponse> responses = new ArrayList<>();
-
-        try{
-            for(MultipartFile file : files){
-                if(!file.isEmpty()){
-                    String fileUrl = minioService.uploadFile(file);
-
-                    UploadResponse uploadResponse = new UploadResponse(
-                            file.getOriginalFilename(),
-                            fileUrl,
-                            file.getSize(),
-                            file.getContentType()
-                    );
-                    responses.add(uploadResponse);
-                }
-            }
-            return responses;
-
-        }
-        catch (FailedUploadException e){
-            throw new FailedUploadException(e.getMessage());
-        }
+        return imageService.addFiles(files);
 
     }
 
