@@ -31,7 +31,7 @@ public class Category {
 
     String name;
 
-    @ManyToMany
+    @ManyToMany //todo
     List<Category> children = new ArrayList<>();
 
 

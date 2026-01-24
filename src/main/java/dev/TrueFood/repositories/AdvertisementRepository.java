@@ -46,5 +46,5 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     SELECT a FROM Advertisement a
     WHERE a.id = :id
     """)
-    Advertisement findAdvertisementById(@Param("id") Long id);
+    Optional<Advertisement> findAdvertisementById(@Param("id") Long id);
 }

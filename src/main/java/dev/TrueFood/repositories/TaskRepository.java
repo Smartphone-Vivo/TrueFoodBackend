@@ -1,5 +1,6 @@
 package dev.TrueFood.repositories;
 
+import dev.TrueFood.entity.Advertisement;
 import dev.TrueFood.entity.Category;
 import dev.TrueFood.entity.Task;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
@@ -68,5 +70,21 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     WHERE (w.id = :id  OR t.acceptedWorker.id = :id)
 """)
     Page<Task> getMyResponses(@Param("id") Long id, PageRequest pageRequest);
+
+
+    @EntityGraph(attributePaths = {
+            "images",
+            "author",
+            "category.parent",
+            "workers",
+            "workers.avatar",
+            "acceptedWorker",
+            "acceptedWorker.avatar"
+    })
+    @Query("""
+    SELECT t FROM Task t
+    WHERE t.id = :id
+    """)
+    Optional<Task> findTaskById(@Param("id") Long id);
 
 }

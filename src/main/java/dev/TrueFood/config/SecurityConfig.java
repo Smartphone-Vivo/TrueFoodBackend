@@ -39,7 +39,7 @@ public class SecurityConfig {
                                 "/api/profile/**"
                                 )
                         .permitAll()
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

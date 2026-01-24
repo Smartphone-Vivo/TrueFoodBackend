@@ -33,13 +33,14 @@ public class AdvertisementService {
 
     public Page<AdvertisementDto> getAdvertisements(String name, Long categoryId, PageRequest pageRequest) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("category not found"));
+
         List<Category> children = category.getChildren();
 
         return advertisementRepository.getAdvertisementsByCategory(name, category, children, pageRequest).map(advertisementMapping::toDto);
     }
 
     public AdvertisementDto getAdvertisementById(Long id){
-        Advertisement advertisement = advertisementRepository.findAdvertisementById(id);
+        Advertisement advertisement = advertisementRepository.findAdvertisementById(id).orElseThrow(() -> new NotFoundException("advertisement not found"));
 
         AdvertisementDto advertisementDto = advertisementMapping.toDto(advertisement);
 
@@ -82,7 +83,7 @@ public class AdvertisementService {
         boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
 
         if(Objects.equals(advertisementDto.getAuthorId(), id) || isAdmin){
-            Advertisement changingAdvertisement = advertisementRepository.findById(advertisementDto.getId()).orElseThrow(() -> new NotFoundException("advertisement not found"));
+            Advertisement changingAdvertisement = advertisementRepository.findAdvertisementById(advertisementDto.getId()).orElseThrow(() -> new NotFoundException("advertisement not found"));
 
             Advertisement changedAdvertisement = advertisementMapping.updateAdvertisement(advertisementDto, changingAdvertisement);
 
@@ -92,9 +93,11 @@ public class AdvertisementService {
     }
 
     @Transactional
-    public void deleteAdvertisement(Long id, JwtAuthentication authentication, Long advertisementId) {
+    public void deleteAdvertisement(JwtAuthentication authentication, Long advertisementId) {
 
-        Advertisement advertisement = advertisementRepository.findById(advertisementId).orElseThrow(() -> new NotFoundException("advertisement not found"));
+        Long id = authentication.getUserId();
+
+        Advertisement advertisement = advertisementRepository.findAdvertisementById(advertisementId).orElseThrow(() -> new NotFoundException("advertisement not found"));
 
         boolean isAdmin = (authentication.getAuthorities().iterator().next()) == Role.ADMIN;
 

@@ -78,10 +78,7 @@ public class AdvertisementController {
             JwtAuthentication authentication,
             @PathVariable(name = "advertisementId") Long advertisementId
     ){
-        Long id = authentication.getUserId();
-
-        advertisementService.deleteAdvertisement(id, authentication, advertisementId);
-
+        advertisementService.deleteAdvertisement(authentication, advertisementId);
     }
 
 }
