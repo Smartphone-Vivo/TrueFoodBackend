@@ -36,7 +36,9 @@ public class SecurityConfig {
                                 "/api/advertisements/**",
                                 "/api/tasks/**",
                                 "/api/categories/**",
-                                "/api/profile/**"
+                                "/api/profile/**",
+                                "/swagger-ui/**",
+                                "/v3/**"
                                 )
                         .permitAll()
                         .anyRequest().authenticated()
