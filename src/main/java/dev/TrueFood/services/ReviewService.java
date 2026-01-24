@@ -1,5 +1,6 @@
 package dev.TrueFood.services;
 
+import dev.TrueFood.dto.RatingUpdateEvent;
 import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.User;
@@ -21,6 +22,7 @@ public class ReviewService {
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
     private final ReviewMapping reviewMapping;
+    private final RatingUpdateProducer ratingUpdateProducer;
 
     @Transactional
     public void addReview(ReviewDto reviewDto, Long authorId, Long targetUserId){
@@ -40,9 +42,20 @@ public class ReviewService {
 
         reviewRepository.save(review);
 
-        userRepository.updateUserRating(targetUserId);
+        RatingUpdateEvent event = RatingUpdateEvent.builder()
+                .targetUserId(targetUserId)
+                .rating(reviewDto.getRating())
+                .build();
 
+        ratingUpdateProducer.sendRatingUpdate(event);
+    }
 
+    @Transactional
+    public void updateRatingFromKafka(RatingUpdateEvent event){
+        try{
+            userRepository.updateUserRating(event.getTargetUserId());
+        }
+        catch(Exception e){}
     }
 
 }
