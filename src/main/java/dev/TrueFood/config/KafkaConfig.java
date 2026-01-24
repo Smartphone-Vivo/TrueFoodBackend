@@ -11,7 +11,7 @@ public class KafkaConfig {
     @Bean
     public NewTopic ratingUpdatesTopic() {
         return TopicBuilder.name("rating-updates")
-                .partitions(3)
+                .partitions(1)
                 .replicas(1)
                 .build();
     }
