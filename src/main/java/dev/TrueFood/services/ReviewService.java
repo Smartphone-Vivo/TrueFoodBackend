@@ -4,9 +4,9 @@ import dev.TrueFood.dto.RatingUpdateEvent;
 import dev.TrueFood.dto.ReviewDto;
 import dev.TrueFood.entity.Review;
 import dev.TrueFood.entity.User;
+import dev.TrueFood.exceptions.FailedUploadException;
 import dev.TrueFood.exceptions.SelfLikeException;
 import dev.TrueFood.mapping.ReviewMapping;
-import dev.TrueFood.mapping.UserMapping;
 import dev.TrueFood.repositories.ReviewRepository;
 import dev.TrueFood.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -55,7 +55,9 @@ public class ReviewService {
         try{
             userRepository.updateUserRating(event.getTargetUserId());
         }
-        catch(Exception e){}
+        catch(Exception e){
+            throw new FailedUploadException("failed to update user rating");
+        }
     }
 
 }

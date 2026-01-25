@@ -1,6 +1,7 @@
 package dev.TrueFood.services;
 
 import dev.TrueFood.dto.RatingUpdateEvent;
+import dev.TrueFood.exceptions.FailedUploadException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,7 +18,7 @@ public class RatingUpdateProducer {
         try {
             kafkaTemplate.send("rating-updates", event);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to send rating update event", e);
+            throw new FailedUploadException("Failed to send rating update");
         }
     }
 }

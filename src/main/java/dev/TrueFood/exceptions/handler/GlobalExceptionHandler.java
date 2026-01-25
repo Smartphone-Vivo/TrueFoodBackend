@@ -59,6 +59,14 @@ public class GlobalExceptionHandler {
                 e);
     }
 
+    @ExceptionHandler(FailUpdateRatingException.class)
+    public ResponseEntity<ErrorResponse> handleFailUpdateRatingException(FailUpdateRatingException e) {
+        return buildResponse(
+                HttpStatus.NOT_FOUND,
+                "Fail update rating",
+                e);
+    }
+
 
 
 

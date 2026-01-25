@@ -12,14 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@NamedEntityGraph(
-        name = "task-graph",
-        attributeNodes = {
-                @NamedAttributeNode("workers"),
-                @NamedAttributeNode("acceptedWorker")
-        }
-)
-
 public class Task extends Order {
 
     @ManyToMany(fetch = FetchType.LAZY)

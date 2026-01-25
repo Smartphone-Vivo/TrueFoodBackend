@@ -109,7 +109,7 @@ class AdvertisementServiceAddAdvertisementTest {
 
         //assert
 
-        verify(advertisementMapping).toEntity(validAdvertisementDto); //todo че проверяет
+        verify(advertisementMapping).toEntity(validAdvertisementDto);
         verify(userRepository).getReferenceById(1L);
         verify(categoryRepository).getReferenceById(1L);
         verify(advertisementRepository).save(advertisementCaptor.capture());

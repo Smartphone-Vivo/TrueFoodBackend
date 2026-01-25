@@ -17,6 +17,9 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
 
     @Query("""
     SELECT a FROM Advertisement a
+    JOIN FETCH a.author
+    JOIN FETCH a.images
+    JOIN FETCH a.category
     WHERE (a.title LIKE CONCAT('%', :name,'%'))
     AND (a.category = :category OR a.category IN :childrenCategory)
     """)
@@ -27,6 +30,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
 
     @Query("""
     SELECT a FROM Advertisement a
+    JOIN FETCH a.images
     WHERE (a.author.id = :id)
     """)
     Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
@@ -34,12 +38,14 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     @Query("""
     SELECT a FROM User u
     JOIN u.favourites a
+    JOIN FETCH a.images
     WHERE u.id = :id
     """)
     Page<Advertisement> getFavouritesAdvertisements(@Param("id") Long id, PageRequest pageRequest);
 
     @Query("""
     SELECT a FROM Advertisement a
+    JOIN FETCH a.images
     WHERE a.id = :id
     """)
     Optional<Advertisement> findAdvertisementById(@Param("id") Long id);
