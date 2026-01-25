@@ -15,27 +15,22 @@ import java.util.Optional;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
-    @EntityGraph(value = "order-graph")
     @Query("""
-    SELECT a FROM Advertisement a 
-    JOIN Order o ON a.id = o.id
-    WHERE (:name IS NULL OR o.title LIKE CONCAT('%', :name,'%'))
-    AND (o.category = :category OR o.category IN :childrenCategory)
-    AND o.enable = true
+    SELECT a FROM Advertisement a
+    WHERE (a.title LIKE CONCAT('%', :name,'%'))
+    AND (a.category = :category OR a.category IN :childrenCategory)
     """)
     Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name,
                                                     @Param("category") Category category,
                                                     @Param("childrenCategory") List<Category> childrenCategory,
                                                     PageRequest pageRequest);
 
-    @EntityGraph(value = "order-graph")
     @Query("""
     SELECT a FROM Advertisement a
     WHERE (a.author.id = :id)
     """)
     Page<Advertisement> getAdverticementByUser(@Param("id") Long id, PageRequest pageRequest);
 
-    @EntityGraph(value = "order-graph")
     @Query("""
     SELECT a FROM User u
     JOIN u.favourites a
@@ -43,7 +38,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     """)
     Page<Advertisement> getFavouritesAdvertisements(@Param("id") Long id, PageRequest pageRequest);
 
-    @EntityGraph(value = "order-graph")
     @Query("""
     SELECT a FROM Advertisement a
     WHERE a.id = :id

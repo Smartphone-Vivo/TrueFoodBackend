@@ -1,34 +1,17 @@
 package dev.TrueFood.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-@Entity
-@Table(name = "Orders")
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
-@NamedEntityGraph(
-        name = "order-graph",
-        attributeNodes = {
-                @NamedAttributeNode(value = "category", subgraph = "category.parent"),
-                @NamedAttributeNode("images"),
-                @NamedAttributeNode("author")
-        },
-        subgraphs = {
-                @NamedSubgraph(name="category.parent",
-                attributeNodes = @NamedAttributeNode("parent"))
-        }
-)
+
 public class Order {
 
     @Id
