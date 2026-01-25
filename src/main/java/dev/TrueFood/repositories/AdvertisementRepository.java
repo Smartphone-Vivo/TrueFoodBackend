@@ -17,9 +17,11 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
 
     @EntityGraph(value = "order-graph")
     @Query("""
-    SELECT a FROM Advertisement a
-    WHERE (a.title LIKE CONCAT('%', :name,'%'))
-    AND (a.category = :category OR a.category IN :childrenCategory)
+    SELECT a FROM Advertisement a 
+    JOIN Order o ON a.id = o.id
+    WHERE (:name IS NULL OR o.title LIKE CONCAT('%', :name,'%'))
+    AND (o.category = :category OR o.category IN :childrenCategory)
+    AND o.enable = true
     """)
     Page<Advertisement> getAdvertisementsByCategory(@Param("name") String name,
                                                     @Param("category") Category category,

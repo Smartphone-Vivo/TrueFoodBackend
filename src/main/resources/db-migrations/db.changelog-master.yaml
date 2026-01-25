@@ -1,3 +1,7 @@
 databaseChangeLog:
-  - include:
-      file: db-migrations/changeset/init-schema.sql
+    - include:
+        file: db-migrations/changeset/001-init-schema.sql
+    - include:
+        file: db-migrations/changeset/002-add-constraints.sql
+    - include:
+        file: db-migrations/changeset/003-fill.sql
