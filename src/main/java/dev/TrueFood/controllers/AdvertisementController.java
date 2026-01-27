@@ -81,5 +81,4 @@ public class AdvertisementController {
     ){
         advertisementService.deleteAdvertisement(authentication, advertisementId);
     }
-
 }

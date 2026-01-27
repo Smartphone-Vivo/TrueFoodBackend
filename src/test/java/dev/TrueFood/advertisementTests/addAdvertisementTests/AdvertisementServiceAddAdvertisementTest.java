@@ -1,4 +1,4 @@
-package dev.TrueFood.Advertisement;
+package dev.TrueFood.advertisementTests.addAdvertisementTests;
 
 import dev.TrueFood.dto.AdvertisementDto;
 import dev.TrueFood.entity.Advertisement;
@@ -20,7 +20,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,10 +48,9 @@ class AdvertisementServiceAddAdvertisementTest {
 
     private User testUser;
     private Category testCategory;
-    private Advertisement testAdvertisement;
     private Image testImage;
     private AdvertisementDto validAdvertisementDto;
-
+    private Advertisement Advertisement;
 
 
     @BeforeEach

@@ -1,4 +1,4 @@
-package dev.TrueFood.Advertisement;
+package dev.TrueFood.advertisementTests.addAdvertisementTests;
 
 import dev.TrueFood.controllers.AdvertisementController;
 import dev.TrueFood.dto.AdvertisementDto;

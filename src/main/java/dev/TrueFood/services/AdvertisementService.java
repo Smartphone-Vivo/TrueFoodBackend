@@ -87,6 +87,9 @@ public class AdvertisementService {
 
             advertisementRepository.save(changedAdvertisement);
         }
+        else{
+            throw new PermissionDeniedException("You do not have permission to update an advertisement");
+        }
 
     }
 
