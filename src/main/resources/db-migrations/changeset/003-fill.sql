@@ -10,9 +10,9 @@ INSERT INTO passwords (id, password) VALUES
 -- 2. Изображения
 INSERT INTO images (id, image_urls) VALUES
     (1, ARRAY[
-        'http://localhost:9000/images/c38924fd-3a78-43db-b817-9e5bf269.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260121T145236Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c4399676b8e331212ee2a166cdb4b5c750f1e4c6fb15af25152b646e262c4765',
-     'http://localhost:9000/images/c38924fd-3a78-43db-b817-9e5bf269.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260121T145236Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c4399676b8e331212ee2a166cdb4b5c750f1e4c6fb15af25152b646e262c4765',
-     'http://localhost:9000/images/c38924fd-3a78-43db-b817-9e5bf269.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20260121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260121T145236Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c4399676b8e331212ee2a166cdb4b5c750f1e4c6fb15af25152b646e262c4765'
+         'http://localhost:9000/images/f79f8104-946f-48a3-9e82-3de05bbb.jpg',
+         'http://localhost:9000/images/1c9135ea-15cd-4f02-956c-c89eda0c.jpg',
+         'http://localhost:9000/images/5a9bf9fa-2426-461d-b359-b760d2a2.jpg'
          ]);
 
 -- 3. Базовые пользователи (админ + 2 обычных)
