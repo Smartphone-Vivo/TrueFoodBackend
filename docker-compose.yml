@@ -37,7 +37,6 @@ services:
     networks:
       - truefood-network
 
-
   kafka:
     image: 'apache/kafka:latest'
     container_name: kafka
@@ -78,7 +77,7 @@ services:
       - truefood-network
 
   frontend:
-    build: C:\Users\aleks\Desktop\blin-blinskiy\!Курсач\TrueFood
+    build: C:\Users\aleks\OneDrive\Рабочий стол\Stp kurs\TrueFood front
     ports:
       - "4200:4200"
     depends_on:

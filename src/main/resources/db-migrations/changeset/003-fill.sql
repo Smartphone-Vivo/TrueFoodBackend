@@ -4,30 +4,30 @@
 -- 1. Пароли
 INSERT INTO passwords (id, password) VALUES
                                          (1, 'admin'),
-                                         (2, 'user1'),
-                                         (3, 'user2');
+                                         (2, '1'),
+                                         (3, '2');
 
 -- 2. Изображения
 INSERT INTO images (id, image_urls) VALUES
     (1, ARRAY[
-         'http://localhost:9000/images/f79f8104-946f-48a3-9e82-3de05bbb.jpg',
-         'http://localhost:9000/images/1c9135ea-15cd-4f02-956c-c89eda0c.jpg',
-         'http://localhost:9000/images/5a9bf9fa-2426-461d-b359-b760d2a2.jpg'
+         'http://localhost:9000/images/0c9723d5-13f7-45de-b195-2a795cd2.jpg',
+         'http://localhost:9000/images/258c4399-7d64-4171-9dd5-a2e7e3c1.jpg',
+         'http://localhost:9000/images/a3bbfdeb-71f7-4ca2-b086-52e8b7b4.jpg'
          ]);
 
 -- 3. Базовые пользователи (админ + 2 обычных)
 INSERT INTO base_users (id, enable, password_id, email, role) VALUES
-                                                                  (1, true, 1, 'admin@truefood.ru', 'ADMIN'),
-                                                                  (2, true, 2, 'user1@truefood.ru', 'USER'),
-                                                                  (3, true, 3, 'user2@truefood.ru', 'USER');
+                                                                  (1, true, 1, 'admin', 'ADMIN'),
+                                                                  (2, true, 2, '1', 'USER'),
+                                                                  (3, true, 3, '2', 'USER');
 
 -- 4. Админ
 INSERT INTO admins (id) VALUES (1);
 
 -- 5. Обычные пользователи
 INSERT INTO users (id, rating, images_id, contacts, fio) VALUES
-                                                             (2, 0, 1, 'tg: @user1', 'Пользователь 1'),
-                                                             (3, 0, 1, 'tg: @user2', 'Пользователь 2');
+                                                             (2, 0, 1, 'tg: @user1', 'Людмила'),
+                                                             (3, 0, 1, 'tg: @user2', 'Игорь');
 
 -- 6. Категории
 INSERT INTO categories (id, parent_id, name) VALUES
