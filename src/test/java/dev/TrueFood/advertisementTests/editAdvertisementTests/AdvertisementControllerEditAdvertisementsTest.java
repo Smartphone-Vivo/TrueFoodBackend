@@ -42,8 +42,6 @@ class AdvertisementControllerEditAdvertisementsTest {
         advertisementDto.setDescription("testDescr");
         advertisementDto.setLocation("testLoc");
         advertisementDto.setPrice(123);
-
-
     }
 
     @Test

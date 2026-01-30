@@ -11,13 +11,15 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Testcontainers
 class AdvertisementRepositoryTest {
-
+    //todo mockmvc abstract
     @Container
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:17");
 
@@ -35,5 +37,13 @@ class AdvertisementRepositoryTest {
     void findAdvertisementById_shouldReturnNotEmpty() {
         var result = advertisementRepository.findAdvertisementById(1L);
         assertThat(result).isNotEmpty();
+    }
+
+    @Test
+    void findAdvertisementById_shouldReturnEmptyWhenNotFound() {
+
+        Optional<Advertisement> result = advertisementRepository.findAdvertisementById(999L);
+
+        assertThat(result).isEmpty();
     }
 }

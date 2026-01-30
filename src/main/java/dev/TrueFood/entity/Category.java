@@ -31,15 +31,7 @@ public class Category {
 
     String name;
 
-    @ManyToMany //todo
+    @ManyToMany
     List<Category> children = new ArrayList<>();
-
-
-    public Category(Category parent, String name) {
-
-        this.parent = parent;
-        this.name = name;
-        this.children = new ArrayList<>();
-    }
 
 }

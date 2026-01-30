@@ -42,8 +42,6 @@ public class AdvertisementService {
 
         AdvertisementDto advertisementDto = advertisementMapping.toDto(advertisement);
 
-        advertisementDto.setAuthorId(advertisement.getAuthor().getId());
-
         advertisementDto.setCategoryId(advertisement.getCategory().getId());
 
         return advertisementDto;
@@ -63,6 +61,7 @@ public class AdvertisementService {
 
             advertisement.setCategory(categoryRepository.getReferenceById(advertisementDto.getCategoryId()));
 
+            //todo mapper
             advertisement.setCreatedAt(LocalDateTime.now());
 
             advertisementRepository.save(advertisement);

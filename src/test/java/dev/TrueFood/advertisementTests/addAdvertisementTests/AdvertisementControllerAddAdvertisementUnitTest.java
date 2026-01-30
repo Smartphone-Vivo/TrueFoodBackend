@@ -53,8 +53,6 @@ class AdvertisementControllerAddAdvertisementUnitTest {
     @Test
     void addAdvertisement_ValidRequest_ShouldCallService() {
         // Arrange
-        doNothing().when(advertisementService)
-                .addAdvertisement(any(AdvertisementDto.class), eq(1L));
 
         // Act
         advertisementController.addAdvertisement(validAdvertisementDto, auth);

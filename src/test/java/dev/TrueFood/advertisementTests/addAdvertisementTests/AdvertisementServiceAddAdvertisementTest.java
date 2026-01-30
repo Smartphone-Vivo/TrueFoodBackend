@@ -45,13 +45,10 @@ class AdvertisementServiceAddAdvertisementTest {
     @InjectMocks
     private AdvertisementService advertisementService;
 
-
     private User testUser;
     private Category testCategory;
     private Image testImage;
     private AdvertisementDto validAdvertisementDto;
-    private Advertisement Advertisement;
-
 
     @BeforeEach
     void setUp() {
@@ -85,7 +82,6 @@ class AdvertisementServiceAddAdvertisementTest {
     void addAdvertisement_whenUserDtoIdMatchUserId_ShouldCreateAndSaveNewAdvertisement() {
 
         //arrange
-
         Long userId = 1L;
 
         Advertisement newAdvertisement = new Advertisement();
@@ -122,7 +118,6 @@ class AdvertisementServiceAddAdvertisementTest {
 
     @Test
     void addAdvertisement_whenUserDtoIdNotMatchUserId_ShouldReturnPermissionDeniedException() {
-
         //arrange
 
         Long userId = 2L;
@@ -141,7 +136,5 @@ class AdvertisementServiceAddAdvertisementTest {
         verify(userRepository, never()).getReferenceById(any());
         verify(categoryRepository, never()).getReferenceById(any());
         verify(advertisementRepository, never()).save(any(Advertisement.class));
-
-
     }
 }
