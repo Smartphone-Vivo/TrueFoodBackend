@@ -69,8 +69,8 @@ public class AdvertisementService {
         else{
             throw new PermissionDeniedException("You do not have permission to add an advertisement");
         }
-
     }
+
 
     @Transactional
     public void editAdvertisement(JwtAuthentication authentication, AdvertisementDto advertisementDto) {

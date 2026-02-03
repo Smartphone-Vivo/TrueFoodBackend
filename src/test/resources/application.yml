@@ -3,7 +3,6 @@ spring:
     enabled: true
     drop-first: false
     change-log: db-migrations/db.changelog-master.yaml
-
   jpa:
     hibernate:
       ddl-auto: validate
@@ -11,3 +10,13 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+minio:
+  endpoint: http://localhost:9000
+  access-key: minioadmin
+  secret-key: minioadmin
+  bucket-name: images
+jwt:
+  secret:
+    access: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w==
+    refresh: qBTmv4oXFFR2GwjexDJ4t6dktmnfkhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w==

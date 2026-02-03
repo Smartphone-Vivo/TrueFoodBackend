@@ -15,6 +15,8 @@ import java.util.Optional;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
+    Advertisement findByTitle(String title);
+
     @Query("""
     SELECT a FROM Advertisement a
     JOIN FETCH a.author
