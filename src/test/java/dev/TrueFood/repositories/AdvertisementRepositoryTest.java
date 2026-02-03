@@ -1,5 +1,6 @@
 package dev.TrueFood.repositories;
 
+import dev.TrueFood.AbstractDbConfig;
 import dev.TrueFood.entity.Advertisement;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Testcontainers
-class AdvertisementRepositoryTest {
+class AdvertisementRepositoryTest extends AbstractDbConfig {
     //todo mockmvc abstract
-    @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:17");
-
-    @DynamicPropertySource
-    static void setProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
-    }
 
     @Autowired
     AdvertisementRepository advertisementRepository;
